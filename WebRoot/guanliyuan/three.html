@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"src="jquery-1.11.1.js"></script>
+<script type="text/javascript">
+function f1(x){
+	$.ajax({
+		type:"post",
+		data:"fencheng="+$("#"+x).val()+"&id="+x,
+		url:"/pingtaiSet/setFencheng",
+		success:function(y){
+			if(y==1){
+				alert("成功");
+			}else{
+				alert("失败");
+			}
+		}
+	});
+}
+</script>
+</head>
+<body>
+<table>
+	
+			<tr>
+				<td>id</td>
+				<td>平台名称</td>
+				<td>平台价格</td>
+				<td>分成</td>
+				<td> 操作</td>
+			</tr>
+		<#list list as li>
+			<tr>
+				<td>${(li.id)!}</td>
+				<td>${(li.name)!}</td>
+				<td>${(li.zongjia)!}</td>
+				<td><input id="${(li.id)!}" type="text"value="${(li.fencheng)!}">%</td>
+				<td><input type="button" value="确定" onclick="f1(${(li.id)!})"></td>
+			</tr>
+		</#list>
+	</table>
+</body>
+</html>

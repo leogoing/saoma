@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="Css/wapbootstrap.css" />
+<link rel="stylesheet" type="text/css" href="Css/stylephone.css" />
+<link href="Css/wapbasic.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="Css/idangerous.swiper.css">
+<link rel="stylesheet" href="Css/maskStyle.css">
+
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+<script type="text/javascript">
+//获取头像和昵称
+function getUserInfo(userId){
+	$.ajax({
+		url:'wapUserIncome/info?userId='+userId,
+		success:function(res){
+			alert(res.attpeople)
+		}
+	});
+};
+	$(function(){
+		jQuery('#output').qrcode({width:'200',height:'200',correctLevel:0,text:'http://www.baidu.com'});
+	})
+		 
+</script>
+</head>
+	<body id="output">
+		
+	</body>
+</html>

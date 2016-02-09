@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"src="jquery-1.11.1.js"></script>
+<script type="text/javascript">
+	function f5(x){
+		$.ajax({
+			type:"post",
+			data:"id="+x+"&shunxu="+$("#"+x).val(),
+			async:false,
+			url:"/pingtaiSet/setType1",
+			success:function(x){
+				if(x==1){
+					alert("成功");
+				}
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<table>
+	
+			<tr>
+				<td>id</td>
+				<td>平台名称</td>
+				<td>平台价格</td>
+				<td>分成</td>
+				<td>顺序</td>
+				<td> 操作</td>
+			</tr>
+		<#list list as li>
+			<tr>
+				<td>${(li.id)!}</td>
+				<td>${(li.name)!}</td>
+				<td>${(li.zongjia)!}</td>
+				<td>${(li.fencheng)!}%</td>
+				<td><input id="${(li.id)!}"type="text"></td>
+				<td><input type="button" value="确定" onclick="f5(${(li.id)!})"></td>
+			</tr>
+		</#list>
+	</table>
+</body>
+</html>

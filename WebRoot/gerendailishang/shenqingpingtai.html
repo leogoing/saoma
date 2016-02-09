@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/index-right.css"/>
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/index.css"/>
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/bootstrap1.css"/>
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/index-bottom.css"/>
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/index-right.css"/>
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/bootstrap.css"/>
+			<!-- script type="text/javascript" src="js/jquery-1.9.1.js"></script> -->
+		<title></title>
+		<script type="text/javascript">
+		function XuanChuanTu(pingtaiid,erweima){
+			var load="tobeijing?pingtaiid="+pingtaiid+"&erweima="+erweima;
+			$(".xqy").load(load);
+		}
+		</script>
+	</head>
+	<body>
+		<div class="xqy">
+					<table class="table">
+						<tr class="diyihang">
+							<th>二维码</th>
+							<th>二维码有效期</th>
+							<th>平台名称</th>
+							<th>价格</th>		
+							<th>保护期</th>
+							<th>详情</th>
+							<th>宣传页</th>
+						</tr>
+						<#list list as li>
+						<tr>
+							<th><img src="${(li.erweima)!}" width="100px" height="100px"/></th>
+							<th>${(li.youxiaoqi)!}</th>
+							<th>${(li.publicaccountname)!}</th>
+							<th>${(li.jiage)!}</th>
+							<th>${(li.baohuqi)!}天</th>
+							<th>${(li.xiangqing)!}</th>
+							<th><button type="button"  class="btn btn-primary" onclick="XuanChuanTu(${(li.pingtaiid)!},'${(li.erweima)!}')">进入</button></th>
+						</tr>
+					</#list>
+					</table>
+				</div>
+				
+				
+	</body>
+</html>

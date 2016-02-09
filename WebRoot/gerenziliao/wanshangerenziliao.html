@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="${ctx}/">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/index.css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/bootstrap1.css" />
+<title></title>
+<script type="text/javascript" src="js/data/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript">
+$(function() {
+	//提交信息
+	$("#subButton").on("click",function(){
+		$.ajax({
+			url:'gr/updategr',
+			type:'post',
+			dataType:'json',
+			async:false,
+			data:$("#updateForm").serialize(),
+			success:function(data){
+				$("#success").text(data.info);
+			}
+		});
+		return false;
+	});
+});
+</script>
+</head>
+<body>
+<form id="updateForm" action="gr/updategr" method="post">
+	<div class="xiaxian">
+	<#list grzlup.getList() as x>
+		<div class="xiaxian-row">
+			<span> 登录名 </span> <span name="user.loginname" style="margin-left: 45px;">${(x.loginname)!}</span>
+		</div>
+		<div class="xiaxian-row">
+			<span> 密&nbsp;&nbsp;&nbsp;码 </span> <input name="user.password" type="password"
+				class="form-control pull-right" placeholder="password"
+				maxlength=20 value="${(x.password)!}">
+		</div>
+		<div class="xiaxian-row">
+			<span> 手&nbsp;&nbsp;&nbsp;机 </span> <input type="text"
+				class="form-control pull-right" placeholder="phone" name="user.phone" value="${(x.phone)!}" maxlength=11>
+		</div>
+		<div class="xiaxian-row">
+			<span> 邮&nbsp;&nbsp;&nbsp;箱 </span> <input type="email"
+				class="form-control pull-right" placeholder="email" name="user.email" value="${(x.email)!}" maxlength=20>
+		</div>
+		<div class="xiaxian-row">
+			<span> 真实姓名 </span> <input type="text"
+				class="form-control pull-right" placeholder="name" name="user.realname" value="${(x.realname)!}" maxlength=20>
+		</div>
+		<div class="xiaxian-row">
+			<span> 开户行 </span> <select name="user.bankid" class="form-control pull-right" style="font-family: '微软雅黑'; color: white; background-image: url(newImages/xlk_03.png);">
+				<OPTION selected value="${x.bankid}">${(x.bankname)!}</OPTION>
+					<#list bankList.getList() as y>
+						<OPTION value="${y.id}">${y.bankname}</OPTION>
+					</#list>
+			</select>
+		</div>
+		<div class="xiaxian-row">
+			<span> 所在地 </span> <input type="text" class="form-control pull-right"
+				placeholder="开户银行所在地（例如：北京市招商银行中关村开支行）" name="user.bankinfo" value="${(x.bankinfo)!}" maxlength=50>
+		</div>
+		<div class="xiaxian-row">
+			<span> 银行卡号 </span> <input type="text"
+				class="form-control pull-right" placeholder="1234 5678 1234 5678"name="user.bankno" value="${(x.bankno)!}" maxlength=30>
+		</div>
+	</div>
+</#list>
+	<input type="submit" id="subButton"
+		style="border: 1px #555555 solid; background-image: url(newImages/aaniu.png); width: 250px; height: 45px; margin-left: 425px; margin-bottom: 50px;"
+		class="btn btn-warning"/>
+	<span id="success"></span>
+</form>
+</body>
+</html>

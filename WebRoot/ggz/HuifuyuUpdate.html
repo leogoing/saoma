@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<base href="${ctx}/">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="Css/liujie-demo.css"/>
+		<link rel="stylesheet" type="text/css" href="Css/liujie-font-awesome.min.css"/>
+		<!--<script type="text/javascript" src="jquery-1.7.2.min.js"></script>-->
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script src="js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+		function SelectAll() {
+			var real_newstype="${pingtai.newstype!}"
+			var newstype=document.getElementById("newstype");
+			for (var i = 0; i < newstype.options.length; i++) {
+				if (newstype.options[i].value == real_newstype) {
+					newstype.options[i].selected = 'selected';
+				}
+			}
+			 var a = $("#newstype option:selected").val();
+			    if(a==1){
+			    	$('#box1').css('display','block');
+			    	$('#text').css('display','none');
+			    }else if(a==0){
+			    	$('#text').css('display','block');
+			    	$('#box1').css('display','none');
+			    }else if(a==2){
+			    	$('#text').css('display','none');
+			    	$('#box').css('display','none');
+			    }
+			
+		}
+		
+		function showNews(){
+			
+			var a = $("#newstype option:selected").val();
+		    if(a==1){
+		    	$('#box1').css('display','block');
+		    	$('#text').css('display','none');
+		    }else if(a==0){
+		    	$('#text').css('display','block');
+		    	$('#box1').css('display','none');
+		    }else if(a==2){
+		    	$('#text').css('display','none');
+		    	$('#box').css('display','none');
+		    }
+			
+		}
+		
+		$(document).ready(function() {
+			SelectAll();
+		})
+		
+		</script>
+	</head>
+	<body>
+	
+		<!--头部开始-->
+		<div id="header">
+	  		<div class="header-logo">
+	  		<img src="images/1_01.png">
+	  		<a>扫码后台管理系统</a>
+	  		</div>
+	  		<div class="header-close">
+	  			<a href="/logout">
+		  			<img src="images/5_03_02.png">
+		  			<a href="/logout">退出</a>
+	  			</a>
+	  		</div>
+	  		<div class="clearfix"></div>
+	  	</div>
+	  	<!--头部结束-->
+	  	<!--内容开始-->
+	  	<div class="content">
+	  		<div class="content-top">
+
+	  			<ul class="left1">
+	  				<a style="color:black;" href="ggz/ToUpdateFromOther" >修改平台</a>
+	  			</ul>
+	  			<ul class="left2" style="border-bottom: 3px solid #3d5a9a;">
+	  				<li>回复</li>
+	  			</ul>
+	  			<ul class="left3" >
+	  				<a style="color:black;" href="ggz/ToImgs" >背景图片</a>
+	  			</ul>
+	  			<ul class="left4" >
+           			<a style="color:black;" href="ggz/ToXuqiu"  >需求</a>
+        		</ul>
+	  			<ul class="leftPtname" >
+	  				<a style="color: purple;font-size: 20px";  >${pingtai.name!}</a>
+	  			</ul>
+	  			<ul class="right icon-remove">
+	  				<li></li>
+	  			</ul>
+	  		</div>
+	  		
+	  			<form action="ggz/UpdateHuifuyu" method="post"  enctype="multipart/form-data">
+	  		<div id="box2">
+	  			<span>图片或文本回复 :</span><select name="newstype" id="newstype" class="select" onchange="showNews()">
+	  					<option value="0" id="op1">文本</option>
+	  					<option value="1" id="op2">图文</option>
+	  				</select>
+	  				<i style="width:600px;font-size:14px;color:#666;" > 选择第一次关注平台后平台的回复类型</i>
+	  				<br />
+
+	  				</div>
+	  				
+	  				
+			<div id="box">
+	  				<div id="box1"  style="display:none;">
+	  					<div>
+	  						<span>新闻标题 :</span><input type="text" name="title" id="title" value="${pingtai.title!}"/><i style="width:600px;font-size:14px;color:#666;"> 回复新闻的标题</i>
+	  					</div>
+	  					<br />
+	  					<div>
+	  						<span>新闻描述 :</span><input type="text" name="miaoshu" id="miaoshu" value="${pingtai.miaoshu!}" class="te"/><i style="width:600px;font-size:14px;color:#666;"> 新闻内容的文字描述</i>
+	  					</div>
+	  					<br />
+	  					<div class="ph">
+	  						<span style="display: inline-block;">新闻图片 :<img alt="" src="${newsImgUrl!}" style="display: inline-block;width:190px;height:120px; border:1px solid #ccc;margin-left:210px;"></span>
+	  					</div>
+	  					<br />
+	  					<div>
+	  						<span>图片上传 :</span><input type="file" value="浏览文件" name="newsimg"/><i style="width:600px;font-size:14px;color:#666;"> 新闻内显示的图片</i>
+	  					</div>
+	  					<br />
+	  					<div>
+	  						<span>新闻路径 :</span><input type="text" name="newsurl" id="newsurl" value="${pingtai.newsurl!}"/><i style="width:600px;font-size:14px;color:#666;"> 新闻的访问网址</i>
+	  					</div>
+	  				</div>
+	  					
+	  				<div id="text" style="display:none;">
+	  					<span>回复语 :</span><input id="" name="huifuyu" type="text" value="${pingtai.huifuyu!}"  />
+	  					<br />
+	  				</div>
+	  				<input type="submit" value="提交" id="sub"/>
+	  				<a href="ggz/GetTotal" style="color:red;">&nbsp; 返回>>>>></a>
+	  		</div>
+	  			</form>	
+	  		
+	</body>
+</html>

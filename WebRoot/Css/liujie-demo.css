@@ -1,0 +1,266 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+/*头部开始*/
+
+#header {
+	height: 50px;
+	background: #212f3a
+}
+
+#header .header-logo {
+	height: 50px;
+	float: left;
+	line-height: 50px;
+	color: #fff;
+	overflow: hidden;
+	margin-left: 40px;
+}
+
+#header .header-logo img {
+	vertical-align: middle;
+}
+
+#header .header-close {
+	height: 45px;
+	float: right;
+	line-height: 45px;
+	padding-right: 20px;
+	border-top: 5px solid #d62c5d;
+}
+
+#header .header-close a {
+	color: #fff;
+	font-size: 14px;
+}
+
+#header .header-close img {
+	vertical-align: middle;
+}
+
+
+/*头部结束*/
+
+
+/*内容开始*/
+
+.content {
+	width: 100%;
+	height: 100%;
+	/*background: red;*/
+}
+
+.content .content-top {
+	width: 1500px;
+	height: 50px;
+	margin: 0 auto;
+	border-bottom: 1px solid #666;
+}
+
+.content .content-top .left1 {
+	font-size: 14px;
+	line-height: 48px;
+	margin-left: 50px;
+	text-align: center;
+	width: 120px;
+	float: left;
+}
+.content .content-top .left2 {
+	font-size: 14px;
+	line-height: 48px;
+	margin-left: 50px;
+	text-align: center;
+	width: 120px;
+	float: left;
+}
+.content .content-top .left3 {
+	font-size: 14px;
+	line-height: 48px;
+	margin-left: 50px;
+	text-align: center;
+	width: 120px;
+	float: left;
+}
+.content .content-top .left4 {
+	font-size: 14px;
+	line-height: 48px;
+	margin-left: 50px;
+	text-align: center;
+	width: 120px;
+	float: left;
+}
+.content .content-top .leftPtname {
+	font-size: 14px;
+	line-height: 48px;
+	margin-left: 700px;
+	text-align: center;
+	width: 120px;
+	float: left;
+}
+.content .content-top .right {
+	float: right;
+	line-height: 46px;
+	margin-right: 50px;
+	color: black;
+	cursor: pointer;
+}
+
+
+#foot {
+	margin-top: 18px;
+}
+
+#foot ul li {
+	float: left;
+	text-align:right;
+	width: 200px;
+	height: 30px;
+	margin-left: 32px;
+	font-size: 14px;
+}
+
+#foot ul {
+	width: 590px;
+	height: 30px;
+}
+
+#foot ul .color {
+	color: #D62C5D;
+	text-align:left;
+}
+
+form input {
+	width: 250px;
+	height: 30px;
+	margin-left: 30px;
+}
+
+.put {
+	width: 250px;
+	height: 100px;
+}
+
+.select {
+	width: 90px;
+	height: 30px;
+	margin-left: 30px;
+	text-align: center;
+	color: #666;
+	border:1px solid #ccccc;
+}
+
+span {
+	display: inline-block;
+	width: 180px;
+	height: 50px;
+	text-align: right;
+	margin-left: 50px;
+	font-size: 14px;
+}
+
+.content #box {
+	margin-top:20px;
+	width: 100%;
+	height: 100%;
+	/*background:green;*/
+	/*display: none;*/
+}
+
+#text {
+	width: 1000px;
+	height: 230px;
+	/*background:green;*/
+	/*display: none;*/
+}
+
+.te {
+	height: 120px;
+	padding-left: 3px;
+}
+
+p {
+	margin-left: 260px;
+	font-size: 12px;
+	color: red;
+	margin-top: -20px;
+}
+
+#sub {
+	width: 90px;
+	height: 40px;
+	margin-left: 50%;
+	border-radius: 10%;
+	border: none;
+	background: #3c5999;
+	color: white;
+	font-size: 14px;
+}
+
+.content #file {
+	width: 1505px;
+	height: 500px;
+	/*background: gold;*/
+	margin-top: 20px;
+	margin-left: 15px;
+	position: relative;
+}
+.content #tishiDiv p{
+	width:200px;height:50px;
+	position:absolute;top:130px;left:430px;
+	font-size:14px;
+}
+.sb{
+	padding:0;margin:0;width:90px;height:40px;border:none;border-radius:12% ;
+	position: absolute;bottom:10px;left:50%;background: #3c5999;color:white;
+}
+.content #file #file-left {
+	width: 250px;
+	height: 300px;
+	/*background:red;*/
+	text-align: center;
+	line-height: 300px;
+	float: left;
+}
+
+.content #file .img {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+.content #file .img a {
+	width: 50px;
+	height: 20px;
+	background: #ccc;
+	margin-left: 25px;
+	display: inline-block;
+	text-align: center;
+	color: black;
+	font-size: 14px;
+}
+.content #file #add {
+	width: 80px;
+	height: 100px;
+	float: left;
+	margin-top: 70px;
+	margin-left: 10px;
+
+}
+#add .fill{
+	border:none;width:150px;height:100px;
+}
+
+/*内容结束*/

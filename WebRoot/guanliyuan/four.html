@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"src="jquery-1.11.1.js"></script>
+<script type="text/javascript">
+var number=0;
+	function f2(x){
+		if(number<21){
+			if($("#"+x).val()=="提前"){
+				number=number+1;
+				
+				$.ajax({
+					type:"post",
+					data:"id="+x+"&type=1&shunxu=-1",
+					async:false,
+					url:"/pingtaiSet/setType1",
+					success:function(x){
+						if(x==1){
+							alert("成功");
+						}
+					}
+				});
+				$("#"+x).attr("value","取消提前");
+			}else if($("#"+x).val()=="取消提前"){
+				$.ajax({
+					type:"post",
+					data:"id="+x+"&type=2&shunxu=0",
+					async:false,
+					url:"/pingtaiSet/setType1",
+					success:function(x){
+						if(x==1){
+							alert("成功");
+						}
+					}
+				});
+				$("#"+x).attr("value","提前");
+				
+				number=number-1;
+			}
+		}else{
+			alert("最多只能设置20个提前用户");
+		}
+	}
+
+</script>
+</head>
+<body>
+	<table>
+	
+			<tr>
+				<td>id</td>
+				<td>平台名称</td>
+				<td>平台价格</td>
+				<td>分成</td>
+				<td> 操作</td>
+			</tr>
+		<#list list as li>
+			<tr>
+				<td>${(li.id)!}</td>
+				<td>${(li.name)!}</td>
+				<td>${(li.zongjia)!}</td>
+				<td>${(li.fencheng)!}%</td>
+				<td><input id="${(li.id)!}"type="button" value="${(li.shunxu==-1)?string('取消提前','提前')}" onclick="f2(${(li.id)!})"></td>
+			</tr>
+		</#list>
+	</table>
+</body>
+</html>

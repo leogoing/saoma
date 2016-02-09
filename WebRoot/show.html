@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="${ctx}/">
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/style1.css" />
+<script src="js/jquery.min.js"></script>
+<script>
+var time="${time!}"
+	$(function() {
+		show();
+		function show() {
+			//请求后台总收入，今日收入， 扫码昵称，收入，平台，扫码时间
+			$.ajax({
+				url : 'dlsInfo/moban',
+				success : function(res) {
+					var JSON=res;
+					var dom = '';
+					$(JSON)
+							.each(
+									function(index) {
+										var border_Color = "";
+										var count = index + 1;
+										if (count % 5 == 0) {
+											border_Color = "blue";
+											count = 1;
+										} else if (count % 4 == 0) {
+											border_Color = "green";
+										} else if (count % 3 == 0) {
+											border_Color = "yellow";
+										} else if (count % 2 == 0) {
+											border_Color = "#FFB748";
+										} else {
+											border_Color = "red";
+										}
+										$("#inCome").html(this.inCome);
+										$("#nowCome").html(this.nowCome);
+										
+										dom += '<li style="border-color:'+border_Color+'">'
+												+ '<div style="text-align: left; width:30%;">'
+												+ '<img src="'+this.headimgurl+'" class="img-circle" style="float:left; margin-top:20px;width:70px"/>'+
+												'<span  class="tr" style="font-size: 24px; margin-left: 10px; float:left; width:70%; white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'
+												+this.attpeople
+												+ '</span>'
+												+ '</div>'
+												+ '<div style="width:18%;">'
+												+ '<span class="tr" style="color: red; font-size: 30px;">'
+												+ this.value
+												+ '</span>'
+												+ '<span class="tr" style="color: red; font-size: 24px;">'
+												+ '元'
+												+ '</span>'
+												+ '</div>'
+												+ '<div>'
+												+ '<span  class="tr" style="font-size: 24px; margin-left: 10px; float:left; width:90%; white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'
+												+ this.attentionPL
+												+ '</span>'
+												+ '</div>'
+												+ '<div >	'
+												+ '<span  class="tr" style="font-size: 16px;">'
+												+ this.smtime
+												+ '</span>'
+												+ '</div>' + '</li>';
+									});
+					$("#list").html(dom);
+				}
+			});
+		}
+		setInterval(show, time);
+	});
+	//----------------------------------------------
+
+	/* var JSON = [ {
+		'head' : 'Images/cs_14.png',
+		'name' : 'Huile',
+		'shouru' : '0.8',
+		'pingtai' : 'Guyoki',
+		'date' : '2015-09-06 17:18 '
+	}, {
+		'head' : 'Images/cs_14.png',
+		'name' : 'Huile',
+		'shouru' : '0.8',
+		'pingtai' : 'Guyoki',
+		'date' : '2015-09-06 17:18 '
+	}, {
+		'head' : 'Images/cs_14.png',
+		'name' : 'Huile',
+		'shouru' : '0.8',
+		'pingtai' : 'Guyoki',
+		'date' : '2015-09-06 17:18 '
+	}, {
+		'head' : 'Images/cs_14.png',
+		'name' : 'Huile',
+		'shouru' : '0.8',
+		'pingtai' : 'Guyoki',
+		'date' : '2015-09-06 17:18 '
+	}, {
+		'head' : 'Images/cs_14.png',
+		'name' : 'Huile',
+		'shouru' : '0.8',
+		'pingtai' : 'Guyoki',
+		'date' : '2015-09-06 17:18 '
+	}, {
+		'head' : 'Images/cs_14.png',
+		'name' : 'Huile',
+		'shouru' : '0.8',
+		'pingtai' : 'Guyoki',
+		'date' : '2015-09-06 17:18 '
+	}, {
+		'head' : 'Images/cs_14.png',
+		'name' : 'Huile',
+		'shouru' : '0.8',
+		'pingtai' : 'Guyoki',
+		'date' : '2015-09-06 17:18 '
+	}, {
+		'head' : 'Images/cs_14.png',
+		'name' : 'Huile',
+		'shouru' : '0.8',
+		'pingtai' : 'Guyoki',
+		'date' : '2015-09-06 17:18 '
+	}, {
+		'head' : 'Images/cs_14.png',
+		'name' : 'Huile',
+		'shouru' : '0.8',
+		'pingtai' : 'Guyoki',
+		'date' : '2015-09-06 17:18 '
+	}, {
+		'head' : 'Images/cs_14.png',
+		'name' : 'Huile',
+		'shouru' : '0.8',
+		'pingtai' : 'Guyoki',
+		'date' : '2015-09-06 17:18 '
+	} ]
+	$(document)
+			.ready(
+					function() {
+						var dom = '';
+						$(JSON)
+								.each(
+										function(index) {
+											var border_Color = "";
+											var count = index + 1;
+											if (count % 5 == 0) {
+												border_Color = "blue";
+												count = 1;
+											} else if (count % 4 == 0) {
+												border_Color = "green";
+											} else if (count % 3 == 0) {
+												border_Color = "yellow";
+											} else if (count % 2 == 0) {
+												border_Color = "#FFB748";
+											} else {
+												border_Color = "red";
+											}
+											dom += '<li style="border-color:'+border_Color+'">'
+													+ '<div>'
+													+ '<img src="'+this.head+'" class="img-circle"/>'
+													+ '<span  class="tr" style="font-size: 24px; margin-left: 10px;">'
+													+ this.name
+													+ '</span>'
+													+ '</div>'
+													+ '<div>'
+													+ '<span class="tr" style="color: red; font-size: 30px;">'
+													+ this.shouru
+													+ '</span>'
+													+ '<span class="tr" style="color: red; font-size: 24px;">'
+													+ '元'
+													+ '</span>'
+													+ '</div>'
+													+ '<div>'
+													+ '<span  class="tr" style="font-size: 24px;">'
+													+ this.pingtai
+													+ '</span>'
+													+ '</div>'
+													+ '<div >	'
+													+ '<span  class="tr" style="font-size: 16px;">'
+													+ this.date
+													+ '</span>'
+													+ '</div>' + '</li>';
+										});
+						$("#list").html(dom);
+					}); */
+</script>
+</head>
+<body>
+	<div class=" header1">
+		<div class="tb1">
+
+			<img src="images/qiantubiao_03.png" style="float: left; margin-top: 14px;" />
+
+			<span class="zongshouru"> 总收入 </span> <span id="inCome"
+				style="font-size: 30px; margin-left: 80px;"></span> <span
+				style="font-size: 24px; margin-left: 5px;"> 元 </span>
+		</div>
+		<div class="tb2">
+
+			<img src="images/qiantubiao_03.png" style="float: left; margin-top: 14px;" />
+
+			<span class="zongshouru"> 今日收入 </span> <span id="nowCome"
+				style="font-size: 30px; margin-left: 80px;"></span> <span
+				style="font-size: 24px; margin-left: 5px;"> 元 </span>
+		</div>
+
+	</div>
+	<div class="yellowtiao">
+		<ul>
+			<li style="width:30%">扫码昵称</li>
+			<li style="width:18%">收入</li>
+			<li>平台</li>
+			<li>扫码时间</li>
+		</ul>
+	</div>
+
+
+	<div id="table">
+
+		<ul id="list">
+
+		</ul>
+	</div>
+</body>
+</html>

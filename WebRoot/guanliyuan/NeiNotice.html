@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="${ctx}/">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript"src="/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+	function f3(){
+		$.ajax({
+			type:"post",
+			data:"gonggao="+$("#h2").val(),
+			url:"${ctx}/notice/index3",
+			success:function(x){
+				if(x==1){
+					alert("更新成功");
+				}else{
+					alert("更新失败");
+				}
+			}
+		});
+	}
+
+</script>
+</head>
+<body>
+<textarea rows="7" cols="69" name="notice.content"  style="margin-left: 20px;margin-top: 20px" id="h2">${gonggao!}</textarea>
+<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<input type="button" class=" btn btn-default col-xs-5 " 
+								style="height: 34px; margin-bottom: 20px; margin-left: 20px" maxlength=8
+								value="提交" onclick="f3()">
+						</div>
+					</div>
+</body>
+</html>

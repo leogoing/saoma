@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>扫码后台管理系统</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../Css/ggz-zhuti.css" type="text/css" rel="stylesheet">
+<link href="../Css/ggz-shezhierweima.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+
+function ToAdd(){
+	
+	window.location="${ctx}/ggz/XingZeng"
+	
+}
+
+function Exit() {
+	window.location="${ctx}/login/logout"
+}
+
+</script>
+</head>
+<body>
+<div id="wrapper">
+   <div id="header"   >
+      <div class="left">
+         <span><img src="../images/tubiao_1_03.png"></span>
+
+         <h2>扫码后台管理系统</h2>
+      </div>
+      <div class="right">
+         <a href="/logout">
+            <span ><img src="../images/5_03.png"></span>
+            <h2 class="a123">退出</h2>
+         </a>
+      </div>
+   </div>
+   <div id="center">
+      <div class="left">
+         <!--<div class="head"><img src="images/chongzhi_03.png"></div>-->
+         <ul class="left_menu">
+            <!--单条信息循环开始-->
+            <a href="GetCostAndAttention">
+               <li>
+                  <div class="zub"><img src="../images/1_03.png"></div>
+                  <div class="yb">
+                     <h2>详细信息</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+            </a>
+            <!--单条信息循环结束-->
+
+            <a href="GetTotal">
+               <li >
+                  <div class="zub"><img src="../images/2_03.png"></div>
+                  <div class="yb">
+                     <h2>所有平台</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+            </a>
+
+            <a href="javascript:;">
+               <li class="action">
+                  <div class="zub"><img src="../images/chongzhi_1_03.png" width="30" height="30"></div>
+                  <div class="yb">
+                     <h2>充值</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+            </a>
+
+            <a href="javascript:;">
+               <li >
+                  <div class="zub"><img src="../images/4_03.png"></div>
+                  <div class="yb">
+                     <h2>完善信息</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+            </a>
+         </ul>
+      </div>
+      <!-- 右侧开始 -->
+      <div class="right">
+         <div class="hezi">
+            <table>
+               <tr>
+                  <td class="hezi_1">银行：</td>
+                  <td>中国工商银行</td>
+               </tr>
+               <tr>
+                  <td class="hezi_1">开户行：</td>
+                  <td>北京阜成门支行</td>
+               </tr>
+               <tr>
+                  <td class="hezi_1">充值卡号：</td>
+                  <td>62220808200022042512</td>
+               </tr>
+               <tr>
+                  <td class="hezi_1">收款人姓名：</td>
+                  <td>张艾</td>
+               </tr>
+               <tr>
+                  <td class="hezi_1">财务电话：</td>
+                  <td>010-4000375686</td>
+               </tr>
+               <tr>
+                  <td class="hezi_1">备注：</td>
+                  <td> 为方便财务确认信息，请您转账时在备注信息中填入姓名与联系方式</td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </div>
+   <!-- 右侧结束 -->
+   <div id="footer">
+      <div class="left"></div>
+      <div class="right"></div>
+   </div>
+</div>
+
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+      <script type="text/javascript" src="js/ggz-zhongti.js"></script>
+</body>
+</html>

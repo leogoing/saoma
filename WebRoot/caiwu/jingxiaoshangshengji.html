@@ -1,0 +1,98 @@
+<html>
+<head>
+<base href="${ctx}/">
+<title>经销商升级</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript" src="js/data/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript">
+$(function() {
+	//提交信息
+	$("#clForm").ajaxForm({
+		beforeSubmit : function() {
+			alert("1111111");
+			return true;
+		},
+		success : function(retObj) {
+			alert(retObj.info);
+			window.location.href = window.location.href;
+		}
+	});
+});
+</script>
+<style>
+a {
+	text-decoration: none;
+	color: #333;
+}
+</style>
+</head>
+<body>
+
+	<div class="biaoti col-lg-12 col-xs-12 "
+		style="background-color: #C4E3F3; color: #ffffff; margin-bottom: 10px;">
+		经销商升级</div>
+		<form action="${ctx}/caiwu/getshengji/" method="post">
+	<!--经销商升级搜索框 -->
+		<input type="text"
+		value="请输入申请用户名" 
+		onfocus="if(this.value=='请输入申请用户名'){this.value='';}"  
+		onblur="if(this.value=='')
+		{this.value='请输入申请用户名';}"
+		name="xingming"> 
+		<select name="dagai">
+			<option value="全部">全部</option>
+			<option value="县级">申请县级</option>
+			<option value="市级">申请市级</option>
+		</select>
+		<input type="submit"value="提交">
+		</form>
+	<div class="container col-lg-12 col-sm-12">
+		<div class="table-responsive" style="overflow: auto; height: 80%">
+			<form id="clForm" action="caiwu/clsqshengji" method="post">
+				<table class="table  table-striped table-bordered text-center ">
+					<tr class="text-center">
+						<td>编号</td>
+						<td>姓名</td>
+						<td>手机</td>
+						<td>银行卡号</td>
+						<td>开户信息</td>
+						<td>代理商等级</td>
+						<td>申请等级</td>
+						<td>上线人</td>
+						<td>下线人</td>
+						<td>申请时间</td>
+						<td>处理</td>
+					</tr>
+					<#list sjjll.getList() as x>
+					<tr>
+						<td>${(x.id)!}</td>
+						<td>${(x.loginname)!}</td>
+						<td>${(x.phone)!}</td>
+						<td>${(x.bankno)!}</td>
+						<td>${(x.bankinfo)!}</td>
+						<td>${(x.levelidname)!}</td>
+						<td>${(x.wantname)!}</td>
+						<!-- 增加上线人和下线人 2个字段 -->
+						<td>${(x.leadername)!}</td>
+						<td>${(x.edgename)!}</td>
+						<td>${(x.applytime)!}</td>
+						<td><input type="checkbox" name="sjid" value="${(x.id)!}"
+							style="width: 15px; height: 15px;"></td> </#list>
+					</tr>
+				</table>
+				<#include "/common/_paginate.html" />
+	<@paginate currentPage=sjjll.pageNumber totalPage=sjjll.totalPage actionUrl="${ctx}/caiwu/getshengji/" />
+				<input type="submit"
+					class=" btn btn-default col-xs-3 col-sm-3 pull-right "
+					style="height: 34px; margin-bottom: 20px; margin-top: 20px;"
+					maxlength=8 value="提交" >
+			</form>
+		</div>
+	</div>
+	</div>
+</body>

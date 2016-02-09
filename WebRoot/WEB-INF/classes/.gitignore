@@ -1,0 +1,16 @@
+/Static/
+/Test/
+/a_little_config.txt
+/com/
+/controller/
+/interceptors/
+/job/
+/job.properties
+/local_config.txt
+/log4j.properties
+/mail.properties
+/model/
+/shiro.ini
+/util/
+/validator/
+/weixin/

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/index-right.css"/>
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/index.css"/>
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/bootstrap1.css"/>			
+		<title></title>
+		<script type="text/javascript">
+			var userName ="${currentUser!}";
+			var leverId ="${currentLevelid!}";
+			var userId ="${currentUserId!}";
+				function submitApply() {
+					var selectedLevel = $("#selectedLevel").val();
+					$.ajax({
+						url :'${ctx}/dlsUpLevel/agenetUpLevel?agentType=2&selectedLevel='+ selectedLevel+"&userName="+userName+"&leverId="+leverId,
+						success:function(res){
+							$("#money").html(res.money);
+							$("#tel").html(res.tel);
+							$("#cw").html(res.name);
+							$(".yindaoyu2").show();
+							alert(res.result);
+						}
+					});
+				}
+		</script>
+	</head>
+	<body>
+		<div class="yindaoyu">
+			您好，您现在是个人代理商，您需要升级到
+		</div>
+		<select id="selectedLevel" class="form-control" style="margin-left: 50px; font-family: '微软雅黑'; color: white; background-image: url(newImages/xlk_03.png);">
+			<option value="3">县级代理商</option>
+			<option value="4">市级代理商</option>
+		</select>
+		<div class="yindaoyu2" style="display:none" >
+			需要缴纳升级费<span id="money"></span>元，缴费请联系财务：<span id="cw"></span>,联系电话：<span id="tel"></span>
+		</div>	
+		<button onclick="submitApply()" type="button" style="border: 1px #555555 solid; background-image: url(newImages/aaniu.png); width: 250px; height: 45px; margin-left: 330px;" class="btn btn-warning">提交</button>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px; padding:0px; font-family:"微软雅黑";}
+#wrapper{width:1200px;;background:url(../images/background_2_03.png);margin:0px auto;}
+#header{width:1200px;height:50px;background:#212f3a;}
+#header .left{line-height:50px; padding-left:40px;float:left;width:200px;height:50px;}
+#header .left span{width:50px;height:50px;float:left;padding-top:10px;}
+#header .left h2{color:#FFF;font-size:16px;float:left;width:150px;height:50px;font-weight:400;}
+#header .right{float:right;width:100px;height:45px;border-top:5px solid #d62c5d;}
+#header .right span{width:30px;height:38px;float:left;padding-top:11px;}
+#header .right .a123{float:left;color:#FFF;font-size:16px;font-weight:400;width:50px;margin-top: 15px}
+#center{width:1200px;height:740px;clear:both;}
+#center .left{width:230px;height:740px;background:#273542;float:left;}
+#center .left .head{width:210px;height:100px;padding:20px 0px 0px 20px;border-bottom:#495058 solid 1px;}
+#center .left ul li{list-style:none;color:#FFF;width:230px;height:50px;line-height:50px;border-bottom:#495058 solid 1px; cursor:pointer;}
+/*#center .left a:hover{background:#d62c5d;}*/
+/*#center .left a:link{color:#FFF; text-decoration:none;}*/
+/*#center .left a:visited{color:#FFF; text-decoration:none;}*/
+/*#center .left a:active{color:#FFF; text-decoration:none;}*/
+/*页面更改被废弃*/
+#center .left ul li:hover{background:#d62c5d;}
+#center .left ul li .zub{width:40px; height:42px;float:left;padding:8px 0px 0px 5px;}
+#center .left ul li .yb{width:180px;height:50px;float:left;}
+#center .left ul li .yb h2{float:left;font-size:16px;font-weight:400;}
+#center .left ul li .yb span{float:right;margin-right:20px;}
+#center .right{width:970px;height:740px;float:right;}
+#center .right .hezi{
+    height: auto;
+    width: 880px;
+}
+#center .right .hezi td {
+    height: 42px;
+    width: 200px;
+}
+#center .right .hezi .hezi_1 {
+    text-align: right;
+
+}
+#footer{clear:both;width:1200px;height:10px;}
+#footer .left{width:600px;height:10px;background:#263541;float:left;}
+#footer .right{width:600px;height:10px;background:#b0103e;float:left;}
+.action{background:#d62c5d;}
+

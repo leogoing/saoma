@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<base href="${ctx}/">
+<title>个人资料</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/data.css" />
+</head>
+
+<body>
+	<div class="biaoti col-lg-12 col-xs-12 "
+		style="background-color: #66AFE9; color: #FFFFFF; margin-bottom: 10px;">
+		个人资料</div>
+	<div class="container col-lg-4 col-xs-12">
+
+		<#list grzl.getList() as x>
+		<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+			<div class="ziliaoye">
+				<span class="zlx_span col-lg-3 col-xs-3">姓&nbsp;&nbsp;&nbsp;名</span>
+				<span class="col-lg-9 col-xs-8 pull-right">${(x.loginname)!}</span>
+			</div>
+		</div>
+		<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+			<div class="ziliaoye">
+				<span class="zlx_span col-lg-3 col-xs-3">密&nbsp;&nbsp;&nbsp;码</span>
+				<input type="password" class="col-lg-9 col-xs-8  pull-right"
+					style="height: 35px;" maxlength=8 placeholder="${(x.password)!}" disabled="disabled">
+			</div>
+
+		</div>
+		<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+			<div class="ziliaoye">
+				<span class="zlx_span col-lg-3 col-xs-3">手&nbsp;&nbsp;&nbsp;机</span>
+				<input type="text" class="col-lg-9 col-xs-8  pull-right"
+					style="height: 35px;" placeholder="${(x.phone)!}" maxlength=11 disabled="disabled">
+			</div>
+
+		</div>
+		<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+			<div class="ziliaoye">
+				<span class="zlx_span col-lg-3 col-xs-3">邮&nbsp;&nbsp;&nbsp;箱</span>
+				<input type="email" class=" col-lg-9 col-xs-8  pull-right"
+					style="height: 35px;" placeholder="${(x.email)!}" name="grzl.email"
+					maxlength=20 disabled="disabled">
+			</div>
+
+		</div>
+		<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+			<div class="ziliaoye">
+				<span class="zlx_span col-lg-4 col-xs-4">真实姓名</span> <input
+					type="text" class="col-lg-8 col-xs-8  pull-right"
+					style="height: 35px;" name="username" placeholder=${(x.realname)!}
+					maxlength=4 disabled="disabled">
+			</div>
+
+		</div>
+		<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+			<div class="ziliaoye">
+				<span class="zlx_span col-lg-3 col-xs-4">开户行</span> <input
+					type="text" class="col-lg-8 col-xs-8  pull-right"
+					style="height: 35px;" name="username" placeholder=${(x.bankname)!}
+					maxlength=4 disabled="disabled">
+			</div>
+
+		</div>
+		<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+			<div class="ziliaoye">
+				<span class="zlx_span col-lg-4 col-xs-4">银行卡号</span> <input
+					type="text" class="col-lg-8 col-xs-8  pull-right"
+					style="height: 35px;" name="username" placeholder=${(x.bankno)!}
+					maxlength=20 disabled="disabled">
+			</div>
+
+		</div>
+		<div class="row col-lg-12 col-xs-12 "></div>
+		</#list>
+
+	</div>
+
+
+</body>

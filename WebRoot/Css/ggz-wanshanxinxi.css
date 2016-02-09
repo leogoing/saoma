@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+.hezi{width:850px;height:650px;background:rgba(999,999,999,0.2);margin:50px 0px 0px 40px;border:#b1b1b1 solid 1px; box-shadow:2px 4px #b1b1b1;font-weight:500;}
+.hezi .top{width:850px; height:480px;padding-top:20px;}
+.hezi .top .l{width:200px;height:480px;float:left;text-align:right;}
+.hezi .top .l ul li{list-style:none;width:200px;height:50px;line-height:50px;}
+.hezi .top .r{width:650px;height:480px;float:left;}
+.hezi .top .r ul li{list-style:none;width:620px;height:50px;line-height:50px;padding-left:50px;color:#676e87;}
+.hezi .top .r ul li input{height:30px; margin-top:10px;width:300px;}
+.hezi .top .r ul li input.bj{background:rgba(0,0,0,0.2)}
+.hezi .top .r ul li select{width:300px; height:30px; margin-top:10px;}
+.hezi .top .r ul li select.bj{background:rgba(0,0,0,0.2)}
+.hezi .bottom{width:850px; height:150px;}
+.hezi .bottom input{margin:50px 0px 0px 365px;}
+

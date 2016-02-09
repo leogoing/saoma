@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="${ctx}/">
+<title>扫码后台管理系统</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="Css/ggz-zhuti.css" type="text/css" rel="stylesheet">
+<link href="Css/ggz-shezhierweima.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+var msg="${msg!}";
+var Addmsg ="${Addmsg!}";
+window.onload=GetTotal();
+function GetTotal(){
+	if(Addmsg!=""){
+		alert(Addmsg)
+	}
+	if(msg==""){
+		window.location="${ctx}/ggz/GetTotal";
+	}
+}
+
+function ToAdd(){
+	
+	window.location="${ctx}/ggz/XingZeng"
+	
+}
+
+function Exit() {
+	window.location="${ctx}/login/logout"
+}
+
+</script>
+</head>
+<body>
+	 
+   <div id="wrapper">
+      <div id="header">
+         <div class="left">   
+            <span><img src="images/6_03.png"></span>
+            <h2>扫码后台管理系统</h2>
+         </div>
+         <div class="right">
+            <a href="login/logout">
+            <span><img src="images/5_03.png"></span>
+            <h2>退出</h2>
+            </a>
+         </div>
+      </div>
+      <div id="center">
+         <div class="left">
+            <div class="head"><img src="images/chongzhi_03.png"></div>
+            <ul class="left_menu">
+            	<!--单条信息循环开始-->
+               <a href="ggz/GetCostAndAttention" >
+               <li >
+                  <div class="zub"><img src="images/1_03.png"></div>
+                  <div class="yb">
+                     <h2>详细信息</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+              	<!--单条信息循环结束-->
+              	
+              	<a href="ggz/GetTotal" >
+               <li class="action">
+                  <div class="zub"><img src="images/2_03.png"></div>
+                  <div class="yb">
+                     <h2>所有平台</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+               
+               <a href="javascript:;">
+               <li>
+                  <div class="zub"><img src="images/chongzhi_1_03.png" width="30" height="30"></div>
+                  <div class="yb">
+                     <h2>充值</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+               
+               <a href="javascript:;" >
+               <li>
+                  <div class="zub"><img src="images/4_03.png"></div>
+                  <div class="yb">
+                     <h2>完善信息</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+               
+               
+            </ul>
+         </div>
+          
+         <!-- 右侧开始 -->
+         <div class="right">
+            <div class="hezi">
+                <div class="shang">
+                   <ul>
+                      <li>平台名称</li>
+                      <li>价格</li>
+                      <li>是否上架</li>
+                      <li>类型</li>
+                      <li>有效时间</li>
+                      <li>操作</li>
+                   </ul>
+                </div>
+                      <#list list as x>
+                <div class="xia">
+                   <ul>
+                   	  <!--单条数据循环开始-->
+                      <li>
+                         <ul>
+                             <li>${(x.name)!}</li>
+                             <li>${(x.totalget)!}</li>
+                             <li><#if x.uplowframe =='1'>上架</#if><#if x.uplowframe =='0'>下架</#if></li>
+                             <li><#if x.adtype =='1'>永久</#if><#if x.adtype =='0'>临时</#if></li>
+                             <li>${(x.adtime)!}</li>
+                             <li class="xiahuax"><a href="ggz/ToUpdate?id=${(x.id)!}">操作</a><a href="ggz/GetOneTotal?id=${(x.publicaccountname)!}" >详细</a></li>
+                         </ul>
+                      </li>
+                      <!--单条数据循环结束-->
+                   </ul>
+               </div>
+                         </#list>
+            </div>
+            <div class="xiaanniu">
+               <input type="image" src="images/anniu.jpg" onclick="ToAdd()">
+            </div>
+         </div>
+         </div>
+         <!-- 右侧结束 -->
+      </div>
+      <div id="footer">
+         <div class="left"></div>
+         <div class="right"></div>
+      </div>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+      <script type="text/javascript" src="js/ggz-zhongti.js"></script>
+</body>
+</html>

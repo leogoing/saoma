@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+.hezi{width:850px;height:auto;background:rgba(999,999,999,0.2);margin:50px 0px 0px 40px;border:#b1b1b1 solid 1px; box-shadow:2px 4px #b1b1b1; position:relative;}
+.hezi .shang{width:850px;height:40px;background:rgba(0,0,255,0.2);}
+.hezi .shang ul li{width:141px;list-style:none;height:40px;line-height:40px;color:#FFF;float:left;text-align:center;}
+.hezi .xia{width:850px;height:auto;}
+.hezi .xia ul li{list-style:none;width:850px;height:80px;}
+.hezi .xia ul li ul{float:left;}
+.hezi .xia ul li ul li.red{color:#a04765;}
+.hezi .xia ul li ul li.blue{color:#116db6;}
+
+.hezi .xia ul li ul li.xiahuax a{text-decoration: none;padding:0 2px;}
+.hezi .xia ul li ul li.xiahuax a:hover{color: red;}
+
+.hezi .xia ul li ul li{width:141px;height:80px; line-height:80px;border-bottom:#b1b1b1 1px solid;float:left;text-align:center;}
+.xiaanniu{width:895px;height:60px;text-align:right; padding-right:75px; padding-top:20px;}
+

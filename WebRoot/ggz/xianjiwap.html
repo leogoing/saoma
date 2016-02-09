@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="Css/wapbootstrap.css" />
+<link rel="stylesheet" type="text/css" href="Css/stylephone.css" />
+<link href="Css/wapbasic.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="Css/idangerous.swiper.css">
+<link rel="stylesheet" href="Css/maskStyle.css">
+
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<!-- <script src="js/FancyZoom.js" language="JavaScript"
+	type="text/javascript"></script>
+<script src="js/FancyZoomHTML.js" language="JavaScript"
+	type="text/javascript"></script> -->
+<script src="js/idangerous.swiper-2.1.min.js"></script>
+<script src="js/mask.js"></script>
+<script type="text/javascript">
+var userName = "xianji";
+var leverId = "3";
+var userId = "3";
+var realName = "县级"
+var agentType = "2";
+	$(function() {
+		$("#currentUser").html("个人代理商 " + realName + " 您好：");
+		$.ajax({
+			url : "dlsQrcodePlant/getAllPt",
+			async : false,
+			success : function(res) {
+				var context = '';
+				var ks = "<div class='swiper-slide red-slide'>";
+				var js = "</div>";
+				var one = "<div class='li'>";
+				var two = "<div class='li odd'>";
+				for (var i = 0; i < res.length; i++) {
+					if(agentType==1){
+						money = (res[i].personagentsp);
+						money = Math.round(money*100)/100;
+					}
+					if(agentType==2){
+						money = (res[i].countryagentsp+res[i].personagentsp);
+						money = Math.round(money*100)/100;
+					}
+					if(agentType==3){
+						money = (res[i].cityagentsp+res[i].countryagentsp+res[i].personagentsp);
+						money = Math.round(money*100)/100;
+					}
+					//money = (res[i].personagentsp);
+					getTicket(res[i].appid, res[i].appsecret);
+
+					if (i == 0 || (i + 1) % 2 != 0) {
+						context += ks;
+					}//开始标签
+
+					if ((i + 1) % 2 == 0) {
+						context += two;
+						context += "<a ref="
+								+ ticket
+								+ "><img class='doc' src="+ticket+"  /></a> <dl> ";//此处为80端口 
+						context += "<span style='margin: 4px 0; display: block;'>扫描费用：<span style='color: #FF0000;'>"
+								+ money + "元</span></span>";
+						context += "<span style='text-align: left;'>"
+								+ res[i].name + "</span> </dl> </div>";
+						//context += "<span class=\"col-lg-12 col-xs-12\">"+ res[i].name+"<br>"+"扫描费用："+money+ "</span> </dl></div>";
+					} else {
+						context += one;
+						context += "<a ref="
+								+ ticket
+								+ "><img class='doc' src="+ticket+"  /></a> <dl> ";//此处为80端口 
+						context += "<span style='margin: 4px 0; display: block;'>扫描费用：<span style='color: #FF0000;'>"
+								+ money + "元</span></span>";
+						context += "<span style='text-align: left;'>"
+								+ res[i].name + "</span> </dl> </div>";
+						//context += "<span class=\"col-lg-12 col-xs-12\">"+ res[i].name+"<br>"+"扫描费用："+money+ "</span> </dl></div>";
+					}
+
+					if ((i + 1) % 2 == 0 || i == (res.length - 1)) {
+						context += js;
+					}//结束标签
+				}
+				$("#qrcode").html(context);
+				bind();
+			}
+		});
+
+		//获取昨日收入
+		getYestardayIncome(agentType);
+		getIncome(agentType);
+		getRemainder(agentType);
+		getScan(agentType);
+		getIncomeMonth(agenType);
+		geDetailData(agentType);
+		getUnderScanTable(agentType);
+	});
+
+	function geDetailData(agentType) {
+		$.ajax({
+			url : 'dlsInfo/getValueFromPlant?angentType=' + agentType
+					+ "&userId=" + userId,
+			success : function(res) {
+				$("#tabledetail").html(res);
+			}
+		});
+	}
+
+	function getUnderScanTable() {
+		$.ajax({
+			url : 'dlsInfo/getFindUnderScanFromDifferentPlant?angentType='
+					+ agentType + "&userId=" + userId,
+			success : function(res) {
+				$("#underTabledetail").html(res);
+			}
+		});
+	}
+
+	//获取昨日收入
+	function getYestardayIncome(agentType) {
+				$.ajax({
+					url : 'dlsInfo/getYestardayIncomeForDifferentAgent?angentType='
+							+ agentType
+							+ "&userName="
+							+ userName
+							+ "&userId="
+							+ userId,
+					success : function(res) {
+						$("#yestarday").html(res.inCome + "元");
+					}
+				});
+	}
+	//获取收入
+	function getIncome(agentType) {
+		$.ajax({
+			url : 'dlsInfo/getIncomeForDifferentAgent?angentType=' + agentType
+					+ "&userName=" + userName + "&userId=" + userId,
+			success : function(res) {
+				$("#sum").html(res.inCome + "元");
+			}
+		});
+	}
+	//获取一月收入
+	function getIncomeMonth(agentType) {
+		$.ajax({
+			url : 'dlsInfo/getIncomeForDifferentAgent2?angentType=' + agentType
+					+ "&userName=" + userName + "&userId=" + userId,
+			success : function(res) {
+				$("#sum").html(res.inCome + "元");
+			}
+		});
+	}
+	//获取头像和昵称
+	function getUserInfo(userId){
+		$.ajax({
+			url:'wapUserIncome/info?userId='+userId,
+			success:function(res){
+				alert(res.attpeople)
+			}
+		});
+	}
+	
+	//获取余额
+	function getRemainder(agentType) {
+		$.ajax({
+			url : 'dlsInfo/getBalanceForDifferentAgent?angentType=' + agentType
+					+ "&userName=" + userName + "&userId=" + userId,
+			success : function(res) {
+				$("#remainder").html(res.inCome + "元");
+			}
+		});
+	}
+
+	function getScan(agentType) {
+		
+				$.ajax({
+					url : 'dlsInfo/getScanFlowInfoForWap?agentType=' + agentType
+							+ "&userName=" + userName + "&userId=" + userId,
+					success : function(res) {
+						var JSON = res;
+						var dom = '';
+						$(JSON)
+						.each(
+								function(index) {
+									var border_Color = "";
+									var count = index + 1;
+									if (count % 5 == 0) {
+										border_Color = "blue";
+										count = 1;
+									} else if (count % 4 == 0) {
+										border_Color = "green";
+									} else if (count % 3 == 0) {
+										border_Color = "yellow";
+									} else if (count % 2 == 0) {
+										border_Color = "#FFB748";
+									} else {
+										border_Color = "red";
+									}
+									dom += '<li style="border-color:'+border_Color+'">'
+											+ '<div style="text-align:left; width:34%;">'
+											+ '<img src="'+this.headimgurl+'" class="img-circle" style="float:left; margin-top:13px; margin-left:3px; width:35px;"/>'
+											+ '<span  style="font-size: 14px; margin-left: 3px;  width:60%; white-space:nowrap;overflow:hidden; text-overflow:ellipsis; float:left;">'
+											+ this.attpeople
+											+ '</span>'
+											+ '</div>'
+											+ '<div style=" width:15%; ">'
+											+ '<span  style="color: red; font-size: 14px;">'
+											+ this.value
+											+ '</span>'
+											+ '<span  style="color: red; font-size: 14px;">'
+											+ '元'
+											+ '</span>'
+											+ '</div>'
+											+ '<div style=" width:17%; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">'
+											+ '<span style=" width:120px; font-size: 14px;  ">'
+											+ this.attentionPL
+											+ '</span>'
+											+ '</div>'
+											+ '<div style=" width:34%; ">	'
+											+ '<span   style="font-size: 14px; ">'
+											+ this.smtime
+											+ '</span>'
+											+ '</div>' + '</li>';
+								});
+						$("#list").html(dom);
+					}
+				});
+	}
+
+	function timeIsNull(canelTime) {
+		if (canelTime == null) {
+			return '未取消';
+		}
+		return canelTime;
+	}
+
+	function getTicket(appid, appsecret) {
+		$.ajax({
+			url : 'dlsQrcodePlant/getLinshiEWM?appid=' + appid + '&appsecret='
+					+ appsecret + '&id=' + userId,
+			async : false,
+			success : function(url) {
+				ticket = url;
+			}
+		});
+
+	}
+	
+	function closePgae(){
+		$(".mask").hide()
+	}
+</script>
+
+</head>
+<body>
+	<div class="col-xs-12 col-lg-12 col-sm-12 topq">扫码后台管理系统</div>
+
+	<div class="weizhang ">
+		<div class="weizhang-xinxi" style="margin-left: 5%;">
+			<p id="yestarday" class="weizhang-xinxi-neirong"></p>
+			<p class="weizhang-xinxi-neirong2">昨日收入</p>
+		</div>
+
+
+		<div class="weizhang-xinxi" >
+			<p id="sum" class="weizhang-xinxi-neirong"></p>
+			<p class="weizhang-xinxi-neirong2">累计收入</p>
+
+		</div>
+
+
+		<div class="weizhang-xinxi">
+			<p id="remainder" class="weizhang-xinxi-neirong"></p>
+			<p class="weizhang-xinxi-neirong2">账户余额</p>
+		</div>
+	</div>
+
+	<div class="fenge"></div>
+	<div class="col-lg-12 col-xs-12 col-sm-12 erweima"
+		style="padding: 0px;">
+		<div id="main"
+			style="min-width: 300px !important; max-width: 730px !important; margin: auto; overflow: hidden;">
+			<div class="swiper-container4">
+				<div id="qrcode" class="swiper-wrapper"></div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="fenge"
+		style="height: 25px; line-height: 25px; text-align: center; font-family: '微软雅黑'; font-size: 12px; color: #333333;">
+		温馨提示：二维码左右滑动可显示更多呦~~~</div>
+	<!-- ------------------------------------------------------------- -->
+	<div id="tatle" class="row col-lg-12 col-xs-12 ziliaoye" style="margin-bottom: 10px;width: 100%">
+		<table >
+			<tr class="col-lg-12 col-xs-12" style="width: 100%">
+				<td>头像</td>
+				<td>昵称</td>
+				<td>累计收入</td>
+				<td>累计转发</td>
+				<td>本月收入</td>
+			</tr>
+		</table>
+		<!--<span ></span>-->
+		<!--<span class="col-lg-12 col-xs-12 "></span>-->
+		<!--<span class="col-lg-12 col-xs-12 "></span>-->
+		<!--<span class="col-lg-12 col-xs-12 "></span>-->
+		<!--<span class="col-lg-12 col-xs-12 "></span>-->
+	</div>
+	<div class="table-responsive"
+		style="font-family: '微软雅黑'; width: 100%; height: 85%; overflow: auto;">
+		<table id="tabledetail"
+			class="table  table-striped table-bordered text-center ">
+		</table>
+	</div>
+
+	<!--<div class="fenge"></div>-->
+	<!--<div class="row col-lg-12 col-xs-12 ziliaoye"-->
+		<!--style="margin-bottom: 10px;">-->
+		<!--<span class="col-lg-12 col-xs-12 ">下线扫描</span>-->
+	<!--</div>-->
+	<!--<div class="table-responsive"-->
+		<!--style="font-family: '微软雅黑'; width: 100%; height: 85%; overflow: auto;">-->
+		<!--<table id="underTabledetail"-->
+			<!--class="table  table-striped table-bordered text-center ">-->
+		<!--</table>-->
+	<!--</div>-->
+
+	<div class="fenge"></div>
+
+	<div class="yellowtiao">
+		<ul>
+			<li style="color: #999999; width: 34%;">扫码昵称</li>
+			<li style="color: #999999; width: 15%;">收入</li>
+			<li style="color: #999999; width: 17%;">平台</li>
+			<li style="color: #999999; width: 34%;">扫码时间</li>
+		</ul>
+	</div>
+	
+
+	<div id="table">
+
+		<ul id="list">
+		</ul>
+	</div>
+	<div class='mask'> <div class='img-box'></div> <a href="javascript:;" onClick="closePgae()" ><span style="color:white;margin-left: 40%">关闭二维码</span></a> </div>
+		
+	<script>
+		$(function() {
+			var mySwiper4 = new Swiper('.swiper-container4', {
+				//pagination: '.pagination4',
+				loop : true,
+				paginationClickable : true,
+				moveStartThreshold : 100
+			});
+			var resize4 = function(e) {
+				var query4 = $('.swiper-container4');
+				var clientW4 = query4[0].clientWidth;
+				query4.css('height', clientW4 * 262 / 730 + 80 + 'px');
+			}
+			$(window).bind('resize', resize4);
+			resize4();
+			setInterval(function() {
+				mySwiper4.swipeNext();
+			}, 60000);
+			
+		});
+	</script>
+	
+	<div>
+		
+		<span><input type="button" value="提现" class="btn sub1" style="margin-left: 20px"/></span>
+		<span><input type="button" value="我也赚钱" class="btn sub1" style="float: right;margin-right: 20px" /></span>
+	</div>
+</body>
+
+
+
+
+
+</html>

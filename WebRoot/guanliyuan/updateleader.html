@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="${ctx}/">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/data/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//提交信息
+		$("#updateForm").ajaxForm({
+			beforeSubmit : function() {
+				return true;
+			},
+			success : function(retObj) {
+				alert(retObj.info);
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="container col-lg-4 col-sm-6 col-xs-12">
+		<div class="biaoti col-lg-12 col-xs-12 "
+			style="background-color: #C4E3F3; color: #ffffff; margin-bottom: 10px;">
+			更新代理商上线</div>
+		<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+			<#list user.getList() as u>
+			<form id="updateForm" action="glyupdate/updateleader1" method="post">
+					<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">姓&nbsp;&nbsp;&nbsp;名</span>
+							<input type="text" name="xsloginname" placeholder="${(u.loginname)!}">
+							<input type="hidden" name="loginname" value="${(u.loginname)!}">
+							
+						</div>
+					</div>
+					<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">姓&nbsp;&nbsp;&nbsp;名</span>
+							<input type="text" name="updateleader" value="" ><span>请填入上线登录名</span>
+						</div>
+					</div>
+					<div class="row col-lg-12 col-xs-12">
+						<input type="submit" name="submit" id="submit" value="更新"
+							class=" btn btn-default center-block" />
+					</div>
+			</form>
+			</#list>
+		</div>
+	</div>
+</body>
+</html>

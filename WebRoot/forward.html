@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<input id="button" type="button" style="width: 100%;height: 300px;margin-top:300px;font-size: 42px;" onclick="javascript:WeixinJSBridge.call('closeWindow');" value="点击关闭">
+	</body>
+	<script type="text/javascript">
+		if('${(hasBind)!}'){
+			alert('该微信号已绑定了用户，请更换微信账号绑定！');
+			window.location.href="http://tg.kaihuine.com";
+			//window.close();
+			return ;
+		}
+		if('${(tempUser)!}'){
+			if(confirm('您不是代理商用户或未绑定微信号，一次提现最多20元，是否继续？')){
+				window.location.href='/gerenziliao/getMoney_Info.html?openid=kl${(openid)!}';
+			}else{
+				window.history.go(-2);
+			}
+		}else if('${(notFound)!}'){
+			alert('未知用户！');
+			window.history.go(-2);
+		}
+	</script>
+</html>

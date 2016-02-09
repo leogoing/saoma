@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<base href="${ctx}/">
+<title>检索更新代理权限</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript" src="js/data/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript">
+$(function() {
+	//提交信息
+	$("#updateForm").ajaxForm({
+		beforeSubmit : function() {
+			return true;
+		},
+		success : function(retObj) {
+			alert(retObj.info);
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+	<div class="container col-lg-4 col-sm-6 col-xs-12">
+		<div class="biaoti col-lg-12 col-xs-12 "
+			style="background-color: #C4E3F3; color: #ffffff; margin-bottom: 10px;">
+			检索更新代理权限</div>
+		<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+			<#list user.getList() as u>
+			<form id="updateForm" action="glyupdate/updatedls" method="post">
+				<div class="col-lg-12 col-xs-12  pull-right" style="height: 35px;">
+					<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">姓&nbsp;&nbsp;&nbsp;名</span>
+							<input type="text" name="u.loginname)" value="${(u.loginname)!}"
+								disabled="disabled">
+						</div>
+					</div>
+					<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">代理商级别</span> <select
+								name="u.levelid" style="height: 35px; margin-bottom: 10px;">
+								<OPTION selected value="${(u.levelid)!}">
+									${(u.levelname)!}</OPTION> <#list levelList.getList() as l>
+								<OPTION value="${(l.id)}">${(l.levelname)}</OPTION> </#list>
+							</select>
+						</div>
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">密&nbsp;&nbsp;&nbsp;码</span>
+							<input type="password" style="height: 35px;" name="u.password"
+								maxlength=20 value="${(u.password)!}">
+						</div>
+
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">手&nbsp;&nbsp;&nbsp;机</span>
+							<input name="u.phone" type="text" style="height: 35px;"
+								value="${(u.phone)!}" maxlength=11>
+						</div>
+
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">邮&nbsp;&nbsp;&nbsp;箱</span>
+							<input type="email" style="height: 35px;" value="${(u.email)!}"
+								name="u.email" maxlength=20>
+						</div>
+
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">真实姓名</span> <input
+								type="text" style="height: 35px;" name="u.realname"
+								value="${(u.realname)!}" maxlength=20>
+						</div>
+
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">开户行</span> <select
+								name="u.bankid" style="height: 35px;">
+								<OPTION selected value="${(u.bankid)!}">${(u.bankname)!}</OPTION>
+								<#list bankList.getList() as b>
+								<OPTION value="${(b.id)}">${(b.bankname)}</OPTION>
+								</#list>
+							</select>
+						</div>
+
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">银行卡号</span> <input
+								type="text" style="height: 35px;" name="u.bankno"
+								value="${(u.bankno)!}" maxlength=16>
+						</div>
+
+						<input type="hidden" name="u.id" value="${(u.id)!}">
+
+					</div>
+					<div class="row col-lg-12 col-xs-12">
+						<input type="submit" name="submit" id="submit" value="更新" onclick="alertinfo()"
+							class=" btn btn-default center-block" />
+					</div>
+			</form>
+			<div class="row col-xs-12 col-lg-12">
+				<h5>余额:${balance!}</h5>
+			</div>			
+			<div class="row col-xs-12 col-lg-12">
+				<h5>上线:</h5>
+				<#list leader.getList() as leader>
+				<span>${(leader.loginname)!}( ${(leader.username)!})</span><br/>
+				</#list>
+			</div>
+			<div class="row col-xs-12 col-lg-12">
+				<h5>下线:</h5>
+				<#list edgelist.getList() as e>
+				<span>${(e.loginname)!} (${(e.username)!})</span><br/>
+				</#list>
+			</div>
+
+			</#list>
+		</div>
+	</div>
+</body>

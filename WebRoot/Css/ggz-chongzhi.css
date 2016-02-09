@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+.hezi{width:850px;height:650px;background:rgba(999,999,999,0.2);margin:50px 0px 0px 40px;border:#b1b1b1 solid 1px; box-shadow:2px 4px #b1b1b1;}
+.hezi .top{width:850px; height:480px;padding-top:20px;}
+.hezi .top .l{width:200px;height:480px;float:left;text-align:right;}
+.hezi .top .l ul li{list-style:none;width:200px;height:50px;line-height:50px;}
+.hezi .top .r{width:650px;height:480px;float:left;}
+.hezi .top .r ul li{list-style:none;width:650px;height:50px;line-height:50px;padding-left:20px;color:#676e87;}
+.hezi .top .r ul li input{margin-top:10px;}
+.hezi .bottom{width:850px; height:150px;}
+.hezi .bottom input{margin:50px 0px 0px 325px;}
+
+

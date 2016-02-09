@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"src="/hahada/jquery-1.11.1.js"></script>
+<script type="text/javascript"src="/hahada/ajaxfileupload.js"></script>
+<script type="text/javascript">
+	var n=null;
+	var value=null;
+	var ss=null;
+	var caidan=null;
+	var caiidan1type=null;
+	var caiidan2type=null;
+	var caiidan3type=null;
+	var caiidan1type1=null;
+	var caiidan1type2=null;
+	var caiidan1type3=null;
+	var caiidan1type4=null;
+	var caiidan1type5=null;
+	
+	var caiidan2type1=null;
+	var caiidan2type2=null;
+	var caiidan2type3=null;
+	var caiidan2type4=null;
+	var caiidan2type5=null;
+	
+	var caiidan3type1=null;
+	var caiidan3type2=null;
+	var caiidan3type3=null;
+	var caiidan3type4=null;
+	var caiidan3type5=null;
+	
+	function f1(dom){
+		console.info(dom);
+		n=$(dom);
+		$("#h1").show();
+		$("#q1").show();
+		$("#d1").show();
+	}
+	function q1(x){
+		n=$(x);
+		$("#q2").show();
+	}
+	function q2(x){
+		n=$(x);
+		$("#q3").show();
+	}
+	function q3(x){
+		n=$(x);
+		$("#q4").show();
+	}
+	function q4(x){
+		n=$(x);
+		$("#q5").show();
+	}
+	function q5(x){
+		n=$(x);
+	}
+	function f2(x){
+		n=$(x);
+		$("#h2").show();
+		$("#w1").show();
+	}
+	function w1(x){
+		n=$(x);
+		$("#w2").show();
+	}
+	function w2(x){
+		n=$(x);
+		$("#w3").show();
+	}
+	function w3(x){
+		n=$(x);
+		$("#w4").show();
+	}
+	function w4(x){
+		n=$(x);
+		$("#w5").show();
+	}
+	function w5(x){
+		n=$(x);
+	}
+	function f3(x){
+		n=$(x);
+		$("#e1").show();
+	}
+	function e1(x){
+		n=$(x);
+		$("#e2").show();
+	}
+	function e2(x){
+		n=$(x);
+		$("#e3").show();
+	}
+	function e3(x){
+		n=$(x);
+		$("#e4").show();
+	}
+	function e4(x){
+		n=$(x);
+		$("#e5").show();
+	}
+	function e5(x){
+		n=$(x);
+	}
+	function z1url(x){
+		ss=$(x);
+		
+		$("#xuanurl").show();
+		$("#xuantext").hide();
+		$("#xuannews").hide();
+		$("#xuanimg").hide();
+		$("#xuanyuyin").hide();
+		$("#xuanluxiang").hide();
+	}
+	function z1news(x){
+		ss=$(x);
+		$("#xuannews").show();
+		$("#xuantext").hide();
+		$("#xuanurl").hide();
+		$("#xuanimg").hide();
+		$("#xuanyuyin").hide();
+		$("#xuanluxiang").hide();
+	}
+	function z1text(x){
+		ss=$(x);
+		
+		$("#xuantext").show();
+		$("#xuanurl").hide();
+		$("#xuannews").hide();
+		$("#xuanimg").hide();
+		$("#xuanyuyin").hide();
+		$("#xuanluxiang").hide();
+	}
+	function z1img(x){
+		ss=$(x);
+		$("#xuanimg").show();
+		$("#xuantext").hide();
+		$("#xuanurl").hide();
+		$("#xuannews").hide();
+		$("#xuanyuyin").hide();
+		$("#xuanluxiang").hide();
+	}
+	function ziyuyin(x){
+		ss=$(x);
+		$("#xuanyuyin").show();
+		$("#xuanimg").hide();
+		$("#xuantext").hide();
+		$("#xuanurl").hide();
+		$("#xuannews").hide();
+		$("#xuanluxiang").hide();
+	}
+	function z1luxiang(x){
+		ss=$(x);
+		$("#xuanluxiang").show();
+		$("#xuanyuyin").hide();
+		$("#xuanimg").hide();
+		$("#xuantext").hide();
+		$("#xuanurl").hide();
+		$("#xuannews").hide();
+	}
+	function zhengjing(x){
+		var ooo=$('#imgurl').val();
+		var type=ss.val();
+		if(type=='跳转URL'){
+			type='url';
+		}
+		if(type=='发送文本'){
+			type="text";
+		}
+		if(type=='发送新闻'){
+			type="news";
+		}
+		if(type=='发送图片'){
+			type="img";
+		}
+		if(type=='发送语音'){
+			type="yuyin";
+		}
+		var kkk=$(x);
+		console.info(x);
+		var kkn=kkk.attr("name");
+		var value44="";
+		if(kkn=="text"){
+			value44=$('#huifutext').val();
+		}
+		if(kkn=="yuyin"){
+			value44=$('#huifuyuyin').val();
+		}
+		if(kkn=="url"){
+			value44=$('#urldizhi').val();
+		}
+		if(kkn=="news"){
+			value44=$('#huifunewss').val();
+		}
+		if(kkn=="img"){
+			value44=$("#huifuimg").val();
+		}
+		
+		alert(kkn)
+		
+		var nn=$('#z1value').val();
+		n.attr('data-type',type);
+		alert(value44);
+		n.attr('data-value',value44);
+		n.attr("value",nn);
+	
+	}
+	function fasong(){
+		$.ajax({
+			type:"post",
+			data:"zhucai1name="+$('#q0').val()+"&zhucai1type="+$('#q0').attr('data-type')+"&zhucai1value="+$('#q0').attr('data-value')+"&zhucai1zi1name="+$('#q1').val()+"&zhucai1zi1type="+$('#q1').attr('data-type')+"&zhucai1zi1value="+$('#q1').attr('data-value')+"&zhucai1zi2name="+$('#q2').val()+"&zhucai1zi2type="+$('#q2').attr('data-type')+"&zhucai1zi2value="+$('#q2').attr('data-value')+"&zhucai1zi3name="+$('#q3').val()+"&zhucai1zi3type="+$('#q3').attr('data-type')+"&zhucai1zi3value="+$('#q3').attr('data-value')+"&zhucai1zi4name="+$('#q4').val()+"&zhucai1zi4type="+$('#q4').attr('data-type')+"&zhucai1zi4value="+$('#q4').attr('data-value')+"&zhucai1zi5name="+$('#q5').val()+"&zhucai1zi5type="+$('#q5').attr('data-type')+"&zhucai1zi5value="+$('#q5').attr('data-value')+"&zhucai2name="+$('#h1').val()+"&zhucai2type="+$('#h1').attr('data-type')+"&zhucai2value="+$('#h1').attr('data-value')+"&zhucai2zi1name="+$('#w1').val()+"&zhucai2zi1type="+$('#w1').attr('data-type')+"&zhucai2zi1value="+$('#w1').attr('data-value')+"&zhucai2zi2name="+$('#w2').val()+"&zhucai2zi2type="+$('#w2').attr('data-type')+"&zhucai2zi2value="+$('#w2').attr('data-value')+"&zhucai2zi3name="+$('#w3').val()+"&zhucai2zi3type="+$('#w3').attr('data-type')+"&zhucai2zi3value="+$('#w3').attr('data-value')+"&zhucai2zi4name="+$('#w4').val()+"&zhucai2zi4type="+$('#w4').attr('data-type')+"&zhucai2zi4value="+$('#w4').attr('data-value')+"&zhucai2zi5name="+$('#w5').val()+"&zhucai2zi5type="+$('#w5').attr('data-type')+"&zhucai2zi5value="+$('#w5').attr('data-value')+"&zhucai3name="+$('#h2').val()+"&zhucai3type="+$('#h2').attr('data-type')+"&zhucai3value="+$('#h2').attr('data-value')+"&zhucai3zi1name="+$('#e1').val()+"&zhucai3zi1type="+$('#e1').attr('data-type')+"&zhucai3zi1value="+$('#e1').attr('data-value')+"&zhucai3zi2name="+$('#e2').val()+"&zhucai3zi2type="+$('#e2').attr('data-type')+"&zhucai3zi2value="+$('#e2').attr('data-value')+"&zhucai3zi3name="+$('#e3').val()+"&zhucai3zi3type="+$('#e3').attr('data-type')+"&zhucai3zi3value="+$('#e3').attr('data-value')+"&zhucai3zi4name="+$('#e4').val()+"&zhucai3zi4type="+$('#e4').attr('data-type')+"&zhucai3zi4value="+$('#e4').attr('data-value')+"&zhucai3zi5name="+$('#e5').val()+"&zhucai3zi5type="+$('#e5').attr('data-type')+"&zhucai3zi5value="+$('#e5').attr('data-value'),
+			url:"/hahada/huifu/wangyuning",
+			success:function(x){
+				alert(x)
+			}
+		});
+	}
+</script>
+<style>
+.wocaca{
+	width:100px;
+	height:100px;
+	background:blue;
+	display: none;
+}
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+	<div>
+		
+		<input id="q5" type="button" onclick="q5(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:200px;top:20%"><br>
+		<input id="q4" type="button" onclick="q4(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:200px;top:30%"><br>
+		<input id="q3" type="button" onclick="q3(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:200px;top:40%"><br>
+		<input id="q2" type="button" onclick="q2(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:200px;top:50%;"><br>
+		<input id="q1" type="button" onclick="q1(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:200px;top:60%;"><br>
+		<input id="q0" type="button" onclick="f1(this)" data-type="" data-value="" value="+" style="width:100px;height:60px;position:absolute;left:200px;top:70%;">
+		
+		<input id="w5" type="button" onclick="w5(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:330px;top:20%;"><br>
+		<input id="w4" type="button" onclick="w4(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:330px;top:30%;"><br>
+		<input id="w3" type="button" onclick="w3(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:330px;top:40%;"><br>
+		<input id="w2" type="button" onclick="w2(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:330px;top:50%;"><br>
+		<input id="w1" type="button" onclick="w1(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:330px;top:60%;"><br>
+		<input id="h1" type="button" onclick="f2(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:60px;position:absolute;left:330px;top:70%;"><br>
+		
+		<input id="e5" type="button" onclick="e5(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:460px;top:20%;"><br>
+		<input id="e4" type="button" onclick="e4(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:460px;top:30%;"><br>
+		<input id="e3" img=""type="button" onclick="e3(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:460px;top:40%;"><br>
+		<input id="e2" type="button" onclick="e2(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:460px;top:50%;"><br>
+		<input id="e1" type="button" onclick="e1(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:40px;position:absolute;left:460px;top:60%;"><br>
+		<input id="h2" type="button" onclick="f3(this)" data-type="" data-value="" value="+" style="display: none;width:100px;height:60px;position:absolute;left:460px;top:70%;"><br>
+	</div>
+	<div id="d1" style="display: none;position:absolute;width:500px;height:500px;left:48%;top:20%;">
+		<h1>菜单名称</h1><input id="z1value" type="text"style="position:absolute;width:170px;height:30px;left:30%;top:5%;">
+		<input type="button"value="跳转URL"onclick="z1url(this)">
+		<input type="button"value="发送新闻"onclick="z1news(this)">
+		<input type="button"value="发送文本"onclick="z1text(this)">
+		<input type="button"value="发送图片"onclick="z1img(this)">
+		<input type="button"value="发送语音"onclick="ziyuyin(this)">
+		<input type="button"value="发送录像"onclick="z1luxiang(this)">
+		<div id="xuanurl" style="display:none;width:400px;height:400px;position:absolute;left:0px;top:30%;">
+			<p>URL地址</p><input id="urldizhi" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:0%;">
+			<input name="url"type="button"value="确定"onclick="zhengjing(this)">
+		</div>
+		<div id="xuantext" style="display:none;width:400px;height:400px;position:absolute;left:0px;top:30%;">
+			<p>回复文本</p><input id="huifutext" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:0%;">
+			<input name="text" type="button"value="确定"onclick="zhengjing(this)">
+		</div>
+		<div id="xuannews" style="display:none;width:400px;height:400px;position:absolute;left:0px;top:30%;">
+			<p>素材ID号</p><input id="huifunewss" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:0%;">
+			<input name="news"type="button"value="确定"onclick="zhengjing(this)">
+			
+		</div>
+		<div id="xuanimg" style="display:none;width:400px;height:400px;position:absolute;left:0px;top:30%;">
+			<p>素材ID号</p><input id="huifuimg" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:0%;">
+			<input name="img"type="button"value="确定"onclick="zhengjing(this)">
+			
+		</div>
+		<div id="xuanyuyin" style="display:none;width:400px;height:400px;position:absolute;left:0px;top:30%;">
+			<p>素材ID号</p><input id="huifuyuyin" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:0%;">
+			<input name="yuyin"type="button"value="确定"onclick="zhengjing(this)">
+			
+		</div>
+		<div id="xuanluxiang" style="display:none;width:400px;height:400px;position:absolute;left:0px;top:30%;">
+			<p>素材ID号</p><input id="huifuluxiang" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:0%;">
+			<input name="luxiang"type="button"value="确定"onclick="zhengjing(this)">
+			
+		</div>
+	</div>
+	<input type="button" onclick="fasong()" value="发送">
+</body>
+</html>

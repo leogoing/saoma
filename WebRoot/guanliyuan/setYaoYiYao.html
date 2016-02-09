@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<base href="${ctx}/">
+<title>编辑摇一摇手环</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript">
+var info = "${info!}";
+function alertinfo() {
+	alert(info);
+}
+</script>
+</head>
+
+<body>
+<div class="biaoti col-lg-12 col-xs-12"
+			style="background-color: #C4E3F3; color: #ffffff; margin-bottom: 10px;">
+			编辑摇一摇手环</div>
+	<div class="container col-lg-4 col-xs-12 pull-left">
+		
+		<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+			<form action="glyyyy/tijiao" method="post">
+				<#list listbj as bj>
+				
+				<input type="hidden" name="id" value="${bj.id}" />
+				<input type="hidden" name="DLSid" value="${bj.DLSid}" />
+				<input type="text" name="uuid" value="${bj.uuid}"
+					class="col-lg-12 col-xs-12 "
+					style="height: 34px; margin-bottom: 10px;" placeholder="UUID">
+				<input type="text" name="major" value="${bj.major}"
+					class="col-lg-12 col-xs-12 "
+					style="height: 34px; margin-bottom: 10px;" placeholder="Major">
+				<input type="text" name="minor" value="${bj.minor}" 
+					class="col-lg-12 col-xs-12 "
+					style="height: 34px;  margin-bottom: 10px;" placeholder="Minor" >
+				<input type="text" name="loginname" value="${bj.loginname}" 
+					class="col-lg-12 col-xs-12 "
+					style="height: 34px;  margin-bottom: 10px;" placeholder="代理商用户名" >
+				</#list>
+				<input type="submit" class=" btn btn-default col-xs-5 "
+					style="height: 34px; margin-bottom: 10px;" name="retrieval"
+					value="更新" onclick="alertinfo()">
+
+			</form>
+		</div>
+	</div>
+
+</body>

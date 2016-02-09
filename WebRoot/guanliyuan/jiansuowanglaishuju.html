@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<base href="${ctx}/">
+<title>检索往来数据</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<link rel="stylesheet" href="Css/jquery-ui.css">
+<!-- <script type="text/javascript" src="js/jquery-ui.js"></script>
+ 	<script type="text/javascript" src="js/newDatePick.js"></script>
+  	<script type="text/javascript" src="js/jquery-rollValue.js"></script> -->
+<link rel="stylesheet" type="text/css" href="js/easyui.css">
+<link rel="stylesheet" type="text/css" href="js/icon.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+
+<script type="text/javascript">
+function myformatter(date){
+	var y = date.getFullYear();
+	var m = date.getMonth()+1;
+	var d = date.getDate();
+	var h = date.getHours();
+	var min = date.getMinutes();
+	var s = date.getSeconds();
+	return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d)+' '+(h<10?('0'+h):h)+':'+(min<10?('0'+min):min)+':'+(s<10?('0'+s):s);
+}
+	function myparser(s) {
+		if (!s) return new Date();
+		var ss = (s.split(' '));
+		var years = ss[0].split('-');
+		var y = parseInt(years[0],10);
+		var m = parseInt(years[1],10);
+		var d = parseInt(years[2],10);
+		var other = ss[1].split(':');
+		var h = parseInt(other[0],10);
+		var min = parseInt(other[1],10);
+		var s = parseInt(other[2],10);
+		if (!isNaN(y) && !isNaN(m) && !isNaN(d)&& !isNaN(min)&& !isNaN(h)&& !isNaN(s)){
+			return new Date(y,m-1,d,h,min,s);
+		} else {
+			return new Date();
+		}
+	}
+</script>
+</head>
+
+<body>
+	<div class="container col-lg-4 col-sm-4 "
+		style="position: fixed; z-index: 999;">
+		<div class="biaoti col-lg-12 col-xs-12 "
+			style="background-color: #C4E3F3; color: #ffffff; margin-bottom: 10px;">
+			检索往来数据</div>
+		<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+			<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+				<div class="ziliaoye">
+					<span class="zlx2_span col-lg-3 col-xs-3">上&nbsp;&nbsp;&nbsp;线</span>
+					<#list sxList.getList() as sx> <span
+						class="col-lg-8 col-xs-8 col-sm-7 pull-right">${(sx.loginname)!}(${(sx.realname)!})</span>
+					</#list>
+				</div>
+			</div>
+			<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+				<div class="ziliaoye">
+					<span class="zlx2_span col-lg-3 col-xs-3">下&nbsp;&nbsp;&nbsp;线</span>
+					<#list xxList.getList() as xx> <span
+						class="col-lg-8 col-xs-8 col-sm-7 pull-right" style="height: 20px">${(xx.loginname)!}(${(xx.realname)!})</span>
+					</#list>
+				</div>
+			</div>
+			<div>
+					<#include "/common/_paginate.html" />
+				<@paginate currentPage=xxList.pageNumber totalPage=xxList.totalPage  actionUrl="${ctx}/glydata/findAllSMRFenYe/?xx=" />
+				</div>
+
+		</div>
+	</div>
+	<div class=" container col-lg-8 col-sm-8 pull-right"width:100%;height:85%; overflow:auto;" style="width: 60%">
+		<table class="table  table-striped table-bordered text-center ">
+			<tr class="text-center">
+				<td>市级所属</td>
+				<td>市级获利</td>
+				<td>县级所属</td>
+				<td>县级获利</td>
+				<td>个人所属</td>
+				<td>个人获利</td>
+				<td>扫码时间</td>
+				<td>关注人</td>
+				<td>取消时间</td>
+				<td>关注平台</td>
+
+			</tr>
+			<#list smList.getList() as sm>
+			<tr>
+				<td>${(sm.cityL)!} (${(sm.cityR)!})</td>
+				<td>${(sm.cityget)!} </td>
+				<td>${(sm.countryL)!} (${(sm.countryR)!})</td>
+				<td>${(sm.countryget)!}</td>
+				<td>${(sm.personL)!} (${(sm.personR)!})</td>
+				<td>${(sm.personget)!}</td>
+				<td>${(sm.smtime)!}</td>
+				<td>${(sm.attpeople)!}</td>
+				<td>${(sm.cancletime)!"未取消"}</td>
+				<td>${(sm.name)!}</td>
+			</tr>
+			</#list>
+		</table>
+		<#include "/common/_paginate.html" />
+	<@paginate currentPage=smList.pageNumber totalPage=smList.totalPage actionUrl="${ctx}/glydata/findAllSMRFenYe/?sm=" />
+	</div>
+
+
+
+</body>

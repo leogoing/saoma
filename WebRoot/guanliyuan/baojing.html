@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<base href="${ctx}/">
+<title>报警设置</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript">
+$(function() {
+	//提交信息
+	$("#saveForm").ajaxForm({
+		beforeSubmit : function() {
+			return true;
+		},
+		success : function(retObj) {
+			alert(retObj.info);
+		}
+	});
+});
+</script>
+<style>
+a {
+	text-decoration: none;
+	color: #333;
+}
+</style>
+</head>
+
+<body>
+	<div class="container col-lg-4 col-xs-12">
+
+		<div class="row col-lg-12 col-xs-12 "
+			style="margin-bottom: 10px; margin-top: 10px;">
+
+			<form id="saveForm" action="glybj/savebaojing" method="post">
+			<#list bjList.getList() as bj>
+				时间段(单位分钟):<input type="text" class="col-lg-12 col-xs-12 " style="height: 34px; margin-bottom: 20px;" name="callconfig.timespace" value="${(bj.timespace)}" placeholder="时间段(单位分钟)"><br> 
+				扫码人数:<input type="text" class="col-lg-12 col-xs-12 " style="height: 34px; margin-bottom: 20px;" name="callconfig.smcount" value="${(bj.smcount)}" placeholder="扫码人数"><br>
+				报警邮箱:<input type="text" class="col-lg-12 col-xs-12 " style="height: 34px; margin-bottom: 20px;" name="callconfig.callemail" value="${(bj.callemail)}" maxlength=20 placeholder="报警邮箱"><br>
+			</#list>
+				<input type="submit" value="更新" class=" btn btn-default col-lg-5" style="margin-bottom: 20px;"/>
+			</form>
+
+			<form action="glybj/findsaomajilunmax">
+				<input type="text" class="col-lg-12 col-xs-12 "
+					style="height: 34px; margin-bottom: 20px;" name="begintime"
+					maxlength=19 placeholder="时间间隔（单位分钟）">
+
+				<div class="row col-lg-12 col-xs-12 text-center">
+					<a href="glybj/selectall" class=" btn btn-warning ">查询全部数据</a> 
+					<input type="submit" value="查询最大峰值" class=" btn btn-warning " /><span>${(bjinfo)!}</span>
+					<#list maxSm.getList() as max>
+						${(max.name)!}
+						${(max.number)!}
+					</#list>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+</body>

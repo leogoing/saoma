@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"src="jquery-1.11.1.js"></script>
+<script type="text/javascript">
+	
+	function f2(){
+		var p=$("#h1").val();
+		$.ajax({
+			type:"post",
+			data:"type="+$("#h1").val(),
+			url:"/pingtaiSet/setType",
+			success:function(x){
+				if(x==1){
+					alert("成功");
+				}
+			}
+			
+		});
+		if(p==1){
+			$("#html").load('/pingtaiSet/index1');
+		}else if(p==2){
+			$("#html").load('/pingtaiSet/index2');
+		}else if(p==3){
+			$("#html").load('/pingtaiSet/index3');
+		}
+		
+	}
+</script>
+</head>
+<body>
+	<select id="h1"onchange="f2()">
+		<option>请选择</option>
+		<option value="1">按价格排序</option>
+		<option value="2">双向按金钱排序</option>
+		<option value="3">设置顺序</option>
+		<option></option>
+	</select>
+	<div id="html">
+	
+	</div>
+</body>
+</html>

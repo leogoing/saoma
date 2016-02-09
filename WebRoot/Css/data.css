@@ -1,0 +1,58 @@
+/* CSS Document */
+body{
+	font-family: "微软雅黑";
+}
+.biaoti{
+	font-family:"微软雅黑";
+	font-size:24px;
+	font-weight:bold;
+	text-align:center;
+	line-height:50px;
+}
+.ziliaoye{
+	font-family:"微软雅黑";
+	font-size:16px;
+	line-height:35px;
+	color:#222;
+}
+
+.zlx2_span{
+	width:95px;
+	height:35px;
+    background-color:#A6E1EC;
+	line-height:35px; 
+	text-align:center;
+	color:#FFFFFF;
+	float:left;
+}
+.xh{
+	border-bottom:#999 1px solid;	
+}
+
+.test_box {    min-height: 50px;    max-height: 300px;    _height: 50px;    margin-left: auto;    margin-right: auto;    padding: 3px;    outline: 0;    border: 1px solid #999;    font-size: 12px;    word-wrap: break-word;    overflow-x: hidden;    overflow-y: auto;    _overflow-y: visible;}
+.zysx_box {    min-height: 50px;    max-height: 300px;    _height: 50px;    margin-left: auto;    margin-right: auto;    padding: 3px;    outline: 0;    border: 1px solid #999;    font-size: 12px;    word-wrap: break-word;    overflow-x: hidden;    overflow-y: auto;    _overflow-y: visible;}
+.nr_box {   height: 120px;    margin-left: auto;    margin-right: auto;    padding: 3px;     border: 1px solid #999;    font-size: 12px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

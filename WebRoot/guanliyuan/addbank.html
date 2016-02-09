@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="${ctx}/">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/data/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//提交信息
+		$("#saveForm").ajaxForm({
+			beforeSubmit : function() {
+				return true;
+			},
+			success : function(retObj) {
+				alert(retObj.info);
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<form id="saveForm" action="glybank/addbank" method="post">
+		<input type="text" name="bank.bankname"> <input type="submit" value="增加"><br>
+		<span>目前现有银行如下：</span>
+		<table border="1">
+			<tr>
+				<td>编号</td>
+				<td>银行名称</td>
+			</tr>
+			<#list bankList.getList() as bank> 
+				<tr>
+					<td>${(bank.id)!}</td>
+					<td>${(bank.bankname)!}</td>
+				</tr>
+			</#list>
+		</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<base href="${ctx}/">
+<title>编辑公共账号</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript">
+var info = "${info!}";
+function alertinfo() {
+	alert(info);
+}
+</script>
+</head>
+
+<body>
+<div class="biaoti col-lg-12 col-xs-12"
+			style="background-color: #C4E3F3; color: #ffffff; margin-bottom: 10px;">
+			编辑公共账号</div>
+	<div class="container col-lg-4 col-xs-12 pull-left">
+		
+		<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+			<form action="glygzh/updategzh" method="post">
+				<#list gzh.getList() as gzh>
+				<input type="hidden" name="gzh.id" value="${gzh.id}">
+					<input type="text" class="col-lg-12 col-xs-12 "
+					style="height: 34px; margin-bottom: 10px;"
+					name="gzh.name" value="${gzh.name}" placeholder="公共账号名称"> 
+					<select name="gzh.uplowframe" class="col-lg-12 col-xs-12 pull-right" style="height: 35px; margin-bottom: 10px;">
+					<OPTION selected value="${gzh.uplowframe}"><#if gzh.uplowframe=="1">上架</#if><#if gzh.uplowframe=="2">下架</#if><#if gzh.uplowframe=="3">一天后下架</#if></OPTION>
+					<OPTION value="1">上架</OPTION>
+					<OPTION value="2">下架</OPTION>
+					<OPTION value="3">一天后下架</OPTION>
+				</select> <input type="text" name="gzh.cityagentsp" value="${gzh.cityagentsp}"
+					class="col-lg-12 col-xs-12 "
+					style="height: 34px; margin-bottom: 10px;" placeholder="市级代理商分成">
+				<input type="text" name="gzh.countryagentsp" value="${gzh.countryagentsp}"
+					class="col-lg-12 col-xs-12 "
+					style="height: 34px; margin-bottom: 10px;" placeholder="县级代理商分成">
+				<input type="text" name="gzh.personagentsp" value="${gzh.personagentsp}"
+					class="col-lg-12 col-xs-12 "
+					style="height: 34px; margin-bottom: 10px;" placeholder="个人代理商分成">
+				<input type="text" name="gzh.publicaccountname" value="${gzh.publicaccountname}" class="col-lg-12 col-xs-12 "
+					style="height: 34px;  margin-bottom: 10px;" placeholder="原始ID" >
+				<input type="text" name="gzh.appid" value="${gzh.appid}" class="col-lg-12 col-xs-12 "
+					style="height: 34px;  margin-bottom: 10px;" placeholder="AppID" >
+				<input type="text" name="gzh.appsecret"  value="${gzh.appsecret}" class="col-lg-12 col-xs-12 "
+					style="height: 34px; margin-bottom: 10px;" placeholder="AppSecret" >
+				</#list>
+				<input type="submit" class=" btn btn-default col-xs-5 "
+					style="height: 34px; margin-bottom: 10px;" name="retrieval"
+					value="更新" onclick="alertinfo()">
+
+			</form>
+		</div>
+	</div>
+
+</body>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/index.css"/>
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/bootstrap1.css"/>			
+		<title></title>
+	<script type="text/javascript">
+	var userName ="${currentUser!}";
+	var leverId ="${currentLevelid!}";
+		function submitApply() {
+			var formInfo = $("#formInfo").serialize();
+			$.ajax({
+				url : '${ctx}/dlsDevelopLower/developllower?developLowerType=2&leverId='+leverId,
+				data : formInfo,
+				success:function(){
+					$(':input','#formInfo')  
+					 .not(':button, :submit, :reset, :hidden')  
+					 .val('')  
+					 .removeAttr('checked')  
+					 .removeAttr('selected');
+					alert();
+				}
+			});
+		}
+	
+		//查找代理(暂无)
+		function findAgent() {
+			var useragent = $("#userAgent").val();
+			$
+					.ajax({
+						url : 'getUserAgentDetail?developLowerType=2&useragent='
+								+ useragent,
+						success : function(res) {
+							var datalist = res;
+							var trTag = '';
+							var taletitle = "<tr class=\"text-center\"><td>姓名</td><td>级别</td><td>手机</td></tr>";
+							for (var i = 0; i < res.length; i++) {
+								trTag += "<tr class=\"text-center\">";
+								trTag += "<td>" + datalist[i].loginname
+										+ "</td><td>"
+										+ getreulst(datalist[i].agentlevel)
+										+ "</td><td>"
+										+ formatReulst(datalist[i].phone)
+										+ "</td></tr>";
+							}
+							$("#userDetail").html(taletitle);
+							$("#userDetail").append(trTag);
+						}
+					});
+		}
+	
+		function getreulst(num) {
+			if (num == 1) {
+				return '初级'
+			} else if (num == 2) {
+				return '中级';
+			} else if (num == 3) {
+				return '高级';
+			} else {
+				return num;
+			}
+		}
+	
+		function formatReulst(num) {
+			if (num != '' || num != null) {
+				return num
+			} else {
+				return "";
+			}
+		}
+	</script>
+	</head>
+	<body>
+		<form id="formInfo" >
+		<div class="xiaxian">
+			<div class="xiaxian-row">
+				<span>
+					用户名
+				</span>
+				<input type="text" class="form-control pull-right" name="loginName" placeholder="name" maxlength=11/>
+			</div>
+			<div class="xiaxian-row">
+				<span>
+					密&nbsp;&nbsp;&nbsp;码
+				</span>
+				<input type="password" class="form-control pull-right" name="password" placeholder="**********" maxlength=16/>
+			</div>
+			<div class="xiaxian-row">
+				<span>
+					手&nbsp;&nbsp;&nbsp;机
+				</span>
+				<input type="text" class="form-control pull-right" name="phone" placeholder="phone" maxlength=11/>
+			</div>
+			<div class="xiaxian-row">
+				<span>
+					邮&nbsp;&nbsp;&nbsp;箱
+				</span>
+				<input name="email" type="email" class="form-control pull-right" placeholder="email"/>
+			</div>
+			<div class="xiaxian-row">
+				<span>
+					真实姓名
+				</span>
+				<input type="text" name="realname" class="form-control pull-right" placeholder="name" maxlength=4/>
+			</div>
+			<div class="xiaxian-row">
+				<span>
+					发展级别
+				</span>
+				<select name="wantlevel" class="form-control pull-right" style=" font-family: '微软雅黑'; color: white; background-image: url(newImages/xlk_03.png);">
+				  <OPTION selected value="2">个人代理商</OPTION>
+				</select>
+			</div>
+			<div class="xiaxian-row">
+				<span>
+					开户行
+				</span>
+				<select name="bankid" class="form-control pull-right" style=" font-family: '微软雅黑'; color: white; background-image: url(newImages/xlk_03.png);">
+							<OPTION selected value="1">工商银行</OPTION>
+							<OPTION value="2">招商银行</OPTION>
+							<OPTION value="3">民生银行</OPTION>
+							<OPTION value="4">华夏银行</OPTION>
+							<OPTION value="5">平安银行</OPTION>
+							<OPTION value="6">建设银行</OPTION>
+				</select>
+			</div>
+			<div class="xiaxian-row">
+				<span>
+					所在地
+				</span>
+				<input type="text" class="form-control pull-right" name="bankinfo" placeholder="开户银行所在地（例如：北京市招商银行中关村开支行）" maxlength=20/>
+			</div>
+			<div class="xiaxian-row">
+				<span>
+					银行卡号
+				</span>
+				<input type="text" class="form-control pull-right" name="bankno" placeholder="1234 5678 1234 5678" maxlength=16/>
+			</div>
+			<div class="xiaxian-row">
+				<span>
+					身份证号
+				</span>
+				<input type="text" class="form-control pull-right" name="idcard" placeholder="1234567890982345678" maxlength=18/>
+			</div>
+			
+		</div>
+		</form>
+		<button type="button" onclick="submitApply()" style="border: 1px #555555 solid; background-image: url(newImages/aaniu.png); width: 250px; height: 45px; margin-left: 425px;margin-bottom: 50px;" class="btn btn-warning">提交</button>
+	</body>
+</html>

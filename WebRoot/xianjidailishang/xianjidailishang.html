@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/index-right.css"/>
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/bootstrap.css"/>	
+		<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>			
+		<title></title>
+		
+<script language="javascript">
+function showDiv(num){
+	for(var id = 1;id<=2;id++){
+		var ss="about"+id;
+		var nss="aboutnav"+id;
+		if(id==num){
+			try{document.getElementById(ss).style.display="block"}catch(e){};
+			try{document.getElementById(nss).className="on"}catch(e){};
+		}
+		else{
+			try{document.getElementById(ss).style.display="none"}catch(e){};
+			try{document.getElementById(nss).className="off"}catch(e){};
+		}
+	}  
+}
+function showDiv1(num){
+	for(var id = 1;id<=4;id++){
+		var ss="aa"+id;
+		var nss="aanav"+id;
+		if(id==num){
+			try{document.getElementById(ss).style.display="block"}catch(e){};
+			try{document.getElementById(nss).className="on"}catch(e){};
+		}
+		else{
+			try{document.getElementById(ss).style.display="none"}catch(e){};
+			try{document.getElementById(nss).className="off"}catch(e){};
+		}
+	}  
+}
+</script>
+	</head>
+	<body>
+	
+				<div class="weizhang ">
+				<div class="weizhang-xinxi" style="margin-left: 5%;">
+					<span class="weizhang-xinxi-neirong" >
+						<span id="yestarday" style="font-weight: bold;">
+							
+						</span>
+					</span>
+					
+					<span class="weizhang-xinxi-neirong2">
+						昨日收入(元)
+					</span>
+				</div>
+				
+				
+				<div class="weizhang-xinxi">
+					<span class="weizhang-xinxi-neirong">
+						<span id="sum" style="font-weight: bold;">
+						</span>	
+					</span>
+					<span class="weizhang-xinxi-neirong2">
+						累计收入(元)	
+					</span>
+				
+				</div>
+				
+				<div class="weizhang-xinxi">
+					<span class="weizhang-xinxi-neirong" >
+						<span id="remainder" style="font-weight: bold;">
+						</span>	
+					</span>
+					<span class="weizhang-xinxi-neirong2">
+						账户余额(元)
+					</span>
+				</div>
+				</div>
+				<div class="saomiao ">
+					<div class="zs-saomiao">
+						<span  id="aboutnav1" onclick="javascript:showDiv(1);">
+						<!-- 	<a>自身扫描</a>-->
+						</span>
+						<span  id="aboutnav2" onclick="javascript:showDiv(2);">
+							<!--  <a>下线扫描</a>-->
+						</span>
+					</div>
+					<div id="about1" class="saomiaoLB" style="display: block;">
+						<ul id="tabledetail" >
+						</ul>
+					</div>
+					<div id="about2" class="saomiaoLB" style="display: none;">
+						<ul id="underTabledetail">
+						
+				
+						</ul>
+					</div>
+				</div>
+		<div class="yellowtiao">
+			<ul>
+				<li style=" width:34%;">扫码昵称</li>
+				<li style=" width:12%; ">收入</li>
+				<li style=" width:26%; ">平台</li>
+				<li style=" width:26%; ">扫码时间</li>
+			</ul>
+		</div>
+		
+		
+		<div id="table">
+			
+		<ul  id="list">
+			
+		</ul>
+		</div>
+		
+	
+	<script type="text/javascript">
+		var userName ="${currentUser!}";
+		var leverId ="${currentLevelid!}";
+		var userId ="${currentUserId!}";
+		var agentType = "${agentType}";
+		var realName="${currentUserName!}";
+			$(function() {
+				//获取昨日收入
+				getYestardayIncome(agentType);
+				getIncome(agentType);
+				getRemainder(agentType);
+				getScan(agentType);
+				//geDetailData(agentType);
+				//获取下线的扫描table
+				//getUnderScanTable(agentType);
+			});
+	
+			//获取下线的扫描记录
+			function getUnderScanTable(agentType){
+				$.ajax({
+					url : '${ctx}/dlsInfo/getFindUnderScanFromDifferentPlant?angentType='+agentType+"&userId="+userId,
+					//url : 'getXXSm?angentType='+agentType+"&userId="+userId,
+					success : function(res) {
+						$("#underTabledetail").html(res);
+					}
+				});
+			}
+	
+			
+			function geDetailData(agentType){
+				$.ajax({
+					url : '${ctx}/dlsInfo/getValueFromPlant?angentType='+ agentType+"&userId="+userId+'&leverId='+leverId,
+					//url : 'getAttentionPLSm?angentType='+ agentType+"&userId="+userId,
+					success : function(res) {
+						$("#tabledetail").html(res);
+					}
+				});
+			}
+			//获取昨日收入
+			function getYestardayIncome(agentType){
+				$.ajax({
+					url : '${ctx}/dlsInfo/getYestardayIncomeForDifferentAgent?angentType='+ agentType+"&userName="+userName+"&userId="+userId,
+					success : function(res) {
+						$("#yestarday").html(res.inCome);
+					}
+				});
+			}
+			//获取收入
+			function getIncome(agentType){
+				$.ajax({
+					url : '${ctx}/dlsInfo/getIncomeForDifferentAgent?angentType='+ agentType+"&userName="+userName+"&userId="+userId,
+					success : function(res) {
+						$("#sum").html(res.inCome);
+					}
+				});
+			}
+			//获取余额
+			function getRemainder(agentType){
+				$.ajax({
+					url : '${ctx}/dlsInfo/getBalanceForDifferentAgent?angentType='+ agentType+"&userName="+userName+"&userId="+userId,
+					success : function(res) {
+						$("#remainder").html(res.inCome);
+					}
+				});
+			}
+			
+			//获取扫描记录
+			function getScan(agentType){
+				$.ajax({
+					//
+					//url : 'getAttentionPLSm?angentType='+ agentType+"&userId="+userId,
+					//'getAttentionPLSm?agentType=' + agentType+"&userName="+userName+"&userId="+userId,
+					url : '${ctx}/dlsInfo/getScanFlowInfo?agentType=' + agentType+"&userName="+userName+"&userId="+userId,
+					
+					success : function(res) {
+						$("#list").html(res);
+					}
+				});
+				
+			}
+			
+			function timeIsNull(canelTime){
+				if(canelTime==null){
+					return '未取消';
+				}
+				return canelTime;
+			}
+	</script>
+	</body>
+</html>

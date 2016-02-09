@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="${ctx}/">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>扫码赚</title>
+<link href="${ctx}/Css/smz.css" type="text/css" rel="stylesheet">
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script type="text/javascript">
+$('#myModal').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+	})
+	
+	function sub(){
+	$("#form").submit
+}
+</script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+           <div class="hd_nav">
+               <img src="images/logo_03.png">
+           </div>
+        </div>
+        <div id="center">
+           <div class="center-left">
+               <div class="top"><img src="images/shaomazhuanerweima.jpg"></div>
+               <div class="bottom">
+                    <div style="opacity: 0.3;">
+                        <div class="zsb"><div class="bao">
+                           <h1 class="ggl">公 告 栏</h1>
+                           <div class="hang"><p>重要： 本月个人代理费用980</p><span>10/01</span></div>
+                           <div class="hang "><a href="" data-target="#myModal"  data-toggle="modal"><p class="zb" >12月25号系统维护</p></a><span>10/25</span></div>
+                           <div class="hang"><p class="zb">10月16号版本升级</p><span>10/14</span></div>
+                           <div class="hang"><p class="zb">10月16号版本升级</p><span>10/14</span></div>
+                        </div>
+                        </div>
+                    </div>
+               </div>
+           </div>
+           
+           <div class="center-right">
+               <div class="kuang">
+                  <div class="sm">账号密码登录</div>
+                  <div class="zj">
+                     <img src="images/shaomazhuanerweima3.gif"><input type="text" value="用户名">
+                     	<div>
+                     		<hr style="border:1px solid #0B0B0B;" />
+                     	</div>
+                     <img src="images/shaomazhuan2.gif"><input class="die" type="text" value="密码">
+                     <input class="denglu" type="button" value="登录">
+                  </div>
+               </div>
+           </div>
+        </div>
+    </div>
+    
+    
+    	<!-- 公告弹出框 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content" >
+		     <div  data-dismiss="modal">
+		     <img src="images/Notice1.png" height="350px" width="600px"/>
+		     </div>
+		    </div>
+		  </div>
+		</div>  
+</body>
+</html>

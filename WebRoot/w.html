@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<base href="/">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="Css/wapbootstrap.css" />
+<link rel="stylesheet" type="text/css" href="Css/stylephone.css" />
+<link href="Css/wapbasic.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="Css/idangerous.swiper.css">
+<link rel="stylesheet" href="Css/maskStyle.css">
+
+<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+<!-- <script src="js/FancyZoom.js" language="JavaScript"
+	type="text/javascript"></script>
+<script src="js/FancyZoomHTML.js" language="JavaScript"
+	type="text/javascript"></script> -->
+<script src="/js/idangerous.swiper-2.1.min.js"></script>
+<script src="/js/mask.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	var userName = "geren";
+	var leverId = "2";
+	var userId = "2";
+	var realName = "个人"
+	var agentType = "1";
+	//WebSettings webSetting = webview.getSettings();
+	//webSetting.setJavaScriptEnabled(true);
+	$(function() {
+		userId=${userId};
+		agentType=${agentType};
+		$("#currentUser").html(" 您好：");
+		$.ajax({
+			url : "dlsQrcodePlant/getAllPt",
+			async : false,
+			success : function(res) {
+				var context = '';
+				var ks = "<div class='swiper-slide red-slide'>";
+				var js = "</div>";
+				var one = "<div class='li' style='margin:0px 32%;'>";
+				var two = "<div class='li odd'>";
+				for (var i = 0; i < res.length; i++) {
+					if(agentType==1 || agentType==10){
+						money = (res[i].personagentsp);
+						money = Math.round(money*100)/100;
+					}
+					if(agentType==2){
+						money = (res[i].countryagentsp+res[i].personagentsp);
+						money = Math.round(money*100)/100;
+					}
+					if(agentType==3){
+						money = (res[i].cityagentsp+res[i].countryagentsp+res[i].personagentsp);
+						money = Math.round(money*100)/100;
+					}
+					//var ticket='#';
+					//money = (res[i].personagentsp);
+					getTicket(res[i].appid, res[i].appsecret);
+						
+					//if (i == 0 || (i + 1) % 2 != 0) {
+						context += ks;
+				//	}//开始标签
+
+					//if ((i + 1) % 2 == 0) {
+				//		context += two;
+					//	context += "<a ref="
+					//			+ ticket
+					//			+ "><img class='doc' src="+ticket+"  /></a> <dl> ";//此处为80端口 
+					//	context += "<span style='margin: 4px 0; display: block;'>扫描费用：<span style='color: #FF0000;'>"
+					//			+ money + "元</span></span>";
+					//	context += "<span style='text-align: left;'>"
+					//			+ res[i].name + "</span> </dl> </div>";
+						//context += "<span class=\"col-lg-12 col-xs-12\">"+ res[i].name+"<br>"+"扫描费用："+money+ "</span> </dl></div>";
+					//} else {
+						context += one;
+						context += "<a ref="
+								+ ticket
+								+ "><img class='doc' src="+ticket+"  /></a> <dl> ";//此处为80端口 
+						context += "<span style='margin: 4px 0; display: block;'>扫描费用：<span style='color: #FF0000;'>"
+								+ money + "元</span></span>";
+						context += "<span style='text-align: left;'>"
+								+ res[i].name + "</span> </dl> </div>";
+						//context += "<span class=\"col-lg-12 col-xs-12\">"+ res[i].name+"<br>"+"扫描费用："+money+ "</span> </dl></div>";
+					//}
+
+				//	if ((i + 1) % 2 == 0 || i == (res.length - 1)) {
+						context += js;
+				//	}//结束标签
+				}
+				$("#qrcode").html(context);
+				bind();
+			}
+		});
+
+		//获取昨日收入
+		getYestardayIncome(0);
+		getIncome(0);
+		getIncomeMonth(0);
+		getRemainder(0);
+		getScan(0);
+		//
+		geDetailData(0);
+		getUnderScanTable(0);
+		//获取头像昵称
+		getImgNickname(userId);
+		//$("#headimg").attr('src',getPara('headimgurl'));
+		//$('#nickname').text((getPara('nickname')==null?:"":getPara('nickname')));
+	
+	wx.config({
+	    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+	    appId: 'wxdd905c6a6c4cdcb3', // 必填，公众号的唯一标识
+	    timestamp: ${timestamp}, // 必填，生成签名的时间戳
+	    nonceStr: '9713628', // 必填，生成签名的随机串
+	    signature: '${signature}',// 必填，签名，见附录1
+	    jsApiList: ['onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+	});
+	wx.ready(function(){
+		//alert('ready_OK');
+		wx.onMenuShareTimeline({
+		    title: '21世纪最流行的赚钱方式', // 分享标题
+		    link: location.href, // 分享链接
+		    imgUrl: 'http://b.hiphotos.baidu.com/zhidao/pic/item/4ec2d5628535e5dd8efd8d6974c6a7efcf1b62b6.jpg', // 分享图标
+		    success: function () { 
+		        // 用户确认分享后执行的回调函数
+		        alert("@@@分享成功！");
+		    },
+		    cancel: function () { 
+		        // 用户取消分享后执行的回调函数
+		        alert("###分享已取消！");
+		    },
+		    fail: function (res) {
+		    	alert('~~~');
+		        alert(JSON.stringify(res));
+		    }
+		});
+		wx.onMenuShareAppMessage({
+		    title: '21世纪最流行的赚钱方式', // 分享标题
+		    desc: 'Just Do It', // 分享描述
+		    link: location.href, // 分享链接
+		    imgUrl: 'http://b.hiphotos.baidu.com/zhidao/pic/item/4ec2d5628535e5dd8efd8d6974c6a7efcf1b62b6.jpg', // 分享图标
+		    type: 'link', // 分享类型,music、video或link，不填默认为link
+		    //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		    success: function () { 
+		        // 用户确认分享后执行的回调函数
+		    	alert("@@@分享成功！");
+		    },
+		    cancel: function () { 
+		        // 用户取消分享后执行的回调函数
+		    	alert("###分享已取消！");
+		    }
+		});
+	});
+	wx.error(function(res){
+		//alert(res);
+	});
+		
+	});
+	//获取参数
+	function getPara(name){
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	}
+	
+	function geDetailData(agentType) {
+		$.ajax({
+			url : 'dlsInfo/getValueFromPlant?angentType=' + agentType
+					+ "&userId=" + userId,
+			success : function(res) {
+				$("#tabledetail").html(res);
+			}
+		});
+	}
+
+	function getUnderScanTable() {
+		$.ajax({
+			url : 'dlsInfo/getFindUnderScanFromDifferentPlant?angentType='
+					+ agentType + "&userId=" + userId,
+			success : function(res) {
+				$("#underTabledetail").html(res);
+			}
+		});
+	}
+
+	//获取昨日收入
+	function getYestardayIncome(agentType) {
+				$.ajax({
+					url : 'dlsInfo/getYestardayIncomeForDifferentAgent?angentType='
+							+ agentType
+							+ "&userName="
+							+ userName
+							+ "&userId="
+							+ userId,
+					success : function(res) {
+						$("#yestarday").html(res.inCome + "元");
+					}
+				});
+	}
+	//获取收入
+	function getIncome(agentType) {
+		$.ajax({
+			url : 'dlsInfo/getIncomeForDifferentAgent?angentType=' + agentType
+					+ "&userName=" + userName + "&userId=" + userId,
+			success : function(res) {
+				$("#sum").html(res.inCome + "元");
+				$('#sum2').text(res.inCome + "元");
+			}
+		});
+	}
+	//获取头像昵称
+	function getImgNickname(userId){
+		$.ajax({
+			url : 'wapUserIncome/info?userId=' + userId,
+			success : function(res) {
+				//$("#headimg").attr('src',res.headimgurl);
+				//$('#nickname').text(res.nickname );
+				//if(!getPara('headimgurl')){
+					$("#headimg").attr('src',(res.headimgurl==null?'#':res.headimgurl));
+				//}
+				//if(!getPara('nickname')){
+					$('#nickname').text((res.nickname==null?'无':res.nickname));
+				//}
+				$('#forward').text((res.forward==null?0:res.forward));
+			}
+		});
+	}
+	//获取本月收入
+	function getIncomeMonth(agentType) {
+		$.ajax({
+			url : 'dlsInfo/getIncomeForDifferentAgent2?angentType=' + agentType
+					+ "&userName=" + userName + "&userId=" + userId,
+			success : function(res) {
+				$("#monthsum").html(res.inCome + "元");
+			}
+		});
+	}
+	//获取余额
+	function getRemainder(agentType) {
+		$.ajax({
+			url : 'dlsInfo/getBalanceForDifferentAgent?angentType=' + agentType
+					+ "&userName=" + userName + "&userId=" + userId,
+			success : function(res) {
+				$("#remainder").html(res.inCome + "元");
+			}
+		});
+	}
+
+	function getScan(agentType) {
+		
+				$.ajax({
+					url : 'dlsInfo/getScanFlowInfoForWap?agentType=' + agentType
+							+ "&userName=" + userName + "&userId=" + userId,
+					success : function(res) {
+						var JSON = res;
+						var dom = '';
+						$(JSON)
+						.each(
+								function(index) {
+									var border_Color = "";
+									var count = index + 1;
+									if (count % 5 == 0) {
+										border_Color = "blue";
+										count = 1;
+									} else if (count % 4 == 0) {
+										border_Color = "green";
+									} else if (count % 3 == 0) {
+										border_Color = "yellow";
+									} else if (count % 2 == 0) {
+										border_Color = "#FFB748";
+									} else {
+										border_Color = "red";
+									}
+									dom += '<li style="border-color:'+border_Color+'">'
+											+ '<div style="text-align:left; width:34%;">'
+											+ '<img src="'+this.headimgurl+'" class="img-circle" style="float:left; margin-top:13px; margin-left:3px; width:35px;"/>'
+											+ '<span  style="font-size: 14px; margin-left: 3px;  width:60%; white-space:nowrap;overflow:hidden; text-overflow:ellipsis; float:left;">'
+											+ this.attpeople
+											+ '</span>'
+											+ '</div>'
+											+ '<div style=" width:15%; ">'
+											+ '<span  style="color: red; font-size: 14px;">'
+											+ this.value
+											+ '</span>'
+											+ '<span  style="color: red; font-size: 14px;">'
+											+ '元'
+											+ '</span>'
+											+ '</div>'
+											+ '<div style=" width:17%; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">'
+											+ '<span style=" width:120px; font-size: 14px;  ">'
+											+ this.attentionPL
+											+ '</span>'
+											+ '</div>'
+											+ '<div style=" width:34%; ">	'
+											+ '<span   style="font-size: 14px; ">'
+											+ this.smtime
+											+ '</span>'
+											+ '</div>' + '</li>';
+								if(index>=20){
+									console.log('进入return,index值为:'+index);
+									return false;
+								}
+								});
+
+						$("#list").html(dom);
+					}
+				});
+	}
+
+	function timeIsNull(canelTime) {
+		if (canelTime == null) {
+			return '未取消';
+		}
+		return canelTime;
+	}
+
+	function getTicket(appid, appsecret) {
+		$.ajax({
+			url : 'dlsQrcodePlant/getLinshiEWM?appid=' + appid + '&appsecret='
+					+ appsecret + '&id=' + userId,
+			async : false,
+			success : function(url) {
+				ticket = url;
+			}
+		});
+
+	}
+	
+	function closePgae(){
+		$(".mask").hide()
+	}
+</script>
+
+</head>
+<body>
+	<div class="col-xs-12 col-lg-12 col-sm-12 topq">扫码后台管理系统</div>
+
+	<div class="weizhang ">
+		<div class="weizhang-xinxi" style="margin-left: 5%;">
+			<p id="yestarday" class="weizhang-xinxi-neirong"></p>
+			<p class="weizhang-xinxi-neirong2">昨日收入</p>
+		</div>
+
+
+		<div class="weizhang-xinxi" >
+			<p id="sum" class="weizhang-xinxi-neirong"></p>
+			<p class="weizhang-xinxi-neirong2">累计收入</p>
+
+		</div>
+
+
+		<div class="weizhang-xinxi">
+			<p id="remainder" class="weizhang-xinxi-neirong"></p>
+			<p class="weizhang-xinxi-neirong2">账户余额</p>
+		</div>
+	</div>
+
+	<div class="fenge"></div>
+	<div class="col-lg-12 col-xs-12 col-sm-12 erweima"
+		style="padding: 0px;">
+		<div id="main"
+			style="min-width: 300px !important; max-width: 730px !important; margin: auto; overflow: hidden;">
+			<div class="swiper-container4">
+				<div id="qrcode" class="swiper-wrapper"></div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="fenge"
+		style="height: 25px; line-height: 25px; text-align: center; font-family: '微软雅黑'; font-size: 14px; color: #EC0808;margin:40px 0 30px 0px">
+		温馨提示：二维码左右滑动可显示更多呦~~~</div>
+	<!-- ------------------------------------------------------------- -->
+	<div id="tatle" class="row col-lg-12 col-xs-12 ziliaoye" style="margin-bottom: 10px;width: 100%">
+		<table >
+			<tr >
+				<td>头像</td>
+				<td>昵称</td>
+				<td>累计收入</td>
+				<td>累计转发</td>
+				<td>本月收入</td>
+			</tr>
+				
+			<tr>
+				<td><img class="img-circle" style="float:left; margin-top:13px; margin-left:40%; width:35px;" id="headimg" ></td>
+				<td><span id="nickname"></span></td>
+				<td><span id="sum2"></span></td>
+				<td><span id="forward"></span></td>
+				<td><span id="monthsum"></span></td>
+			</tr>
+		</table>
+		<!--<span ></span>-->
+		<!--<span class="col-lg-"WebRoot/w.html"12 col-xs-12 "></span>-->
+		<!--<span class="col-lg-12 col-xs-12 "></span>-->
+		<!--<span class="col-lg-12 col-xs-12 "></span>-->
+		<!--<span class="col-lg-12 col-xs-12 "></span>-->
+	</div>
+
+	<!--<div class="fenge"></div>-->
+	<!--<div class="row col-lg-12 col-xs-12 ziliaoye"-->
+		<!--style="margin-bottom: 10px;">-->
+		<!--<span class="col-lg-12 col-xs-12 ">下线扫描</span>-->
+	<!--</div>-->
+	<!--<div class="table-responsive"-->
+		<!--style="font-family: '微软雅黑'; width: 100%; height: 85%; overflow: auto;">-->
+		<!--<table id="underTabledetail"-->
+			<!--class="table  table-striped table-bordered text-center ">-->
+		<!--</table>-->
+	<!--</div>-->
+
+	<div class="fenge"></div>
+
+	<div class="yellowtiao">
+		<ul>
+			<li style="color: #999999; width: 34%;">扫码昵称</li>
+			<li style="color: #999999; width: 15%;">收入</li>
+			<li style="color: #999999; width: 17%;">平台</li>
+			<li style="color: #999999; width: 34%;">扫码时间</li>
+		</ul>
+	</div>
+
+
+	<div id="table">
+
+		<ul id="list">
+
+		</ul>
+	</div>
+	<div class='mask'> <div class='img-box'><img style="width:100%;height:100%;"/></div> <a href="javascript:;" onClick="closePgae()" ><span style="color:white;margin-left: 40%">关闭二维码</span></a> </div>
+	<script>
+		$(function() {
+			var mySwiper4 = new Swiper('.swiper-container4', {
+				//pagination: '.pagination4',
+				loop : true,
+				paginationClickable : true,
+				moveStartThreshold : 100
+			});
+			var resize4 = function(e) {
+				var query4 = $('.swiper-container4');
+				var clientW4 = query4[0].clientWidth;
+				query4.css('height', clientW4 * 262 / 730 + 80 + 'px');
+			}
+			$(window).bind('resize', resize4);
+			resize4();
+			setInterval(function() {
+				mySwiper4.swipeNext();
+			}, 60000);
+
+			$('#getMoney').click(function(){
+				window.open('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdd905c6a6c4cdcb3&redirect_uri='
+						+'http://tg.kaihuine.com/wapUserIncome/getMoney'
+						+'&response_type=code&scope=snsapi_userinfo&state=0#wechat_redirect');
+			});
+			$('#makeMoney').click(function(){
+				window.open('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdd905c6a6c4cdcb3&redirect_uri='
+						+'http://tg.kaihuine.com/wapUserIncome/makeMoney?userId=${(userId)!}'
+						+'&response_type=code&scope=snsapi_userinfo&state=0#wechat_redirect');
+			});
+		});
+	</script>
+	<span><input type="button" id="getMoney" value="提现" class="btn sub1" style="margin-left: 20px"/></span>
+	<span><input type="button" id="makeMoney" value="我也赚钱" class="btn sub1" style="float: right;margin-right: 20px" /></span>
+
+</body>
+
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+</html>

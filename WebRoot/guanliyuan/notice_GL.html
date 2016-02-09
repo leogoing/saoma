@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"src="/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+	function f1(x){
+		$("#h1").load('${ctx}/notice/index1');
+	}
+	function f2(){
+		$("#h1").load('${ctx}/notice/index2');
+	}
+</script>
+</head>
+<body>
+	<input onclick="f1()" value="外公告" type="button">
+	<input onclick="f2()"value="内公告"type="button">
+</body>
+	<div id="h1">
+		
+	</div >
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="${ctx}/">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+
+	var fullURL=""
+	function ReturnMain() {
+		window.location="${ctx}/ggz/GetTotal"
+	}
+
+	
+	function Download(fullURL){
+		window.location="${ctx}/ggz/Download?fullURL="+fullURL
+	}
+	
+</script>
+
+</head>
+<body>
+	<div  align="center">
+			<table>
+				<tr>
+				<td>图片</td>
+				<td>下载</td>
+				</tr>
+				<#list newList as x>
+				<tr>
+				<td>
+				<img  alt="${(x.newURL)!}" src="${(x.newURL)!}" height="150px" width="150px">
+				</td>
+				<td>
+				<input type="button" onclick="Download('${(x.fullURL)!}')" value="下载">
+				</td>
+				</tr>
+				</#list>
+			</table>
+	</div>
+		<div align="center">
+			<input type="button" value="返回主页面" onclick="ReturnMain()">
+		</div>
+</body>
+</html>

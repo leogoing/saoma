@@ -1,0 +1,106 @@
+<html>
+<head>
+<base href="${ctx}/">
+<title>广告主缴费</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript" src="js/data/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript">
+	function tijiao() {
+		var form = document.getElementById("ttt");
+		if(confirm("确定要提交吗？")){
+			form.submit();
+		}
+	}
+
+</script>
+</head>
+<body>
+
+	<form id="addForm" action="${ctx}/caiwu/chongzhi/" method="post" id="ttt">
+		<div  style="clear:both;" class="container col-lg-12 col-xs-12">
+			<div  style="clear:both;" class="biaoti col-lg-12 col-sm-12 col-xs-12 "
+				style="background-color: #C4E3F3; color: #ffffff; margin-bottom: 10px;">广告主充值</div>
+			<div  style="clear:both;" class="col-lg-12 col-sm-8 col-xs-12  " style="height: 35px;">
+				<div  style="clear:both;" class="col-lg-12 col-xs-12  pull-right" style="height: 35px;">
+				<!-- 隐藏域，接受财务ID -->
+				<input type="hidden" value="${id!}" name="id">
+				
+				余额： ${balance!}<br/><br/>
+				请谨慎操作，不可修改！！
+				
+					<div  style="clear:both;" class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+						<div  style="clear:both;" class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">充值金额</span> <input
+								type="text"  name="chongzhijine"
+								class="col-lg-5 col-xs-3 pull-left"
+								style="height: 35px; margin-bottom: 10px; margin-left: 20px;">
+							
+						</div>
+					</div>
+
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">银&nbsp;&nbsp;&nbsp;行</span> 
+							<select
+								name="yinhang" class="col-lg-5 col-xs-8 pull-left"
+								style="height: 35px; margin-left: 20px;"> 
+								<#list bankList.getList() as b>
+								<OPTION value="${(b.id)}">${(b.bankname)}</OPTION>
+								 </#list>
+							</select>
+						</div>
+					</div>
+	
+
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<input type="submit" class=" btn btn-default col-xs-5 "
+								style="height: 34px; margin-bottom: 20px;" maxlength=8
+								value="提交" onclick="tijiao()">
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+	</form>
+
+
+
+	<div class="container col-lg-12 col-sm-12">
+		<div class="table-responsive" style="overflow: auto; height: 80%">
+
+				<table class="table  table-striped table-bordered text-center ">
+					<tr class="text-center">
+
+						<td>充值金额</td>
+						<td>充值时间</td>
+						<td>财务处理充值的人</td>
+
+					</tr>
+					<#list ggzjje?sort_by("dete") as x>
+					<tr>
+						<td>${(x.Money)!}</td>
+						<td>${(x.dete)!}</td>
+						<td>${(x.caiwuchongzhiren)!}</td>
+					 </#list>
+					</tr>
+				</table>
+
+		</div>
+	</div>
+
+
+
+		
+
+
+
+
+
+</body>
+</html>

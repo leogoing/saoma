@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<base href="${ctx}/">
+<title>管理员首页</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript" src="js/data/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//提交信息
+		$("#addForm").ajaxForm({
+			beforeSubmit : function() {
+				var loginname=$("#loginname").val();
+				var password=$("#password").val();
+				if(loginname=="" || password==""){
+					alert("请填写登录名和密码");
+					return false;
+				}else{
+					return true;
+				}
+			},
+			success : function(retObj) {
+				alert(retObj.info);
+			}
+		});
+		
+		function getleader() {
+			var leadername = $("#leadername").val();
+			$.ajax({
+				url : 'glyindex/getLeader?leadername=' + leadername,
+				success : function(result) {
+					$("#leaderinfo").html(result.msg);
+				}
+			});
+		}
+	});
+
+</script>
+</head>
+
+<body>
+	<form id="addForm" action="glyindex/adddls" method="post">
+		<div class="container col-lg-12 col-xs-12">
+			<div class="biaoti col-lg-12 col-sm-12 col-xs-12 "
+				style="background-color: #C4E3F3; color: #ffffff; margin-bottom: 10px;">管理员首页</div>
+			<div class="col-lg-12 col-sm-8 col-xs-12  " style="height: 35px;">
+				<div class="col-lg-12 col-xs-12  pull-right" style="height: 35px;">
+					<div class="row col-lg-12 col-xs-12 " style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">登录名</span> <input
+								type="text" id="loginname" name="user.loginname"
+								class="col-lg-5 col-xs-3 pull-left"
+								style="height: 35px; margin-bottom: 10px; margin-left: 20px;"maxlength=30>
+							<span>${(loginnamemsg)!}</span>
+						</div>
+					</div>
+
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">密&nbsp;&nbsp;&nbsp;码</span>
+							<input type="password" class="col-lg-5 col-xs-8  pull-left"
+								style="height: 35px; margin-left: 20px;" id="password" name="user.password"
+								value="" maxlength=20> <span>${(passwordmsg)!}</span>
+						</div>
+
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">手&nbsp;&nbsp;&nbsp;机</span>
+							<input name="user.phone" type="text"
+								class="col-lg-5 col-xs-8  pull-left"
+								style="height: 35px; margin-left: 20px;" maxlength=11> <span>${(phonemsg)!}</span>
+						</div>
+
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">邮&nbsp;&nbsp;&nbsp;箱</span>
+							<input type="email" class=" col-lg-5 col-xs-8  pull-left"
+								style="height: 35px; margin-left: 20px;" name="user.email"
+								maxlength=20> <span>${(emailmsg)!}</span>
+						</div>
+
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">真实姓名</span> <input
+								type="text" class="col-lg-5 col-xs-8  pull-left"
+								style="height: 35px; margin-left: 20px;" name="user.realname"
+								maxlength=20> <span>${(realnamemsg)!}</span>
+						</div>
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">代理商级别</span> <select
+								name="user.levelid" class="col-lg-5 col-xs-5 pull-left"
+								style="height: 35px; margin-bottom: 10px; margin-left: 20px;">
+								<#list levelList.getList() as l>
+								<OPTION value="${(l.id)}">${(l.levelname)}</OPTION> </#list>
+							</select> <span class="col-lg-3 col-xs-3 pull-right"></span>
+						</div>
+
+					</div>
+
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">开户行</span> <select
+								name="user.bankid" class="col-lg-5 col-xs-8 pull-left"
+								style="height: 35px; margin-left: 20px;"> <#list
+								bankList.getList() as b>
+								<OPTION value="${(b.id)}">${(b.bankname)}</OPTION> </#list>
+							</select>
+						</div>
+
+					</div>
+
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">所在地</span> <input
+								type="text" class="col-lg-5 col-xs-8  pull-left"
+								style="height: 35px; margin-left: 20px;" name="user.bankinfo"
+								placeholder="开户银行所在地（例如：北京市招商银行中关村支行）" maxlength=50> <span>${(bankinfomsg)!}</span>
+						</div>
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">银行卡号</span> <input
+								type="text" class="col-lg-5 col-xs-8  pull-left"
+								style="height: 35px; margin-left: 20px;" name="user.bankno"
+								maxlength=30> <span>${(banknomsg)!}</span>
+						</div>
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">身份证号</span> <input
+								type="text" class="col-lg-5 col-xs-8  pull-left"
+								style="height: 35px; margin-left: 20px;" name="user.idcard"
+								maxlength=18> <span>${(idcardmsg)!}</span>
+						</div>
+					</div>
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<span class="zlx2_span col-lg-3 col-xs-3">上级代理商</span> <input
+								type="text" class="col-lg-5 "
+								style="height: 35px; margin-left: 20px;" id="leadername"
+								name="user.leader" onblur="getleader()" maxlength=20
+								placeholder="上级代理商登录名"> <span id="leaderinfo"></span>
+						</div>
+					</div>
+
+					<div class="row col-lg-12 col-xs-12" style="margin-bottom: 10px;">
+						<div class="ziliaoye">
+							<input type="submit" class=" btn btn-default col-xs-5 "
+								style="height: 34px; margin-bottom: 20px;" maxlength=8
+								value="提交"><span id="info">${(info)!}</span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+	</form>
+</body>

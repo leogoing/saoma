@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="${ctx}/">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/Css/wapbootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/Css/stylephone.css" />
+</head>
+<body>	
+	<div class="beijng">
+		<div class="beijing_tu" id="bj_tu">
+			<div class="container" style="color: #FFF; font-family: '微软雅黑';">
+
+				<form action="/wap/login" method="post">
+					<div class="dlbiaoti">登录系统</div>
+					<div class="zhanghao">
+						<img src="/images/dengluye_03.png" width="20px;"
+							style="float: left; margin-top: 10px;" /> <span
+							style="float: left; margin-left: 20px;"> 账号： </span> <input
+							class="input" type="text" name="loginname" id="loginname"
+							value="" placeholder="name" />
+					</div>
+					<div class="zhanghao">
+						<img src="/images/dengluye_06.png" width="20px;"
+							style="float: left; margin-top: 10px;" /> <span
+							style="float: left; margin-left: 20px;"> 密码： </span> <input
+							class="input" type="password" name="password" id="password"
+							value="" placeholder="password" />
+					</div>
+					<div style="width: 270px; height: 50px; margin: 0px auto;">
+						<span>${info!}</span>
+						<p><button class="anniu-denglu" type="submit" style="background:#c6794e;border:none;color:white ">登录</button></p>
+					</div>
+				</form>        
+</body>
+</html>

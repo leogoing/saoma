@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="${ctx}/">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新增</title>
+<link href="Css/ggz-zhutier.css" type="text/css" rel="stylesheet">
+<link href="Css/qpz-ggz-xingzen.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" >
+		
+		function ToOtherAdd(){
+			window.location="${ctx}/ggz/ToOtherAdd"
+		}
+		
+		function ToOurAdd(){
+			window.location="${ctx}/ggz/ToOurAdd"
+		}
+</script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+         <div class="left">   
+            <span><img src="images/6_03.png"></span>
+            <h2>扫码后台管理系统</h2>
+         </div>
+         <div class="right">
+            <span><img src="images/5_03.png"></span>
+            <h2>退出</h2>
+         </div>
+      </div>
+      <div id="center">
+         <div class="top">&gt;&gt;设置二维码 / 新增</div>
+         <div class="zhongjian">请选择适合您的服务器类型(choose to suit your server type):</div>
+         <div class="zhongjianer">
+             <form>
+             <div class="hezi">
+                 <input type="button" value="有自己的服务器" onclick="ToOtherAdd()">
+             </div>
+             <div class="hezi">
+                 <input type="button" value="没有自己的服务器" onclick="ToOurAdd()">
+             </div>
+             </form>
+             
+         </div>
+         <div class="fanhui">
+         		<a href="ggz/GetTotal">返回主页面</a>
+         	</div>
+         	
+         </div>
+         
+         <div class="footer">
+             <ul>
+                <li>注明：</li>
+                <li class="kk">有自己服务器 ： 开启开发者模式并实行微信平台功能。</li>
+                <li class="kk">没有自己服务器 ： 没有开启开发者模式，通过网页实现微信网页的微信平台功能</li>
+             </ul>
+         </div>
+      </div>
+      <div id="footer">
+         <div class="left"></div>
+         <div class="right"></div>
+      </div>
+<!--       <a href="ggz/Upload.html">下载</a> -->
+</body>
+</html>

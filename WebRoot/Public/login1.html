@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="${ctx}/">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>扫码赚</title>
+<link href="Css/smz.css" type="text/css" rel="stylesheet">
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="Css/bootstrap.min.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="js/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+$('#myModal').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+	})
+}
+
+$('#myModal1').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+	})
+}
+</script>
+<script type="text/javascript">
+	$(function(){
+    $("input[name='loginname']").focus(function(){
+        if($(this).val() == "用户名"){
+            $(this).val("");
+        }
+    })
+    $("input[name='password']").focus(function(){
+            $(this).val("");
+    })
+})
+</script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+           <div class="hd_nav">
+               <img src="images/logo_03.png">
+           </div>
+        </div>
+        <div id="center">
+           <div class="center-left">
+               <div class="top"><img src="images/shaomazhuanerweima.jpg"></div>
+               <div class="bottom">
+                    <div style="opacity: 0.3;">
+                        <div class="zsb"><div class="bao">
+                           <h1 class="ggl">公 告 栏</h1>
+                           <div class="hang"><a href="" data-target="#myModal"  data-toggle="modal"><p>重要： 本月个人代理费用980</p></a><span>10/01</span></div>
+                           <div class="hang "><a href="" data-target="#myModal"  data-toggle="modal"><p class="zb" >12月25号系统维护</p></a><span>12/25</span></div>
+                           <div class="hang"><a href="" data-target="#myModal" data-toggle="modal" ><p class="zb" >11月15号系统维护</p></a><span>11/15</span></div>
+                           <div class="hang"><a href="" data-target="#myModal" data-toggle="modal" ><p class="zb" >10月15号系统维护</p></a><span>10/15</span></div>
+                        </div>
+                        </div>
+                    </div>
+               </div>
+           </div>
+           <div class="center-right">
+               <div class="kuang">
+                  <div class="sm">账号密码登录</div>
+                  <div class="zj">
+             <form method="post" action="login/login" id="form">
+             	
+             						<div class="input_text" >
+             							<img src="images/shaomazhuanerweima3.gif">
+             							<input type="text" value="用户名" name="loginname">
+             						</div>
+
+	                     	<div class="input_text1">
+	                     		  <img src="images/shaomazhuan2.gif">
+	                     		  <input class="die" type="password" value="密码"  name="password">
+	                     	</div>
+	                     	
+	                   
+	                     <input class="denglu" type="submit" value="登录">
+                      </form>
+                  </div>
+               </div>
+           </div>
+        </div>
+    </div>
+    
+    
+    	<!-- 公告弹出框 -->
+    	<!--  
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content" >
+		     <div  data-dismiss="modal">
+		      <img src="images/Notice1.png" height="350px" width="600px"/>
+		     </div>
+		    </div>
+		  </div>
+		</div>  
+		-->
+		<!-- Modal -->
+		 
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">2015年12月10日升级公告</h4>
+	      </div>
+	      <div class="modal-body">
+			本次更新除了修正一些积累的BUG外，更为大家提供了带背景图的二维码，以方便大家推广。
+			详情登陆后点击申请平台后查看宣传页进入按钮
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+		
+</body>
+</html>

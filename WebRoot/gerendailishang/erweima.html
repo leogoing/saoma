@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="${ctx}/">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"src="jquery-1.11.1.js"></script>
+<script type="text/javascript">
+	function f1(x){
+		alert(x);
+		window.location="${ctx}/ggz/Download?fullURL="+x;
+	}
+</script>
+</head>
+<body>
+	<#list list as li>
+	<img  src="${(li.URL)!}" width="100px" height="100px"><input type="button"onclick="f1('${nn!}${(li.URL)!}')">
+	</#list>
+</body>
+</html>

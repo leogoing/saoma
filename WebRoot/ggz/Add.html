@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<base href="${ctx}/">
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="Css/demo.css"/>
+		<link rel="stylesheet" type="text/css" href="Css/font-awesome.min.css"/>
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+		function AddMsg(){
+			var msg ="${Addmsg!}"
+			if(msg!=""){
+				alert(msg)
+			}
+		}	
+		
+		$(document).ready(function() {
+			AddMsg();
+			select();
+		})
+		
+		var totalspCheck=/^([0-9.]+)$/;
+		var adtimeCheck= /^\d+$/;
+			
+			function form_submit(){
+				var form= document.getElementById("form");
+				
+				var publicaccountname = document.getElementById("publicaccountname");
+				var name=document.getElementById("name");
+				var appid=document.getElementById("appid");
+				var appsecret=document.getElementById("appsecret");
+				var totalsp=document.getElementById("totalsp");
+				var adtime=document.getElementById("adtime");
+				var uplowframe=document.getElementById("uplowframe");
+				var adtype=document.getElementById("adtype");
+				var fuwuqi=document.getElementById("fuwuqi");
+				
+
+				var huifuyuSpan=document.getElementById("huifuyuSpan")
+				var publicaccountnameSpan=document.getElementById("publicaccountnameSpan")
+				var nameSpan=document.getElementById("nameSpan")
+				var appsecretSpan=document.getElementById("appsecretSpan")
+				var appidSpan=document.getElementById("appidSpan")
+				var totalspSpan=document.getElementById("totalspSpan")
+				var adtimeSpan=document.getElementById("adtimeSpan");
+				
+			if(publicaccountname.value==""){
+				publicaccountnameSpan.innerHTML="平台微信号不能为空"
+			}
+			else if(name.value==""){
+				nameSpan.innerHTML="平台名不能为空"
+			}
+			else if(appid.value==""){
+				appidSpan.innerHTML="appid不能为空"
+			}
+			else if(appsecret.value==""){
+				appsecretSpan.innerHTML="appsecret不能为空"
+			}
+			else if(totalspCheck.test(totalsp.value)==false){
+				totalspSpan.innerHTML="价格格式不正确,必须为数字"
+			}	
+			else if(adtimeCheck.test(adtime.value)==false){
+				adtimeSpan.innerHTML="保护期格式不正确，必须为正整数"
+			}
+			else{
+				form.submit()
+					}		
+			
+			if(publicaccountname.value!=""){
+				publicaccountnameSpan.innerHTML=""
+			}
+			 if(name.value!=""){
+				nameSpan.innerHTML=""
+			}
+			 if(appid.value!=""){
+				appidSpan.innerHTML=""
+			}
+			 if(appsecret.value!=""){
+				appsecretSpan.innerHTML=""
+			}
+			 if(totalsp.value!=""){
+				totalspSpan.innerHTML=""
+			}
+			if(totalspCheck.test(totalsp.value)==true){
+				totalspSpan.innerHTML=""
+			}
+			if(adtimeCheck.test(adtime.value)==true){
+				adtimeSpan.innerHTML=""
+			}
+			}
+			
+			function select(){
+				var real_uplowframe="${uplowframe!}"
+				var real_adtype="${adtype!}"
+				var real_newstype="${newstype!}"
+				
+				var uplowframe=document.getElementById("uplowframe");
+				var adtype=document.getElementById("adtype");
+				var newstype =document.getElementById("newstype");
+				
+					for (var i = 0; i < uplowframe.options.length; i++) {
+						if (uplowframe.options[i].value == real_uplowframe) {
+							uplowframe.options[i].selected = 'selected';
+						}
+					}
+					for (var i = 0; i < adtype.options.length; i++) {
+						if (adtype.options[i].value == real_adtype) {
+							adtype.options[i].selected = 'selected';
+						}
+					}
+					for (var i = 0; i < newstype.options.length; i++) {
+						if (newstype.options[i].value == real_newstype) {
+							newstype.options[i].selected = 'selected';
+						}
+					}
+					
+					var a = $("#newstype option:selected").val();
+				    if(a==1){
+				    	$('#box').css('display','block');
+				    	$('#text').css('display','none');
+				    }else if(a==0){
+				    	$('#text').css('display','block');
+				    	$('#box').css('display','none');
+				    }else if(a==2){
+				    	$('#text').css('display','none');
+				    	$('#box').css('display','none');
+				    }
+			}
+				
+			
+			function show(){
+				var a = $("#newstype option:selected").val();
+			    if(a==1){
+			    	$('#box').css('display','block');
+			    	$('#text').css('display','none');
+			    }else if(a==0){
+			    	$('#text').css('display','block');
+			    	$('#box').css('display','none');
+			    }else if(a==2){
+			    	$('#text').css('display','none');
+			    	$('#box').css('display','none');
+			    }
+			}
+		</script>
+	</head>
+	<body>
+	
+		<!--头部开始-->
+		<div id="header">
+	  		<div class="header-logo">
+	  		<img src="images/1_01.png">
+	  		<a>扫码后台管理系统</a>
+	  		</div>
+	  		<div class="header-close">
+	  			<a href="/logout">
+		  			<img src="images/5_03_02.png">
+		  			<a >退出</a>
+	  			</a>
+	  		</div>
+	  		<div class="clearfix"></div>
+	  	</div>
+	  	<!--头部结束-->
+	  	<!--内容开始-->
+	  	<div class="content">
+	  		<div class="content-top">
+	  			<ul class="left">
+	  				<li>没有自己服务器</li>
+	  			</ul>
+	  			<ul class="right icon-remove">
+	  				<li></li>
+	  			</ul>
+	  		</div>
+	  		<div class="foot">
+	  			<form action="ggz/AddPingtai" method="post" id="form"  enctype="multipart/form-data">
+                    <span>平台名称 :</span><input type="text" value="${name!}" id="name" name="name"/>
+                    <i style="width:600px;font-size:14px;color:#666;"> 就是在微信上显示的昵称</i>
+                    <p id="nameSpan" style="color: red"></p>
+                    <br />
+	  				<span>平台原始ID :</span><input type="text" value="${publicaccountname!}" id="publicaccountname" name="publicaccountname"/><a href="${ctx}/ggz/help.html" style="font-size:14px;color:#666;" target="iframe" > 点击查看图片帮助</a>
+	  				<p id="publicaccountnameSpan" style="color: red"></p>
+	  				<br />
+	  				<span>APPID :</span><input type="text" value="${appid!}" id="appid" name="appid"/>
+	  				<p id="appidSpan" style="color: red"></p>
+	  				<br />
+	  				<span>APPSCRET :</span><input type="text" value="${appsecret!}" id="appsecret" name="appsecret"/>
+	  				<p id="appsecretSpan" style="color: red"></p>
+	  				<br />
+	  				<span>二维码价格 :</span><input type="text" value="${stringtotalsp!}" id="totalsp" name="totalsp"/><i style="width:600px;font-size:14px;color:#666;"> 每一次关注平台给所有代理商 的总钱数</i>
+	  				<p id="totalspSpan" style="color: red"></p>
+	  				<br />
+	  				<span>二维码保护期 :</span><input type="text" value="${adtime!}" id="adtime" name="adtime"/><i style="width:600px;font-size:14px;color:#666;">  关注平台后多长时间内不能取消关注（保护期内取消关注则不能给代理商提成）</i>
+	  				<p id="adtimeSpan" style="color: red"></p>
+	  				<br />
+	  				<span>二维码上/下架 ：</span><select name="uplowframe" id="uplowframe" class="select"><br />
+	  					<option value="1">上架</option>
+	  					<option value="0">下架</option>
+	  				</select>
+	  				<i style="width:600px;font-size:14px;color:#666;"> 平台目前的状态，上架后能在个人页面点击“申请平台”后看到二维码，下架后便不能看见</i>
+	  				<br />
+	  				<span>二维码时间类型 :</span><select name="adtype"  id="adtype" class="select">
+	  					<option value="0">临时</option>
+	  					<option value="1">永久</option>
+	  				</select>
+	  				<i style="width:500px;font-size:14px;color:#666;"> 在个人页面点击“申请平台”时显示的二维码类型，临时二维码为7天</i>
+	  				<br />
+	  				<span>图片或文本回复 :</span><select name="newstype" id="newstype" class="select" onchange="show()">
+	  					<option value="0" id="op1">文本</option>
+	  					<option value="1" id="op2">图文</option>
+	  				</select>
+	  				<i style="width:600px;font-size:14px;color:#666;" > 选择第一次关注平台后平台的回复类型</i>
+	  				<br />
+	  				<div id="box" style="display:none;">
+	  					<div>
+	  						<span>新闻标题 :</span><input type="text" value="${title!}" name="title" id="title"/><i style="width:600px;font-size:14px;color:#666;"> 回复新闻的标题</i>
+	  					</div>
+	  					<br />
+	  					<div>
+	  						<span>新闻描述 :</span><input type="text" value="${miaoshu!}" class="te" name="miaoshu" id="miaoshu"/><i style="width:600px;font-size:14px;color:#666;"> 新闻内容的文字描述</i>
+	  					</div>
+	  					<br />
+	  					<div>
+	  						<span>新闻图片 :</span><input type="file" value="浏览文件" name="img" id="img"/><i style="width:600px;font-size:14px;color:#666;"> 新闻内显示的图片</i>
+	  					</div>
+	  					<br />
+	  					<div>
+	  						<span>新闻路径 :</span><input type="text" value="${newsurl!}" name="newsurl" id="newsurl"/><i style="width:600px;font-size:14px;color:#666;"> 新闻的访问网址</i>
+	  					</div>
+	  					<br />
+	  					
+	  				</div>
+	  				
+	  				<div id="text" style="display:none;">
+	  					<span>回复语 :</span><input type="text" value="${huifuyu!}" name="huifuyu" id="huifuyu"  />
+	  					<br />
+	  				</div>
+	  				
+	  				<input type="button" name="" id="sub" value="提交" onclick="form_submit()"  />
+	  				<a href="ggz/GetTotal" style="color:red;">&nbsp; 返回>>>>></a>
+	  			</form>
+	  		</div>
+	  		<br>
+	  	</div>
+	  	<!--内容结束-->
+	</body>
+</html>

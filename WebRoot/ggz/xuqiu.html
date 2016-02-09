@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <base href="${ctx}/">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Css/liujie-demo.css"/>
+    <link rel="stylesheet" type="text/css" href="Css/liujie-font-awesome.min.css"/>
+    <link rel="stylesheet" href="Css/xuqiu.css"/>
+    <link rel="stylesheet" href="Css/bootstrap.css"/>
+    <!--<script type="text/javascript" src="jquery-1.7.2.min.js"></script>-->
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    var useserver="${pingtai.useserver!}"
+    	function show(){
+    		if(useserver==1){
+    			var huifuyu = document.getElementById("huifuyu")
+    			huifuyu.href="ggz/ToHuifuUpdate"
+    			huifuyu.innerHTML="回复"
+    		}
+    	}
+
+    	$(document).ready(function() {
+    		show();
+    	})
+    </script>
+</head>
+<body style="overflow-y: hidden">
+<!--头部开始-->
+<div id="header">
+    <div class="header-logo">
+        <img src="images/1_01.png">
+        <i style=" font-style:normal;font-size: 16px ">扫码后台管理系统</i>
+    </div>
+    <div class="header-close">
+        <a href="/logout">
+            <img src="images/5_03_02.png">
+            <a href="/logout">退出</a>
+        </a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!--头部结束-->
+<!--内容开始-->
+<div class="content">
+    <div class="content-top">
+       <ul class="left1" >
+            <a style="color:black;" href="ggz/ToUpdateFromOther" >修改平台</a>
+        </ul>
+        <ul class="left2">
+            <a style="color:black;" id="huifuyu"></a>
+        </ul>
+        <ul class="left3" >
+            <a style="color:black;" href="ggz/ToImgs" >背景图片</a>
+        </ul>
+        <ul class="left4" style="border-bottom:3px solid #3d5a9a;" >
+            <a style="color:black;"  >需求</a>
+        </ul>
+
+        <!--<ul class="right icon-remove">-->
+        <!--<li></li>-->
+        <!--</ul>-->
+    </div>
+    <div id="foot">
+        <div class="foot_1">
+            <div class="foot_2">
+                <span ><a href="javascript:;" class="no_xq" >没有附加需求</a></span>
+                <span> <a href="javascript:;" class="yes_xq">有附加需求</a></span>
+            </div>
+            <div class=".cang" style="display: none">
+            </div>
+            <div class="show_1" >
+                <table class="foot_table" >
+                    <tr>
+                        <td align="right">性别：</td>
+                        <td>
+                            <select  style="width: 70px">
+                                <option >男</option>
+                                <option>女</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">指定所在地：</td>
+                        <td>
+                            <!--<input type="text" id="sub1"/>-->
+                            <div id="ying1">
+                                <h5  id="noe"><i style="font-style:normal;margin-left: 20px"></i></h5>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <div class="foot_div">
+                                <table style="margin: 5px auto" cellspacing="3">
+                                    <tr>
+                                        <td>
+                                            <select style="width: 100px;" id="pre" onchange="chg(this)">
+                                                <option value="-1">-国家-</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select style="width: 100px;" id="city" onchange="chg2(this)">
+                                                <option value="-1" >-省份-</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <select style="width: 100px;" id="area">
+                                                <option value="-1">-市区-</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="button" value="添加+" style="width: 100px" id="hide" onclick="tj()"/>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <script>
+                                    var time=0;
+                                    function tj(){
+                                        var gj=$("#pre").val();
+                                       var gjval= pres[gj];
+                                        var city=$("#city").val();
+                                        var cityval=cities[gj][city];
+                                        var area=$("#area").val();
+                                        var areaval = areas[gj][city][area];
+                                        var all=gjval+"-"+cityval+"-"+areaval;
+                                        if(areaval=="-市区-"){
+                                            all=gjval+"-"+cityval
+                                        };
+                                        $("#noe").remove();
+//                                        var time = new Date().getTime();
+                                        ++time;
+                                        $("#ying1").append('<h5 style="font-weight: bold;" id="'+time+'">'+all+'<a href="javascript:;" style="font-style:normal;margin-left: 20px" onclick="removeItem('+time+')" >X</a></h5>')
+                                        }
+                                        function removeItem(id){
+                                            --time;
+                                            if(time==0){
+                                                $("#ying1").append(' <h5  id="noe"><i style="font-style:normal;margin-left: 20px"></i></h5>');
+                                            }
+                                            $("#"+id).remove();
+
+                                        }
+
+                                </script>
+                            </div>
+                            <!--<i style="font-style:normal;margin-left: 20px" class="no11">X</i>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">满足粉丝需求价格：</td>
+                        <td><input type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><input type="checkbox"/>是否允许不符合需求的粉丝加入</td>
+                    </tr>
+                </table>
+                <input type="button" value="提交" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    <script>
+        $(".no_xq").click(function(){
+           if($(".cang").show()){
+               $(".show_1").hide()
+           }
+        })
+        $(".yes_xq").click(function(){
+            if($(".cang").hide()){
+                $(".show_1").show()
+            }
+        })
+    </script>
+</body>
+<script>
+//声明省
+var pres = ["中国","韩国","日本","新加坡","马来西亚","菲律宾","沙特阿拉伯","朝鲜","越南","缅甸","德国","英国","法国","爱尔兰","波兰","西班牙","意大利","俄罗斯","荷兰","美国","加拿大","巴西","阿根廷","新西兰","澳大利亚","印度","埃及"]; //直接声明Array
+//声明市
+var cities = [
+    ["安徽","北京","福建","甘肃","广东","广西","贵州","海南","河北","河南","黑龙江","湖北","湖南","吉林","江苏","江西","辽宁","内蒙古","宁夏","青海","山东","山西","陕西","上海","四川","天津","西藏","新疆","云南","浙江","重庆"],
+    ["汉城特別市","釜山广域市","大邱广域市","仁川广域市","光州广域市","大田广域市","蔚山广域市","京畿道","江原道","忠清北道","忠清南道","全罗北道","全罗南道","庆尚北道","庆尚南道","济州道"],
+    ["东京都","神奈川县","大阪府","爱知县","北海道","兵库县","京都府","福冈县","神奈川县","埼玉县","广岛县","宫城县","福冈县","千叶县"],
+    ["新加坡"],
+    ["吉打 Kedah","槟榔屿 Pulau Pinang","霹雳 Perak","吉兰丹 Kelantan","丁加奴 Terengganu","彭亨 Pahang","雪兰莪 Selangor","吉隆坡联邦直辖区 Kuala Lumpur","布特拉再也联邦直辖区 Putrajaya","森美兰 Sembilan","马六甲 Melaka","柔佛 Johor","斗湖省 Tawau","山打根省 Sandakan","西海岸省 Pantai Barat"],
+    ["伊罗戈斯 Ilocos","卡加延河谷 Cagayan","中央吕宋 Central Luzon","甲拉巴松 Calabarzon","比科尔 Bicol","西米沙鄢 Western Visayas","中米沙鄢 Central Visayas","东米沙鄢 Eastern Visayas","国家首都区 National Capital Region"],
+    ["利雅得 Ar Riyad","麦加 Makkah","麦地那 Al Madinah","东部 Ash Sharqiyah","卡西姆 Al Qasim","哈伊勒 Ha'il","塔布克 Tabuk","北部边疆 Al Hudud ash Shamaliyah","吉赞 Jizan","纳季兰 Najran","巴哈 Al Bahah","朱夫 Al Jawf","阿西尔 ‘Asir"],
+    ["平壤直辖市","罗先直辖市","平安南道","平安北道","慈江道","两江道","咸镜北道","咸镜南道","黄海北道","黄海南道","江原道"],
+    ["河内市","山罗","奠边","谅山","河西","清化","义安","广南","嘉莱","多乐","平福","金瓯"],
+    ["实皆省 Sagaing","望濑县 Monywa","勃固省 Bago","马圭省 Magway","曼德勒省 Mandalay","德林达依省 Tanintharyi","伊洛瓦底省 Ayeyarwady","仰光省 Yangon","克钦邦 Kachin","克耶邦 Kayah","克伦邦 Kayin","钦邦 Chin","孟邦 Mon","若开邦 Rakhine","掸邦 Shan"],
+    ["巴登-符腾堡 Baden-Württemberg","拜恩（巴伐利亚）  Bayern","柏 林 Berlin","勃兰登堡 Brandenburg","不来梅 Bremen","汉 堡 Hamburg","黑 森 Hessen","梅克伦堡-前波莫瑞 Mecklenburg-Vorpommern","下萨克森  Niedersachsen","北莱茵-威斯特法伦 Nordrhein-Westfalen","莱茵兰-普法尔茨 Rheinland-Pfalz","萨 尔 Saarland","萨克森 Sachsen","萨克森-安哈特 Sachsen-Anhalt","石勒苏益格-荷尔斯泰因 Schleswig-Holstein","图林根 Thüringen"],
+    ["英格兰 England","威尔士 Wales","苏格兰 Scotland","北爱尔兰 Northern Ireland"],
+    ["法兰西岛 Ile-de-France","香槟-阿登 Champagne-Ardenne","皮卡第 Picardie","上诺曼底 Haute-Normandie","中央 Centre","下诺曼底 Basse-Normandie","勃艮第 Bourgogne","北部-加莱海峡 Nord-pas-de-Calais","洛林 Lorraine","阿尔萨斯 Alsace","弗朗什孔泰 Franche-Comté","卢瓦尔河地区 Pays de la Loire","布列塔尼 Bretagne","普瓦图-夏朗德 Poitou-Charentes","阿基坦 Aquitaine","南部-比利牛斯 Midi-Pyrénées","利穆赞 Limousin","罗讷-阿尔卑斯 Rhone-Alpes","奥弗涅 Auvergne","朗格多克-鲁西永 Languedoc-Roussillon","普罗旺斯-阿尔卑斯-蓝色海岸 Provence-Alpes-Cote d'Azur","科西嘉 Corse"],
+    ["穆斯特省 Munster","康诺特省 Connacht","伦斯特省 Leinster","阿尔斯特省 Ulster"],
+    ["下西里西亚 Dolnoslaskie","库亚瓦滨海 Kujawsko-Pomorskie","罗兹 Lódzkie ","卢布林 Lubelskie","鲁布斯卡 Lubuskie","小波兰 Malopolskie","马佐夫舍 Mazowieckie","奥波莱 Opolskie","喀尔巴阡山 Podkarpackie","波德拉斯 Podlaskie","滨海 Pomorskie","西里西亚 Slaskie","圣十字 Swietokrzyskie","瓦尔米亚马祖尔 Warmińsko-Mazurskie","大波兰 Wielkopolskie","西滨海 Zachodniopomorskie"],
+    ["安达卢西亚 Andalucía","阿拉贡 Aragón","阿斯图利亚斯 Asturias","巴利阿里群岛 Baleares","加那利 Canarias","坎塔布利亚 Cantábria","卡斯蒂利亚－拉曼恰 Castilla-La Mancha","卡斯蒂利亚－莱昂 Castilla y Léon","加泰罗尼亚* Cataluna","加利西亚* Galicia","马德里 Madrid"],
+    ["阿布鲁佐 Abruzzi","巴西利卡塔 Basilicata","卡拉布里亚 Calabria","坎帕尼亚 Campania","艾米利亚－罗马涅 Emilia-Romagna","弗留利－威尼斯·朱利亚* Friuli-Venezia Giulia","拉齐奥 Lazio","利古里亚 Liguria","伦巴第 Lombardia","马尔凯 Marche","莫利塞 Molise","皮埃蒙特 Piemonte","普利亚 Puglia","撒丁* Sardegna","西西里* Sicilia","托斯卡纳 Toscana","特伦蒂诺-上阿迪杰* Trentino-Alto Adige","翁布里亚 Umbria","瓦莱·达奥斯塔* Valle d'Aosta","威尼托 Veneto"],
+    ["西北 Severo-Zapadnyj","中央 Central'nyj ","南方 Juznyj ","伏尔加 Privolzskij ","乌拉尔 Ural'skij","西伯利亚 Sibirskij","远东 Dal'nevostocnij"],
+    ["德伦特 Drenthe","弗莱福兰 Flevoland","弗里斯兰* Friesland","海尔德兰 Gelderland","格罗宁根 Groningen","林堡 Limburg","北布拉班特 Noord-Brabant","北荷兰 Noord-Holland ","上艾瑟尔 Overijssel","乌得勒支 Utrecht","泽兰 Zeeland","南荷兰 Zuid-Holland"],
+    ["阿拉巴马 Alabama","阿拉斯加 Alaska","亚利桑那 Arizona","阿肯色 Arkansas","加利福尼亚 California","科罗拉多 Colorado","康涅狄格 Connecticut","特拉华 Delaware","哥伦比亚特区 District of Columbia","佛罗里达 Florida","乔治亚 Georgia","夏威夷 Hawaii","爱达荷 Idaho","伊利诺斯 Illinois","印地安那 Indiana","衣阿华 Iowa","堪萨斯 Kansas","肯塔基 Kentucky","路易斯安那 Louisiana","缅因 Maine","马里兰 Maryland","马萨诸塞 Massachusetts","密歇根 Michigan","明尼苏达 Minnesota","密西西比 Mississippi","密苏里 Missouri","蒙大拿 Montana","内布拉斯加 Nebraska","内华达 Nevada","新罕布什尔 New Hampshire","新泽西 New Jersey","新墨西哥 New Mexico","纽约 New York","犹他 Utah","华盛顿 Washington","威斯康星 Wisconsin"],
+    ["新不伦瑞克省 New Brunswick","新斯科舍省 Nova Scotia","安大略省 Ontario","魁北克省 Québec","马尼托巴省 Manitoba","不列颠哥伦比亚省 British Columbia","爱德华王子岛省 Prince Edward Island","艾伯塔省 Alberta","萨斯喀彻温省 Saskatchewan","纽芬兰-拉布拉多省 Newfoundland-Labrador","西北地区 Northwest Territories","育空地区 Yukon Territory","努纳维特地区 Nunavut Territory"],
+    ["联邦首都 Distrito Federal","戈亚斯 Goiás","马托格罗索 Mato Grosso","南马托格罗索 Mato Grosso do Sul","阿拉戈斯 Alagoas","巴伊亚 Bahia","塞阿拉 Ceará","马拉尼昂 Maranhao","帕拉伊巴 Paraíba","伯南布哥 Pernambuco","皮奥伊 Piauí","北里奥格兰德 Rio Grande do Norte","塞尔希培 Sergipe","阿克里 Acre","阿马帕 Amapá","亚马孙 Amazonas","帕拉 Pará","朗多尼亚 Rondonia","罗赖马 Roraima","托坎廷斯 Tocantins","圣埃斯皮里图 Espírito Santo*","米纳斯吉拉斯 Minas Gerais","里约热内卢 Rio de Janeiro","圣保罗 Sao Paulo","巴拉那 Paraná","南里奥格兰德 Rio Grande do Sul**","圣卡塔琳娜 Santa Catarina"],
+    ["联邦首都 Distrito Federal","布宜诺斯艾利斯 Buenos Aires","卡塔马卡 Catamarca","查科 Chaco","丘布特 Chubut","科尔多瓦 Córdoba","科连特斯 Corrientes","恩特雷里奥斯 Entre Ríos","福莫萨 Formosa","胡胡伊 Jujuy","拉潘帕 La Pampa","拉里奥哈 La Rioja","门多萨　Mendoza","米西奥斯内斯　Misiones","内乌肯　Neuquén","里奥内格罗 Río Negro","萨尔塔　Salta","圣胡安　San Juan","圣路易斯　San Luis","圣克鲁斯　Santa Cruz","圣菲　Santa Fe","圣地亚哥-德尔埃斯特罗 Santiago del Estero","火地岛　Tierra del Fuego","图库曼　Tucumán"],
+    ["北地 Northland","奥克兰 Auckland","怀卡托 Waikato ","普伦蒂湾 Bay of Plenty","吉斯伯恩 Gisborne (A) ","霍克湾 Hawkes Bay ","玛纳瓦图/旺格努伊 Manawatu-Wanganui ","塔拉那基 Taranaki","惠灵顿 Wellington ","塔斯曼 Tasman (A)","纳尔逊 Nelson (B)","马尔伯勒 Blenheim (A)","西岸 West Coast","坎特伯雷 Canterbury ","奥塔戈 Otago ","南地 Southland"],
+    ["新南威尔士州 New South Wales","昆士兰州 Queensland","南澳大利亚州 South Australia","塔斯马尼亚州 Tasmania","维多利亚州 Victoria","西澳大利亚州 Western Australia","澳大利亚首都地区 Australian Capital Territory","北部地区 Northern Territory"],
+    ["查谟和克什米尔* Jammu & Kashmīr","旁遮普 Punjub","昌迪加尔 Chandīgarh","喜马偕尔邦 Himāchal Pradesh","北安查尔 Uttaranchal","哈里亚纳 Haryāna","德里 Delhi","拉贾斯坦 Rājasthān","北方邦 Uttar Pradesh","中央邦 Madhya Pradesh","查蒂斯加尔 Chhatisgarh","比哈尔 Bihār","贾坎德 Jharkhand","锡金 Sikkim","阿鲁那恰尔邦* Arunāchal Pradesh","那加兰 Nāgāland","曼尼普尔 Manipur","米佐拉姆 Mizorām","特里普拉 Tripura","梅加拉亚 Meghālaya","阿萨姆 Assam","西孟加拉邦 West Bengal","奥里萨 Orissa","古吉拉特 Gujarāt","达曼和第乌 Damān & Diu","达德拉和纳加尔哈维利 Dādra & Nagar Haveli","马哈拉施特拉 Mahārāshtra","果阿 Goa","安得拉邦 Andhra Pradesh","卡纳塔克 Karnātaka","拉克沙群岛 Lakshadweep","喀拉拉 Kerala","泰米尔纳德 Tamil Nādu","本地治里 Pondicherry","安达曼和尼科巴群岛 Andaman & Nicobar Islands"],
+    ["开罗 Al Qahirah","亚历山大 Al Iskandariyah","塞得港 Bur Sa`id","苏伊士 As Suways","卢克索 Al Uqsur","代盖赫利耶 Ad Daqahl?yah","布海拉 Al Buhayrah","西部 Al Gharbiyah","伊斯梅利亚 Al Isma`iliyah","米努夫 Al Minufiyah","盖勒尤卜 Al Qalyubiyah","东部 Ash Sharqiyah","杜姆亚特 Dumyat","谢赫村 Kafr ash Shaykh","吉萨 Al Jizah","明亚 Al Minya","贝尼苏韦夫 Bani Suwayf","法尤姆 Al Fayyum","艾斯尤特 Asyut","阿斯旺 Aswan","索哈杰 Suhaj","基纳 Qina","红海 Al Bahr al Ahmar","新河谷 Al Wadi al Jadid","马特鲁 Matruh","南西奈 Janub Sina","北西奈 Shamal Sina"]
+]
+var areas = [
+    [
+        ["-市区-","安庆","蚌埠","巢湖","池州","滁州","阜阳","合肥","淮北","淮南","黄山","六安","马鞍山","宿州","铜陵","芜湖","宣城","亳州"],
+        ["-市区-","北京"],
+        ["-市区-","福州","龙岩","南平","宁德","莆田","泉州","三明","厦门","漳州"],
+        ["-市区-","白银","定西","甘南藏族自治州","嘉峪关","金昌","酒泉","兰州","临夏回族自治州","陇南","平凉","庆阳","天水","武威","张掖"],
+        ["-市区-","请选择","潮州","东莞","佛山","广州","河源","惠州","江门","揭阳","茂名","梅州","清远","汕头","汕尾","韶关","深圳","阳江","云浮","湛江","肇庆","中山","珠海"],
+        ["-市区-","百色","北海","崇左","防城港","桂林","贵港","河池","贺州","来宾","柳州","南宁","钦州","梧州","玉林"],
+        ["-市区-","安顺","毕节","贵阳","六盘水","黔东南苗族侗族自治州","黔南布依族苗族自治州","黔西南布依族苗族自治州","铜仁","遵义"],
+        ["-市区-","白沙黎族自治县","保亭黎族苗族自治县","昌江黎族自治县","澄迈县","定安县","东方","海口","乐东黎族自治县","临高县","陵水黎族自治县","琼海","琼中黎族苗族自治县","三亚","屯昌县","万宁","文昌","五指山","儋州"],
+        ["-市区-","保定","沧州","承德","邯郸","衡水","廊坊","秦皇岛","石家庄","唐山","邢台","张家口"],
+        ["-市区-","安阳","鹤壁","济源","焦作","开封","洛阳","南阳","平顶山","三门峡","商丘","新乡","信阳","许昌","郑州","周口","驻马店","漯河","濮阳"],
+        ["-市区-","大庆","大兴安岭","哈尔滨","鹤岗","黑河","鸡西","佳木斯","牡丹江","七台河","齐齐哈尔","双鸭山","绥化","伊春"],
+        ["-市区-","鄂州","恩施土家族苗族自治州","黄冈","黄石","荆门","荆州","潜江","神农架林区","十堰","随州","天门","武汉","仙桃","咸宁","襄樊","孝感","宜昌"],
+        ["-市区-","常德","长沙","郴州","衡阳","怀化","娄底","邵阳","湘潭","湘西土家族苗族自治州","益阳","永州","岳阳","张家界","株洲"],
+        ["-市区-","白城","白山","长春","吉林","辽源","四平","松原","通化","延边朝鲜族自治州"],
+        ["-市区-","常州","淮安","连云港","南京","南通","苏州","宿迁","泰州","无锡","徐州","盐城","扬州","镇江"],
+        ["-市区-","抚州","赣州","吉安","景德镇","九江","南昌","萍乡","上饶","新余","宜春","鹰潭"],
+        ["-市区-","鞍山","本溪","朝阳","大连","丹东","抚顺","阜新","葫芦岛","锦州","辽阳","盘锦","沈阳","铁岭","营口"],
+        ["-市区-","阿拉善盟","巴彦淖尔盟","包头","赤峰","鄂尔多斯","呼和浩特","呼伦贝尔","通辽","乌海","乌兰察布盟","锡林郭勒盟","兴安盟"],
+        ["-市区-","固原","石嘴山","吴忠","银川"],
+        ["-市区-","果洛藏族自治州","海北藏族自治州","海东","海南藏族自治州","海西蒙古族藏族自治州","黄南藏族自治州","西宁","玉树藏族自治州"],
+        ["-市区-","滨州","德州","东营","菏泽","济南","济宁","莱芜","聊城","临沂","青岛","日照","泰安","威海","潍坊","烟台","枣庄","淄博"],
+        ["-市区-","长治","大同","晋城","晋中","临汾","吕梁","朔州","太原","忻州","阳泉","运城"],
+        ["-市区-","安康","宝鸡","汉中","商洛","铜川","渭南","西安","咸阳","延安","榆林"],
+        ["-市区-","上海"],
+        ["-市区-","阿坝藏族羌族自治州","巴中","成都","达州","德阳","甘孜藏族自治州","广安","广元","乐山","凉山彝族自治州","眉山","绵阳","南充","内江","攀枝花","遂宁","雅安","宜宾","资阳","自贡","泸州"],
+        ["-市区-","天津"],
+        ["-市区-","阿里","昌都","拉萨","林芝","那曲","日喀则","山南"],
+         ["-市区-","阿克苏","阿拉尔","巴音郭楞蒙古自治州","博尔塔拉蒙古自治州","昌吉回族自治州","哈密","和田","喀什","克拉玛依","克孜勒苏柯尔克孜自治州","石河子","图木舒克","吐鲁番","乌鲁木齐","五家渠","伊犁哈萨克自治州"],
+         ["-市区-","保山","楚雄彝族自治州","大理白族自治州","德宏傣族景颇族自治州","迪庆藏族自治州","红河哈尼族彝族自治州","昆明","丽江","临沧","怒江傈傈族自治州","曲靖","思茅","文山壮族苗族自治州","西双版纳傣族自治州","玉溪","昭通"],
+        ["-市区-","杭州","湖州","嘉兴","金华","丽水","宁波","绍兴","台州","温州","舟山","衢州"],
+        ["-市区-","重庆"]
+    ],
+    [
+        ["-市区-","汉城"],
+        ["-市区-","釜山","机张郡"],
+        ["-市区-","大邱","达城郡"],
+        ["-市区-","仁川","江华郡","瓮津郡"],
+        ["-市区-","光州"],
+        ["-市区-","大田"],
+        ["-市区-","蔚山","蔚州郡"],
+        ["-市区-","水原市","城南市","安山市","高阳市","安养市","富川市"],
+        ["-市区-","春川市","原州市","江陵市"],
+        ["-市区-","清州市"],
+        ["-市区-","天安市"],
+        ["-市区-","全州市","群山市","益山市"],
+        ["-市区-","木浦市","丽水市","顺天市"],
+        ["-市区-","浦项市","龟尾市","庆州市"],
+        ["-市区-","昌原市","马山市","晋州市"],
+        ["-市区-","济州市","西归浦市","北济州郡","南济州郡"]
+     ],
+    [
+        ["-市区-","东京"],
+        ["-市区-","横滨市"],
+        ["-市区-","大阪市"],
+        ["-市区-","名古屋市 "],
+        ["-市区-","札幌市"],
+        ["-市区-","神戸市"],
+        ["-市区-","京都市"],
+        ["-市区-","福冈市"],
+        ["-市区-","川崎市"],
+        ["-市区-","埼玉市"],
+        ["-市区-","广岛市"],
+        ["-市区-","仙台市"],
+        ["-市区-","北九州市 "],
+        ["-市区-","千叶市"]
+      ],
+      [
+        ["-市区-","新加坡"]
+      ],
+      [
+          ["-市区-","亚罗士打 Alor Setar","浮罗交怡 Langkawi","古邦巴素 Kubang Pasu","巴东得腊 Padang Terap","哥打士打 Kota Setar"],
+          ["-市区-","槟城 George Town","北区（北海） Utara (Butterworth)","中区（大山脚） Tengah (Bkt. Mertajam)","南区（高渊） Selatan (Nibong Tebal)","东北 Timur Laut"],
+          ["-市区-","怡保 Ipoh","拉律-马当 Larut & Matang","近打 Kinta","江沙 Kuala Kangsar"],
+          ["-市区-","哥打巴鲁 Kota Baharu","道北 Tumpat","哥登峇鲁 Kota Bharu","巴西马 Pasir Mas"],
+          ["-市区-","瓜拉丁加奴 Kuala Terengganu","勿述 Besut","瓜拉丁加奴 Kuala Terengganu","龙运 Dungun","甘马挽 Kemaman"],
+          ["-市区-","关丹 Kuantan","金马仑高原 Cameron Highlands","立卑 Lipis","关丹 Kuantan","而连突 Jerantut"],
+          ["-市区-","莎亚南 Shah Alam ","沙白安南 Sabak Bernam","乌鲁雪兰莪 Ulu Selangor","瓜拉雪兰莪 Kuala Selangor"],
+          ["-市区-","吉隆坡 Kuala Lumpur"],
+          ["-市区-","布特拉再也 Putrajaya"],
+          ["-市区-","芙蓉 Seremban","日叻务 Jelebu","仁保 Jempol"],
+          ["-市区-","马六甲 Melaka","亚罗牙也 Alor Gajah"],
+          ["-市区-","新山 Johor Baharu","昔加末 Segamat","丰盛港 Mersing","居銮 Keluang"],
+          ["-市区-","斗湖 Tawau","拿笃 Lahad Datu"],
+          ["-市区-","山打根 Sandakan","京那巴登岸 Kinabatangan"],
+          ["-市区-","哥打京那峇鲁（亚庇） Kota Kinabalu","兰脑 Ranau","古打毛律 Kota Belud","斗亚兰 Tuaran"],
+       ],
+        [
+            ["-市区-","圣费尔南多* San Fernando"],
+            ["-市区-","土格加劳 Tuguegarao"],
+            ["-市区-","圣费尔南多* San Fernando"],
+            ["-市区-","奎松城 Quezon"],
+            ["-市区-","黎牙实比 Legaspi"],
+            ["-市区-","伊洛伊洛 Legaspi"],
+            ["-市区-","宿务 Cebu"],
+            ["-市区-","塔克洛班 Tacloban"],
+            ["-市区-","马尼拉 Manila"]
+        ],
+        [
+            ["-市区-","利雅得 Riyad","海耶 Al-Kharj"],
+            ["-市区-","麦加 Makkah","吉达 Jiddah","塔伊夫 At-Ta'if"],
+            ["-市区-","麦地那 Madinah","延布 Yanbu' al-Bahr"],
+            ["-市区-","达曼 Dammam","胡富夫 Al-Hufūf","姆巴拉兹 Al-Mubarraz","朱拜勒 Al-Jubayl","哈费尔巴廷 Hafar al-Bātin"],
+            ["-市区-","布赖代 Buraydah"],
+            ["-市区-","哈伊勒 Ha'il"],
+            ["-市区-","塔布克 Tabuk"],
+            ["-市区-","阿尔阿尔 Ar'ar"],
+            ["-市区-","吉赞 Jizan"],
+            ["-市区-","纳季兰 Najran"],
+            ["-市区-","巴哈 Al Bahah"],
+            ["-市区-","塞卡卡 Sakaka"],
+            ["-市区-","艾卜哈 Abhā","海米斯穆谢特 Khamīs Mushayt"]
+        ],
+        [
+            ["-市区-","平壤"],
+            ["-市区-","罗津"],
+            ["-市区-","南浦特级市","平城市","顺川市","德川市","安州市","价川市"],
+            ["-市区-","新义州市","龟城市","定州市"],
+            ["-市区-","江界市","满浦市","煕川市"],
+            ["-市区-","恵山市"],
+            ["-市区-","清津市","金策市","会宁市"],
+            ["-市区-","咸兴市","兴南市","新浦市","端川市"],
+            ["-市区-","沙里院市","松林市","开城市"],
+            ["-市区-","海州市"],
+            ["-市区-","元山市","文川市"]
+        ],
+        [
+            ["-市区-","河内市"],
+            ["-市区-","山罗"],
+            ["-市区-","奠边府市","孟雷"],
+            ["-市区-","谅山市"],
+            ["-市区-","河东","山西"],
+            ["-市区-","清化市","岑山","拜尚"],
+            ["-市区-","荣市","扩路"],
+            ["-市区-","三歧","会安"],
+            ["-市区-","波来古市","安溪"],
+            ["-市区-","邦美蜀市"],
+            ["-市区-","东帅"],
+            ["-市区-","金瓯市"]
+        ],
+        [
+            ["-市区-","实皆 Sagaing"],
+            ["-市区-","望濑 Monywa"],
+            ["-市区-","勃固 Bago"],
+            ["-市区-","马圭 Magway"],
+            ["-市区-","曼德勒 Mandalay"],
+            ["-市区-","土瓦 Dawei"],
+            ["-市区-","勃生 Pathein"],
+            ["-市区-","仰光 Yangan "],
+            ["-市区-","密支那 Myitkyina"],
+            ["-市区-","垒固 Loi-kaw"],
+            ["-市区-","巴安 Pa-an"],
+            ["-市区-","哈卡 Haka"],
+            ["-市区-","毛淡棉 Mawlamyine"],
+            ["-市区-","实兑 Akyab"],
+            ["-市区-","东枝 Taunggyi"]
+        ],
+        [
+            ["-市区-","斯图加特  Stuttgart","卡尔斯鲁厄 Karlsruhe","弗赖堡 Freiburg","图宾根 Tübingen"],
+            ["-市区-","慕尼黑 München ","下拜恩 Niederbayern","上普法尔茨 Oberpfalz","上弗兰肯 Oberfranken","中弗兰肯 Mittelfranken","外弗兰肯 Unterfranken","施瓦本 Schwaben"],
+            ["-市区-","柏林 Berlin"],
+            ["-市区-","波茨坦 Potsdam"],
+            ["-市区-","不来梅 Bremen"],
+            ["-市区-","汉堡 Hamburg"],
+            ["-市区-","达姆施塔特 Darmstadt","吉森 Gieben","卡塞尔 Kassel"],
+            ["-市区-","什未林 Schwerin"],
+            ["-市区-","不伦瑞克 Braunschweig","汉诺威  Hannover"],
+            ["-市区-","杜塞尔多夫 Düsseldorf","科隆 Koln","明斯特 Münster","代特莫尔特 Detmold"],
+            ["-市区-","科布伦次 Koblenz ","特里尔 Trier","莱茵黑森-普法尔茨"],
+            ["-市区-","萨尔布吕肯 Saarbrücken"],
+            ["-市区-","开姆尼斯 Chemnitz","德累斯顿 Dresden","莱比锡 Leipzig"],
+            ["-市区-","德绍 Dessau","哈雷 Halle","马格德堡 Magdeburg"],
+            ["-市区-","基尔 Kiel"],
+            ["-市区-","埃尔富特 Erfurt"],
+            ["-市区-","英格兰 England","威尔士 Wales","苏格兰 Scotland","北爱尔兰 Northern Ireland"],
+            ["-市区-","坎布里亚 Cumbria","兰开夏 Lancashire ","布莱克本 Blackburn with Darwen","大曼彻斯特 Greater Manchester","柴郡 Cheshire ","诺森伯兰 Northumberland","达勒姆 Durham","北约克郡 North Yorkshire","约克郡东区 East Riding of Yorkshire","西约克郡 West Yorkshire","南约克郡 South Yorkshire","林肯郡 Lincolnshire","诺丁汉郡 Nottinghamshire","斯塔福德郡 Staffordshire","诺福克 Norfolk","伦敦 London","白金汉郡 Buckinghamshire","牛津郡 Oxfordshire","格洛斯特郡 Gloucestershire"],
+            ["-市区-","康威 Conwy *","圭内斯 Gwynedd","锡尔迪金 Ceredigion","波伊斯 Powys","彭布罗克郡 Pembrokeshire","卡马森郡 Carmarthenshire"],
+            ["-市区-","苏格兰高地 Highland","马里 Moray","阿伯丁郡 Aberdeenshire","安格斯 Angus","珀斯-金罗斯 Perth and Kinross","法夫 Fife","斯特灵 Stirling","阿盖尔-比特 Argyll and Bute","苏格兰边界 Scottish Borders","邓弗里斯-加洛韦 Dumfries and Galloway"],
+            ["-市区-","阿兹 Ards","卡斯尔雷 Castlereagh","唐 Down","贝尔法斯特 Belfast, City of","利斯本 Lisburn","巴利米纳 Ballymena","莫伊尔 Moyle","阿马 Armagh"]
+        ],
+        [
+            ["-市区-","坎布里亚 Cumbria","兰开夏 Lancashire ","布莱克本 Blackburn with Darwen","大曼彻斯特 Greater Manchester","柴郡 Cheshire ","诺森伯兰 Northumberland","达勒姆 Durham","北约克郡 North Yorkshire","约克郡东区 East Riding of Yorkshire","西约克郡 West Yorkshire","南约克郡 South Yorkshire","林肯郡 Lincolnshire","诺丁汉郡 Nottinghamshire","斯塔福德郡 Staffordshire","诺福克 Norfolk","伦敦 London","白金汉郡 Buckinghamshire","牛津郡 Oxfordshire","格洛斯特郡 Gloucestershire"],
+            ["-市区-","康威 Conwy *","圭内斯 Gwynedd","锡尔迪金 Ceredigion","波伊斯 Powys","彭布罗克郡 Pembrokeshire","卡马森郡 Carmarthenshire"],
+            ["-市区-","苏格兰高地 Highland","马里 Moray","阿伯丁郡 Aberdeenshire","安格斯 Angus","珀斯-金罗斯 Perth and Kinross","法夫 Fife","斯特灵 Stirling","阿盖尔-比特 Argyll and Bute","苏格兰边界 Scottish Borders","邓弗里斯-加洛韦 Dumfries and Galloway"],
+            ["-市区-","阿兹 Ards","卡斯尔雷 Castlereagh","唐 Down","贝尔法斯特 Belfast, City of","利斯本 Lisburn","巴利米纳 Ballymena","莫伊尔 Moyle","阿马 Armagh"]
+         ],
+        [
+            ["-市区-","巴黎 Paris"],
+            ["-市区-","兰斯 Reims"],
+            ["-市区-","亚眠 Ameiens"],
+            ["-市区-","鲁昂 Rouen"],
+            ["-市区-","奥尔良 Orléans"],
+            ["-市区-","卡昂 Caen"],
+            ["-市区-","第戎 Dijon"],
+            ["-市区-","里尔 Lille"],
+            ["-市区-","南锡 Nancy"],
+            ["-市区-","斯特拉斯堡 Strasbourg"],
+            ["-市区-","贝桑松 Besancon"],
+            ["-市区-","南特 Nantes"],
+            ["-市区-","雷恩 Rennes"],
+            ["-市区-","普瓦捷 Poitiers"],
+            ["-市区-","波尔多 Bordeaux"],
+            ["-市区-","图卢兹 Toulouse"],
+            ["-市区-","利摩日 Limoges"],
+            ["-市区-","里昂 Lyon"],
+            ["-市区-","克莱蒙费朗 Clerment-Ferrand"],
+            ["-市区-","蒙彼里埃 Montpellier"],
+            ["-市区-","马赛 Marseille"],
+            ["-市区-","阿雅克肖 Ajaccio"]
+        ],
+        [
+            ["-市区-","科克 Cork","沃特福德 Waterford","利默里克 Limerick","凯里 Kerry","蒂珀雷里 Tipperary","克莱尔 Clare"],
+            ["-市区-","戈尔韦 Galway","梅奥 Mayo","罗斯康芒 Roscommon","利特里姆 Leitrim","斯莱戈 Sligo"],
+            ["-市区-","都柏林 Dublin","基尔代尔 Kildare","米斯 Meath","威克洛 Wicklow","西米斯 Westmeath","卡范 Cavan","朗福德 Longford","奥法利 Offaly","崂斯 Laoighis","卡洛 Carlow","基尔肯尼 Kilkenny","韦克斯福德 Wexford"],
+            ["-市区-","劳斯 Louth","多内加尔 Donegal","莫内根 Monaghan","阿马 Armagh","安特里姆 Antrim","德里 Derry","唐 Down","泰隆 Tyrone","弗马纳 Fermanagh"]
+        ],
+        [
+            ["-市区-","弗罗茨瓦夫","耶莱尼亚古拉","瓦乌布日赫","莱格尼察"],
+            ["-市区-","比得哥什","托伦","格鲁琼兹","弗沃茨瓦韦克"],
+            ["-市区-","罗兹","彼得库夫","斯凯尔涅维采","谢拉兹"],
+            ["-市区-","卢布林","海乌姆","扎莫希奇","比亚瓦波德拉斯卡"],
+            ["-市区-","绿山城","大波兰地区戈茹夫"],
+            ["-市区-","克拉科夫","塔尔努夫","新松奇"],
+            ["-市区-","华沙","切哈努夫","普沃茨克","奥斯特罗文卡","谢德尔采","拉多姆"],
+            ["-市区-","奥波莱"],
+            ["-市区-","热舒夫","塔尔诺布热格","克罗斯诺","普热梅希尔"],
+            ["-市区-","比亚维斯托克","苏瓦乌基","沃姆扎"],
+            ["-市区-","格但斯克","格丁尼亚","索波特","斯武普斯克"],
+            ["-市区-","卡托维兹","琴斯托霍瓦","别尔斯科-比亚瓦","雷布尼克","索斯诺维茨","格利维采","比托姆"],
+            ["-市区-","凯尔采"],
+            ["-市区-","奥尔什丁","埃尔布隆格"],
+            ["-市区-","波兹南","皮瓦","卡利什","莱什诺","科宁"],
+            ["-市区-","什切青","科沙林","希维诺乌伊希切"]
+        ],
+        [
+            ["-市区-","阿尔梅里亚 Almería","加的斯 Cádiz","科尔多瓦 Córdoba","格拉纳达 Granada","韦尔瓦 Huelva","哈恩 Jáen","马拉加 Málaga","塞维利亚 Sevilla"],
+            ["-市区-","韦斯卡 Huesca","特鲁埃尔 Teruel","萨拉戈萨 Zaragoza"],
+            ["-市区-","奥维耶多 Oviedo"],
+            ["-市区-","巴利阿里 Baleares"],
+            ["-市区-","拉斯帕尔马斯 Las Palmas","圣克鲁斯-德特内里费 Santa Cruz de Tenerife"],
+            ["-市区-","桑坦德 Santander"],
+            ["-市区-","阿尔瓦塞特 Albacete","雷阿尔城 Ciudad Real","昆卡 Cuenca","瓜达拉哈拉 Guadalajara","托莱多 Toledo"],
+            ["-市区-","阿维拉 ávila","布尔戈斯 Burgos","莱昂 León","帕伦西亚 Palencia","萨拉曼卡 Salamanca","塞哥维亚 Segovia","索里亚 Soria","巴利亚多利德 Valladolid","萨莫拉 Zamora"],
+            ["-市区-","巴塞罗那 Barcelona","赫罗纳 Gerona","莱里达 Lérida","塔拉戈纳 Tarragona"],
+            ["-市区-","拉科鲁尼亚 A Coruna","卢戈 Lugo","奥伦塞 Ourense","蓬特韦德拉 Pontevedra"],
+            ["-市区-","马德里 Madrid"]
+        ],
+        [
+            ["-市区-","拉奎拉 L'Aquila"],
+            ["-市区-","波坦察 Potenza"],
+            ["-市区-","卡坦扎罗 Catanzaro"],
+            ["-市区-","那波利 Napoli"],
+            ["-市区-","博洛尼亚 Bologna"],
+            ["-市区-","的里雅斯特 Trieste"],
+            ["-市区-","罗马 Roma"],
+            ["-市区-","热那亚 Genova"],
+            ["-市区-","米兰 Milano"],
+            ["-市区-","安科纳 Ancona"],
+            ["-市区-","坎波巴索 Campobasso"],
+            ["-市区-","都灵 Torino"],
+            ["-市区-","巴里 Bari"],
+            ["-市区-","卡利亚里 Cagliari"],
+            ["-市区-","巴勒莫 Palermo"],
+            ["-市区-","佛罗伦萨 Firenze"],
+            ["-市区-","特伦托 Trento"],
+            ["-市区-","佩鲁贾 Perugia"],
+            ["-市区-","奥斯塔 Aosta"],
+            ["-市区-","威尼斯 Venezia"]
+        ],
+        [
+            ["-市区-","阿尔汉格尔斯克州 Archangel'sk Obl.","涅涅茨自治区 Nenetskiy AOK","圣彼得堡市 Gorod Sankt-Peterburg","加里宁格勒州 Kaliningrad Obl.","卡累利阿共和国 Karelija ARep.","科米共和国 Komi ARep.","列宁格勒州 Leningrad Obl.","摩尔曼斯克州 Murmansk Obl.","诺夫哥罗德州 Novgorod Obl.","普斯科夫州 Pskov Obl.","沃洛格达州 Vologda Obl."],
+            ["-市区-","别尔哥罗德州 Belgorod Obl.","布良斯克州 Br'ansk Obl.","莫斯科市 Gorod Moskva.","伊万诺沃州 Ivanovo Obl.","雅罗斯拉夫尔州 Jaroslavl' Obl.","卡卢加州 Kaluga Obl.","库尔斯克州 Kursk Obl.","莫斯科州 Moskva Obl."],
+            ["-市区-","阿迪格共和国 Adygeja ARep.","阿斯特拉罕州 Astrachan' Obl.","车臣共和国 Cecenija ARep.","达吉斯坦共和国 Dagestan ARep.","印古什共和国 Ingusetija ARep.","卡巴尔达－巴尔卡尔共和国 Kabardino-Balkarija ARep.","卡尔梅克共和国 Kalmykija ARep.","卡拉恰耶夫－切尔克斯共和国 Karacajevo-Cerkesija ARep.","克拉斯诺达尔边疆区 Krasnodar Kraj.","罗斯托夫州 Rostov Obl.","北奥塞梯－阿兰社会主义共和国 Severnaja Osetija-Alanija ARep.","斯塔夫罗波尔边疆区 Stavropol' Kraj.","伏尔加格勒州 Volgograd Obl."],
+            ["-市区-","巴什科尔托斯坦共和国 Ba?kortostan ARep.","楚瓦什共和国 ?uva?ija ARep.","基洛夫州 Kirov Obl.","马里－埃尔共和国 Marij El ARep.","莫尔多瓦社会主义共和国 Mordovija ARep.","下诺夫哥罗德州 Niznij Novgorod Obl.","奥伦堡州 Orenburg Obl.","奔萨州 Penza Obl.","彼尔姆州 Perm' Obl."," 科米－彼尔米亚克自治区 Komi-Permyatskiy AOK","萨马拉州 Samara Obl.","萨拉托夫州 Saratov Obl."],
+            ["-市区-","车里雅宾斯克州 Cel'abinsk Obl.","库尔干州 Kurgan Obl.","斯维尔德洛夫斯克州 Sverdlovsk Obl.","秋明州 T'umen' Obl.","汉特－曼西自治区 Khanty-Mansiyskiy AOK","亚马尔－涅涅茨自治区 Yamalo-Nenetskiy AOK"],
+            ["-市区-","赤塔州 Cita Obl.","Чита г. 赤塔市","Балей 巴列伊市","Петровск-Забайкальский г. 外贝加尔的彼得罗夫斯克市","Борзя г. 博尔贾市","Краснокаменск г. 克拉斯诺卡缅斯克市","Северобайкальск г. 北贝加尔斯克市","Улан-Удэ г. 乌兰乌德市","Гусиноозерск г. 古西诺奥泽尔斯克市","伊尔库茨克州 Irkutsk Obl.","Усть-Кут г. 乌斯季库特市","Бодайбо 博代博市","Тайшет г. 泰舍特市","Братск г. 布拉茨克市","Нижнеудинск г. 下乌金斯克市","Тулун 图伦市","Саянск 萨彦斯克市","特瓦共和国 Tyva ARep.","克拉斯诺亚尔斯克边疆区 Krasnojarsk ARep.","哈卡斯共和国 Chakasija ARep.","阿尔泰共和国 Altaj ARep.","阿尔泰边疆区 Altaskij Kraj","克麦罗沃州 Kemerovo Obl.","新西伯利亚州 Novosibirsk Obl.","托木斯克州 Tomsk Obl.","鄂木斯克州 Omsk Obl."],
+            ["-市区-","滨海边疆区 Приморский край/ Primorskij Kraj.","哈巴罗夫斯克边疆区 Хабаровский край/ Chabarovsk Kraj.","犹太自治州 Еврейская автономная область/Jevrej AArea.","阿穆尔州 Amur Obl.","萨哈林州 Sakhalin Obl.","马加丹州 Magadan Obl.","勘察加州 Kamcatka Obl.","楚科奇自治专区 Cukotskij Avtonomnyj Okrug AArea.","萨哈（雅库特）共和国 Sacha (Jakutija) ARep."]
+         ],
+        [
+             ["-市区-","阿森 Assen","埃门 Emmen"],
+            ["-市区-","莱利斯塔德 Lelystad","阿尔梅勒 Almere"],
+            ["-市区-","吕伐登 Leeuwarden"],
+            ["-市区-","阿纳姆 Arnhem","阿珀尔多伦 Apeldoorn","埃德 Ede","奈梅亨 Nijmegen"],
+            ["-市区-","格罗宁根 Groningen"],
+            ["-市区-","马斯特里赫特 Maastricht"],
+            ["-市区-","斯海尔托亨博思 's-Hertogenbosch","布雷达 Breda","艾恩德霍芬 Eindhoven","蒂尔堡 Tilburg"],
+            ["-市区-","哈勒姆 Haarlem","阿姆斯特丹 Amsterdam","赞济科 Zaandijk","霍夫多尔普 Hoofddorp"],
+            ["-市区-","兹沃勒 Zwolle","恩斯赫德 Enschede"],
+            ["-市区-","乌得勒支 Utrecht","阿默斯福特 Amersfoort"],
+            ["-市区-","米德尔堡 Middelburg"],
+            ["-市区-","海牙 's-Gravenhage","鹿特丹 Rotterdam","多德雷赫特 Dordrecht","莱顿 Leiden","佐特尔梅 Zoetermeer"]
+        ],
+        [
+            ["-市区-","蒙哥马利 Montgomery"],
+            ["-市区-","朱诺 Juneau"],
+            ["-市区-","菲尼克斯 Phoenix"],
+            ["-市区-","小石城 Little Rock"],
+            ["-市区-","萨克拉门多 Sacramento"],
+            ["-市区-","丹佛 Denver"],
+            ["-市区-","哈特福德 Hartford"],
+            ["-市区-","多佛 Dover"],
+            ["-市区-","华盛顿 Washington"],
+            ["-市区-","塔拉哈西 Tallahassee"],
+            ["-市区-","亚特兰大 Atlanta"],
+            ["-市区-","檀香山 Honolulu"],
+            ["-市区-","博伊亚 Boise"],
+            ["-市区-","斯普林菲尔德 Springfield"],
+            ["-市区-","印第安纳波利斯 Indianapolis"],
+            ["-市区-","得梅因 Des Moines"],
+            ["-市区-","托皮卡 Topeka"],
+            ["-市区-","法兰克福 Frankfort"],
+            ["-市区-","巴吞鲁日 Baton Rouge"],
+            ["-市区-","奥古斯塔 Augusta"],
+            ["-市区-","安纳波利斯 Annapolis"],
+            ["-市区-","波土顿 Boston"],
+            ["-市区-","兰辛 Lansing"],
+            ["-市区-","圣保罗 St.Paul"],
+            ["-市区-","杰克逊 Jackson"],
+            ["-市区-","杰斐逊城 Jefferson City"],
+            ["-市区-","赫勒纳 Helena"],
+            ["-市区-","林肯 Lincoln"],
+            ["-市区-","卡森城 Carson City"],
+            ["-市区-","康科德 Concord"],
+            ["-市区-","特伦顿 Trenton"],
+            ["-市区-","圣菲 Santa Fe"],
+            ["-市区-","奥尔巴尼 Albany"],
+            ["-市区-","盐湖城 Salt Lake City"],
+            ["-市区-","奥林匹亚 Olympia"],
+            ["-市区-","麦迪逊 Madison"]
+        ],
+        [
+            ["-市区-","弗雷德里顿 Fredericton"],
+            ["-市区-","哈利法克斯 Halifax","布列塔尼角 Cape Breton"],
+            ["-市区-","多伦多 Toronto","渥太华 Ottawa","哈密尔顿 Hamilton","基奇纳 Kitchener","伦敦 London","圣卡塔琳娜 St. Catharines","温莎 Windsor","奥沙瓦 Oshawa","巴里 Barrie","金斯敦 Kingston","圭尔夫 Guelph","萨德伯里 Sudbury","桑德贝 Thunder Bay"],
+            ["-市区-","魁北克 Québec","蒙特利尔 Montréal","舍布鲁克 Sherbrooke","钻石城 Trois-Rivières","希格蒂米 Chicoutimi"],
+            ["-市区-","温尼伯 Winnipeg"],
+            ["-市区-","维多利亚 Victoria","温哥华 Vancouver","阿伯茨福 Abbotsford","基劳纳 Kelowna"],
+            ["-市区-","夏洛特敦 Charlottetown"],
+            ["-市区-","埃德蒙顿 Edmonton","卡里加里 Calgary"],
+            ["-市区-","里贾纳 Regina","萨斯卡通 Saskatoon"],
+            ["-市区-","圣约翰斯 Saint-John's"],
+            ["-市区-","耶洛奈夫 Yellowknife"],
+            ["-市区-","怀特霍斯 Whitehorse"],
+            ["-市区-","伊魁特 Iqaluit"]
+        ],
+        [
+            ["-市区-","巴西利亚 Brasília"],
+            ["-市区-","戈亚尼亚 Goiania"],
+            ["-市区-","库亚巴 Cuiabá"],
+            ["-市区-","大坎普 Campo Grande"],
+            ["-市区-","马塞约 Maceió"],
+            ["-市区-","萨尔瓦多 Salvador"],
+            ["-市区-","福塔莱萨 Fortaleza"],
+            ["-市区-","圣路易斯 Sao Luís"],
+            ["-市区-","若昂佩索阿 Joao Pessoa"],
+            ["-市区-","累西腓 Recife"],
+            ["-市区-","特雷西纳 Teresina"],
+            ["-市区-","纳塔尔 Natal"],
+            ["-市区-","阿拉卡茹 Aracaju"],
+            ["-市区-","里奥布朗库 Rio Branco"],
+            ["-市区-","马卡帕 Macapá"],
+            ["-市区-","马瑙斯 Manaus"],
+            ["-市区-","贝伦 Belém"],
+            ["-市区-","波多韦柳 Porto Velho"],
+            ["-市区-","沃阿维斯塔 Boa Vista"],
+            ["-市区-","帕尔马斯 Palmas"],
+            ["-市区-","维多利亚 Vitória"],
+            ["-市区-","贝洛奥里藏特 Belo Horizonte"],
+            ["-市区-","里约热内卢 Rio de Janeiro"],
+            ["-市区-","圣保罗 Sao Paulo"],
+            ["-市区-","库里蒂巴 Curitiba"],
+            ["-市区-","阿雷格里港 Porto Alegre"],
+            ["-市区-","弗洛里亚诺波利斯 Florianópolis"]
+        ],
+        [
+            ["-市区-","布宜诺斯艾利斯 Buenos Aires"]
+            ["-市区-","拉普拉塔 La Plata","布兰卡港 Bahía Blanca","马德普拉塔 Mar del Plata","圣尼古拉斯 San Nic+olás"],
+            ["-市区-","卡塔马卡 Catamarca"],
+            ["-市区-","雷西斯滕匹亚　Resistencia"],
+            ["-市区-","罗森 Rawson","特雷利乌Trelew","里瓦达维亚海军准将城 Comodoro Rivadavia"],
+            ["-市区-","科尔多瓦 Córdoba","里奥夸尔托 Río Cuarto"],
+            ["-市区-","科连特斯 Corrientes"],
+            ["-市区-","巴拉那　Paraná","肯考迪娅 Concordia"],
+            ["-市区-","福莫萨　Formosa"],
+            ["-市区-","胡胡伊 Jujuy"],
+            ["-市区-","圣罗莎　Santa Rosa"],
+            ["-市区-","拉里奥哈　La Rioja"],
+            ["-市区-","门多萨 Mendoza","圣拉斐尔 San Rafael"],
+            ["-市区-","波萨达斯　Posadas"],
+            ["-市区-","内乌肯　Neuquén"],
+            ["-市区-","别德马　Viedma"],
+            ["-市区-","萨尔塔　Salta"],
+            ["-市区-","圣胡安　San Juan","克劳斯城 Villa Krause (Rawson)","圣路易斯 San Luis"],
+            ["-市区-","圣路易斯　San Luis"],
+            ["-市区-","里奥加耶戈斯　Río Gallegos"],
+            ["-市区-","圣菲　Santa Fe","罗萨里奥 Rosario"],
+            ["-市区-","圣地亚哥-德尔埃斯特罗 Santiago del Estero"],
+            ["-市区-","乌斯怀亚　Ushuaia"],
+            ["-市区-","圣米格尔-德图库曼 San Miguel de Tucumán"]
+        ],
+        [
+            ["-市区-","旺阿雷 Whangarei ","北远 Far North ","凯帕拉 Kaipara"],
+            ["-市区-","奥克兰 Auckland","马努考 Manukau","北岸 North Shore","怀塔科拉 Waitakere","罗得尼 Rodney","帕帕库拉 Papakura","富兰克林 Franklin (1)"],
+            ["-市区-","哈密尔顿 Hamilton","怀卡托 Waikato","怀帕 Waipa","Otorohanga","Waitomo (7)","Thames-Coromandel","Hauraki"],
+            ["-市区-","Tauranga","Western Bay op Plenty","Rotorua (2)","Taupo (3)","瓦卡塔尼 Whakatane","Kawerau","Opotiki"],
+            ["-市区-","吉斯伯恩 Gisborne"],
+            ["-市区-","内皮尔 Napier","Wairoa","Taupo (3)","Hastings","Rangitikei (4)","Central Hawke's Bay"],
+            ["-市区-","北帕默斯顿 Palmerston North","Tararua (6)","Horowhenua","Manawatu","Rangitikei (4)","Ruapehu","Wanganui","斯特拉特福德 Stratford (5)"],
+            ["-市区-","新普利茅斯 New Plymouth","斯特拉特福德 Stratford (5)","南塔拉纳基 South Taranaki"],
+            ["-市区-","Wellington","Lower Hutt ( Hutt )","Porirua","Upper Hutt","Kapiti Coast","Masterton","Carterton","South Wairarapa"],
+            ["-市区-","里士满 Richmond"],
+            ["-市区-","纳尔逊 Nelson"],
+            ["-市区-","布莱尼姆 Blenheim"],
+            ["-市区-","格雷茅斯 Greymouth ","Buller","格雷 Grey","西地 Westland"],
+            ["-市区-","基督城 Christchurch","Kaikoura","Hurunui","班克斯半岛 Banks Peninsula","塞尔温 Selwyn"],
+            ["-市区-","达尼丁 Dunedin","中奥塔戈 Central Otago","Queenstown-Lakes"],
+            ["-市区-","因弗卡吉尔 Invercargill","Gore","南地 Southland"]
+        ],
+        [
+            ["-市区-","悉尼 Sydney","伍伦贡 Wollongong","纽卡斯尔 Newcastle"],
+            ["-市区-","布里斯班 Brisbane","黄金海岸 Gold Coast","日光海岸 Caloundra","汤斯维尔 Townsville","凯恩斯 Cairns","图文巴 Toowoomba"],
+            ["-市区-","阿德莱德 Adelaide"],
+            ["-市区-","霍巴特 Hobart"],
+            ["-市区-","墨尔本 Melbourne","吉朗 Geelong "],
+            ["-市区-","珀斯 Perth"],
+            ["-市区-","堪培拉 Canberra"],
+            ["-市区-","达尔文 Darwin"]
+        ],
+        [
+            ["-市区-","斯利那加 Srinagar"],
+            ["-市区-","昌迪加尔 Chandigarh"],
+            ["-市区-","昌迪加尔 Chandigarh"],
+            ["-市区-","西姆拉 Simla"],
+            ["-市区-","德拉敦 Dehra Dun"],
+            ["-市区-","昌迪加尔 Chandigarh"],
+            ["-市区-","德里 Delhi"],
+            ["-市区-","斋浦尔 Jaipur"],
+            ["-市区-","勒克瑙 Lucknow"],
+            ["-市区-","博帕尔 Bhopal"],
+            ["-市区-","赖布尔 Raipur"],
+            ["-市区-","巴特那 Patna"],
+            ["-市区-","兰契 Ranchi"],
+            ["-市区-","甘托克 Gangtok"],
+            ["-市区-","伊塔那噶 Itanagar"],
+            ["-市区-","科希马 Kohima"],
+            ["-市区-","因帕尔 Imphal"],
+            ["-市区-","艾藻尔 Aizawl"],
+            ["-市区-","阿加尔塔拉 Agartala"],
+            ["-市区-","西隆 Shillong"],
+            ["-市区-","迪斯布尔 Dispur"],
+            ["-市区-","加尔各答 Kolkata"],
+            ["-市区-","布巴内斯瓦尔 Bhubaneswar"],
+            ["-市区-","甘地讷格尔 Gandhinagar"],
+            ["-市区-","达曼 Daman"],
+            ["-市区-","锡尔瓦萨 Silvassa"],
+            ["-市区-","孟买 Mumbai"],
+            ["-市区-","帕那吉 Panaji"],
+            ["-市区-","海得拉巴 Hyderabad"],
+            ["-市区-","班加罗尔 Bangalore"],
+            ["-市区-","卡瓦拉蒂 Kavaratti"],
+            ["-市区-","特里凡得琅 Thiruvananthapuram"],
+            ["-市区-","金奈 Chennai"],
+            ["-市区-","本地治里 Pondicherry"],
+            ["-市区-","布莱尔港 Port Blair"]
+        ],
+        [
+            ["-市区-","开罗 Al Qahirah"],
+            ["-市区-","亚历山大 Al Iskandariyah"],
+            ["-市区-","塞得港 Bur Sa`id"],
+            ["-市区-","苏伊士 As Suways"],
+            ["-市区-","卢克索 Al Uqsur"],
+            ["-市区-","曼苏拉 Al Mansurah","米特加穆尔 Mit Ghamr"],
+            ["-市区-","达曼胡尔 Damanhur","达沃 Kafr ad-Dawwar"],
+            ["-市区-","坦塔 Tanta","马哈拉库布拉 Al-Mahallah al-Kubra"],
+            ["-市区-","伊斯梅利亚 Al Isma`iliyah"],
+            ["-市区-","希宾库姆 Shibin al Kawm"],
+            ["-市区-","本哈 Banha","苏布拉开马 Shubra al-Khaymah"],
+            ["-市区-","宰加济格 Az Zaqaziq","比勒拜斯 Bilbays"],
+            ["-市区-","杜姆亚特 Dumyat"],
+            ["-市区-","谢赫村 Kafr ash Shaykh"],
+            ["-市区-","吉萨 Al Jizah"],
+            ["-市区-","明亚 Al Minya","迈莱维 Mallawi"],
+            ["-市区-","贝尼苏韦夫 Bani Suwayf"],
+            ["-市区-","法尤姆 Al Fayyum"],
+            ["-市区-","艾斯尤特 Asyut"],
+            ["-市区-","阿斯旺 Aswan"],
+            ["-市区-","索哈杰 Suhaj"],
+            ["-市区-","基纳 Qina"],
+            ["-市区-","古尔代盖 Al Ghurdaqah"],
+            ["-市区-","哈里杰 Al Kharijah"],
+            ["-市区-","马特鲁 Matruh"],
+            ["-市区-","图尔 Janub Sina"],
+            ["-市区-","阿里什 Al `Arish"],
+        ],
+]
+    //设置一个省的公共下标
+    var pIndex = -1;
+    var preEle = document.getElementById("pre");
+    var cityEle = document.getElementById("city");
+    var areaEle = document.getElementById("area");
+    //先设置省的值
+    for (var i = 0; i < pres.length; i++) {
+        //声明option.<option value="pres[i]">Pres[i]</option>
+        var op = new Option(pres[i], i);
+        //添加
+        preEle.options.add(op);
+    }
+    function chg(obj) {
+        if (obj.value == -1) {
+            cityEle.options.length = 0;
+            areaEle.options.length = 0;
+        }
+        //获取值
+        var val = obj.value;
+        pIndex = obj.value;
+        //获取ctiry
+        var cs = cities[val];
+        //获取默认区
+        var as = areas[val][0];
+        //先清空市
+        cityEle.options.length = 0;
+        areaEle.options.length = 0;
+        for (var i = 0; i < cs.length; i++) {
+            var op = new Option(cs[i], i);
+            cityEle.options.add(op);
+        }
+        for (var i = 0; i < as.length; i++) {
+            var op = new Option(as[i], i);
+            areaEle.options.add(op);
+        }
+    }
+    function chg2(obj) {
+        var val = obj.selectedIndex;
+        var as = areas[pIndex][val];
+        areaEle.options.length = 0;
+        for (var i = 0; i < as.length; i++) {
+            var op = new Option(as[i], i);
+            areaEle.options.add(op);
+        }
+    }
+
+</script>
+<!--<script>-->
+    <!--function chg5()-->
+    <!--{-->
+        <!--var txt = document.getElementById( "sub1");-->
+        <!--var sel = document.getElementById( "pre");-->
+        <!--txt.value = sel.options[sel.selectedIndex].text;-->
+    <!--}-->
+<!--</script>-->
+</html>

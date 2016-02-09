@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+#center{width:1200px; height:740px;}
+#center .top{width:1150px; height:80px; line-height:80px; border-bottom:1px #999999 solid;margin:0px auto; font-size:14px;}
+#center .zhongjian{width:1200px; text-align:center; height:50px; line-height:50px; font-size:14px; color:#999;}
+#center .zhongjianer{width:1100px; height:150px; font-size:18px; margin-top:60px; padding-left:100px;}
+#center .zhongjianer .hezi{width:200px; height:150px; background:#00F; margin-left:190px;float:left; position:relative;}
+#center .zhongjianer .hezi input{position:absolute; top:60px; left:55px;}
+#center .footer{width:1200px; height:100px;margin-top:80px;}
+#center .footer ul li{list-style:none; font-size:12px; width:1100px; height:30px; line-height:30px; padding-left:100px;}
+#center .footer ul li.kk{padding-left:125px; width:1075px;}
+#footer{clear:both;width:1200px;height:10px;}
+#footer .left{width:600px;height:10px;background:#263541;float:left;}
+#footer .right{width:600px;height:10px;background:#b0103e;float:left;}
+

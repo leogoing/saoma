@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="/">
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/Css/index.css" />
+<link rel="stylesheet" type="text/css" href="/Css/bootstrap1.css" />
+<title></title>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+	//获取参数
+	function getPara(name){
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	}
+	$(function(){
+		var o=getPara("openid");
+		$("#openid").val(o.substr(2));
+	});
+</script>
+</head>
+<body>
+<form id="insertForm" action="/wapUserIncome/getMoney_Info" method="post">
+	<input type="hidden" id="openid" name="user.openid" value=''>
+	<div class="xiaxian">
+		<div class="xiaxian-row">
+			<span> 手&nbsp;&nbsp;&nbsp;机 </span> <input type="text"
+				class="form-control pull-right" placeholder="phone" name="user.phone" value="" maxlength=11>
+		</div>
+		<div class="xiaxian-row">
+			<span> 真实姓名 </span> <input type="text"
+				class="form-control pull-right" placeholder="name" name="user.realname" value="" maxlength=20>
+		</div>
+		<div class="xiaxian-row">
+			<span> 开户行所在地 </span> <input type="text" class="form-control pull-right"
+				placeholder="开户银行所在地（例如：北京市招商银行中关村开支行）" name="user.bankinfo" value="" maxlength=50>
+		</div>
+		<div class="xiaxian-row">
+			<span> 银行卡号 </span> <input type="text"
+				class="form-control pull-right" placeholder="1234 5678 1234 5678"name="user.bankno" value="" maxlength=30>
+		</div>
+	</div>
+	<input type="submit" id="subButton"
+		style="border: 1px #555555 solid; background-image: url(newImages/aaniu.png); width: 250px; height: 45px; margin-left: 425px; margin-bottom: 50px;"
+		class="btn btn-warning" value="提交"/>
+	<span id="success"></span>
+</form>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.yincang{
+	display: none;
+}
+</style>
+<script type="text/javascript"src="../jquery-1.11.1.js"></script>
+
+<script type="text/javascript">
+var number=2;
+	function f1(){
+		var gg=$("#h1").val();
+		if(gg=="2"){
+			$('#h2').show();
+		}
+		if(gg!="2"){
+			$('#h2').hide();
+			$('#h2').attr('value',"");
+		}
+	}
+	function f3(){
+		$.ajax({
+			type:"post",
+			data:"tixiantype="+$("#h1").val()+"&tixianmoney="+$("#h2").val(),
+			url:"${ctx}/glyupdate/tixiantimetwo",
+			success:function(x){
+				if(x=="1"){
+					alert("成功 ");
+				}else{
+					alert("失败");
+				}
+			}
+		});
+	}
+	$(function(){
+		$.ajax({
+			type:"post",
+			url:"${ctx}/glyupdate/tixiantimefive",
+			success:function(x){
+				$("#h1").val(x);
+			}
+		});
+		
+		
+	});
+	function f4(){
+		number=number+1;
+		if(number>6){
+			number=6;
+		}
+		$("#name"+number).show();
+		$("#value"+number).show();
+		$("#spanname"+number).show();
+		$("#spanvalue"+number).show();
+	}
+	function f5(){
+		$.ajax({
+			type:"post",
+			data:"name1="+$("#name1").val()+"&value1="+$("#value1").val()+"&name2="+$("#name2").val()+"&value2="+$("#value2").val()
+			+"&name3="+$("#name3").val()+"&value3="+$("#value3").val()+"&name4="+$("#name4").val()+"&value4="+$("#value4").val()
+			+"&name5="+$("#name5").val()+"&value5="+$("#value5").val()+"&name6="+$("#name6").val()+"&value6="+$("#value6").val(),
+			url:"${ctx}/tixian/setTixian",
+			success:function(x){
+				if(x==1){
+					alert("成功");
+				}else{
+					alert("失败");
+				}
+			}
+		});
+	}
+	
+</script>
+</head>
+<body>
+	<select id="h1" onchange="f1()">
+		<option value="1">随时提现</option>
+		<option value="2">满多少提现</option>
+		<option value="3">注册时间提现</option>
+	</select>
+	<input  id="h2"type="text" style='display: none'>
+	<input type="button"value="确定"onclick="f3()">
+	<div>
+		<span>设置金额</span><input id="name1" type="text" >
+		<span>设置手续费</span><input id="value1" type="text"value="无法提现"><br>
+		<span>设置金额</span><input id="name2"type="text" >
+		<span>设置手续费</span><input id="value2" type="text"><br>
+		<span id="spanname3"class="yincang">设置金额</span><input id="name3"type="text"class="yincang" >
+		<span id="spanvalue3"class="yincang">设置手续费</span><input id="value3" type="text"class="yincang"><br>
+		<span id="spanname4"class="yincang">设置金额</span><input id="name4"type="text"class="yincang" >
+		<span id="spanvalue4"class="yincang">设置手续费</span><input id="value4" type="text"class="yincang"><br>
+		<span id="spanname5"class="yincang">设置金额</span><input id="name5"type="text"class="yincang" >
+		<span id="spanvalue5"class="yincang">设置手续费</span><input id="value5" type="text"class="yincang"><br>
+		<span id="spanname6"class="yincang">设置金额</span><input id="name6"type="text"class="yincang" >
+		<span id="spanvalue6"class="yincang">设置手续费</span><input id="value6" type="text"class="yincang"><br>
+		<input type="button"value="添加一行" onclick="f4()"><input type="button"onclick="f5()"value="确定">
+	</div>
+</body>
+</html>

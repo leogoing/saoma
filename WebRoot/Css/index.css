@@ -1,0 +1,272 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	background-image: url(../newImages/btt_04.png) ;
+		font-family: "微软雅黑";
+}
+.index-left{
+	width: 200px;
+	height: 667px;
+	background-color: #6e768e;
+	float: left;
+	position: fixed;
+	left: 0px;
+	top: 0px;	
+}
+.index-right{
+	width: 80%;
+	height: auto;
+		float: left;
+		margin-left: 200px;	
+}
+.index-right-top{
+	width: 1150px;
+	height: 50px;
+	background-image: url(../newImages/btt_02.png);
+	position: fixed;
+	left: 200px;
+	top: 0px;
+}
+.index-right-bottom{
+	width: 1150px;
+	height: auto;
+	margin-top: 100px;
+}
+
+
+
+
+
+.sm-tb{
+	width: 97%;
+	height: auto;
+	color: #172E7B;
+	font-family: "微软雅黑";
+	font-size: 18px;
+}
+.sm-tb img{
+	margin-left: 46px; 
+	margin-top: 10px; 
+	float: left;
+}
+.sm-tb span{
+	margin-left: 46px; 
+	margin-top: 10px; 
+	float: left;
+}
+/*代理商升级*/
+.yindaoyu{
+	width: 450px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 55px;
+	margin-bottom: 20px;
+	margin-left: 50px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+	color: #172E7B;
+}
+.yindaoyu2{
+	width: 600px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 55px;
+	margin-bottom: 20px;
+	margin-left: 50px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+	color: #172E7B;
+}
+/*发展下线*/
+.xiaxian{
+	width: 630px;
+	height: auto;
+	margin-top: 55px;
+	margin-left: 50px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+	color: #C0C0C0;
+}
+.xiaxian-row{
+	width: 630px;
+	height: 45px;
+	line-height: 45px;
+	margin-bottom: 25px;
+	color: #000000;
+}
+.xiaxian-row input{
+	width: 535px;
+	height: 45px;
+	margin-bottom: 25px;
+	color: #FFFFFF;
+	background-image: url(../newImages/xlk_03.png);
+}
+/*申请平台*/
+.erweima{
+	width: 100%;
+	height: auto;
+}
+.erweima ul{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.erweima ul li{
+	width: 315px;
+	height: 400px;
+	float: left;
+	font-family: "微软雅黑";
+	font-size: 17px;
+	margin-left: 40px;
+	margin-top: 20px;
+	background-color: #e0ddda;
+}
+.erweima-img{
+	width: 203px;
+	margin-left: 56px;
+	margin-top: 40px;
+}
+.erweima-span{
+	width: 135px;
+	height: 25px;
+	display: block;
+	margin: 15px auto;
+}
+.erweima-span2{
+	width: 203px;
+	height: auto;
+	display: block;
+	margin: 0px auto;
+}
+.xypt{
+	width: 100px;
+	height: 70px;
+	line-height: 70px;
+	margin-left: 40px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+	color: #172E7B;
+	
+}
+
+.denglutubiao{
+	width: 185px;
+	height: 80px;
+	margin: 0px auto;
+	margin-top: 100px;
+}
+.denglutubiao img{
+	width: 76px;
+	height: 80px;
+	margin-left: 45px;
+}
+.denglutubiao-txt{
+	width: 185px;
+	height: 60px;
+	line-height: 60px;
+	margin: 0px auto;
+	margin-top: 10px;
+	font-family: "微软雅黑";
+	font-size: 40px;
+	color: white;
+}
+.yonghuming{
+	width: 400px;
+	height: 64px;
+	background-image: url(../newImages/input_07.png);
+	margin: 0px auto;
+	margin-top: 100px;
+	line-height: 64px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+}
+.mima{
+	width: 400px;
+	height: 64px;
+	background-image: url(../newImages/input_07.png);
+	margin: 0px auto;
+	margin-top: 20px;
+	line-height: 64px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+}
+.headertb{
+	width: 400px;
+	height: auto;
+	margin: 0px auto;
+	margin-top: 20px;
+	line-height: 64px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+}
+.yonghuming img{
+	width: 15px;
+	height: 24px;
+	margin-left: 25px;
+	margin-top: 23px;
+	float: left;
+}
+.yonghuming input{
+	width: 330px;
+	height: 58px;
+	margin-left: 18px;
+	float: left;
+	border: none;
+	background: none;
+	color: white;
+	line-height: 58px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+
+}
+.mima img{
+	width: 22px;
+	height: 22px;
+	margin-left: 25px;
+	margin-top: 23px;
+		float: left;
+}
+.mima input{
+	width: 330px;
+	height: 58px;
+	margin-left: 10px;
+	float: left;
+	border: none;
+	background: none;
+	color: white;
+	line-height: 58px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+	
+}
+input{
+	color: white;
+	font-family: "微软雅黑";
+	font-size: 17px;
+	
+}
+.denglu_ANNIU{
+	width: 400px;
+	height: 64px;
+	background-image: url(../newImages/dlan_03.png);
+	margin: 0px auto;
+	margin-top: 20px;
+	line-height: 64px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+	
+}
+.denglu_ANNIU input{
+	width: 400px;
+	height: 64px;
+
+	line-height: 64px;
+	font-family: "微软雅黑";
+	font-size: 30px;
+	background: none;
+	border: none;
+	
+}
+
+
+

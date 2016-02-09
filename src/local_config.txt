@@ -1,0 +1,48 @@
+###框架发布级别配置###
+devMode = true
+
+# 微信服务器回调所用的 token
+token=weixin
+
+# 测试用的账号
+appId=wx165f066e88f0a5a2
+appSecret=d9ddf13be11941d6fab8a328949680e3
+#测试TODO(chenjf)
+#appId=wx165f066e88f0a5a2
+#appSecret=d9ddf13be11941d6fab8a328949680e3
+
+#是否对消息进行加密，是否对消息进行加密，对应于微信平台的消息加解密方式，false支持明文模式及兼容模式，true支持安全模式及兼容模式
+#encryptMessage=true
+#encodingAesKey=yourEncodingAesKey
+
+###jdbc参数配置###
+#驱动名称
+jdbc.driverClass=com.mysql.jdbc.Driver
+#JDBC连接串
+jdbc.url = jdbc:mysql://127.0.0.1:3306/newxinli?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+#数据库用户名称
+#jdbc.username = root
+jdbc.username = root
+#数据库密码
+jdbc.password = 1234
+#jdbc.password = 1234
+#连接池最大使用连接数量
+jdbc.maxActive=500
+#连接池最小空闲
+jdbc.minIdle=1
+#初始化大小
+jdbc.initialSize=1
+#获取连接最大等待时间
+jdbc.maxWait = 60000
+#逐出连接的检测时间间隔，单位是毫秒
+jdbc.timeBetweenEvictionRunsMillis=60000
+#最小逐出时间，单位是毫秒
+jdbc.minEvictableIdleTimeMillis=300000
+#测试有效用的SQL Query
+jdbc.validationQuery=SELECT 'x'
+#连接空闲时测试是否有效
+jdbc.testWhileIdle=true
+#获取连接时测试是否有效
+jdbc.testOnBorrow=false
+#归还连接时是否测试有效
+jdbc.testOnReturn=false

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/index-left.css"/>
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/index-right.css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/index.css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/bootstrap1.css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/index-bottom.css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/index-right.css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/Css/xct.css" />
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+			function f1(x){
+				window.location="${ctx}/ggz/Download?fullURL="+x;
+				}
+			
+			var count="${count!}";
+			
+			var i=1;
+			function  nextImg() {
+				if(i<count){
+					i;//1//3
+					$("#"+i+"").hide();
+					++i//2//4
+					$("#"+i+"").hide();
+					++i//3//5
+					$("#"+i+"").show()
+					++i//4//6
+					$("#"+i+"").show()
+					--i;//3//5
+				}
+			}
+			
+			var oushu=/^\d*[02468]$/;
+			function previousImg(){
+			
+					if(i>1){
+						++i;//6//4
+						$("#"+i+"").hide();
+						--i//5//3
+						$("#"+i+"").hide();
+						--i//4//2
+						$("#"+i+"").show()
+						--i//3//1
+						$("#"+i+"").show()
+					}
+					
+			}
+			
+			$(function(){
+				$("#1").show();
+				$("#2").show();
+			})
+			</script>
+</head>
+<body>
+		<p class="ppp">申请平台/宣传图</p>
+				<div class="xct">
+					<!--这是上边的空白格-->
+					<div class="foot-nav"><a href="javascript:;">&gt;&gt;</a></div>
+					<div>
+						<a class="foot-zuo" style="background-image: url(images/weizhi.png)" onclick="previousImg()"></a>
+						<a class="foot-you" style="background-image: url(images/jiantou_you_03.png)" onclick="nextImg()"></a>
+						<div class="foot-zhong">
+						<#list list as li >
+						<div id="${(li.num)!}" style="display: none;" >
+							<ul >
+								<li class="tupian">
+									<ul>
+										<li class="tupian1" style="background-image: url(${(li.URL)!})"></li>
+										<li><a class="btn_1" style="background-image: url(images/xiazai_03.png)" onclick="f1('${nn!}${(li.URL)!}')"></a></li>
+									</ul>
+								</li>
+							</ul>
+							</div>
+							</#list>
+						</div>
+					</div>
+				</div>
+</body>
+</html>

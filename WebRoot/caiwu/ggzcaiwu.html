@@ -1,0 +1,66 @@
+<html>
+<head>
+<base href="${ctx}/">
+<title>广告主充值</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript" src="js/data/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+
+
+</head>
+<body>
+
+	<div class="biaoti col-lg-12 col-xs-12 "
+		style="background-color: #C4E3F3; color: #ffffff; margin-bottom: 10px;">
+		广告主总表
+	</div>
+		<!-- 根据回馈的1或者2，显示充值是否成功 -->
+		
+		
+		<!-- 广告主搜索框((未完成)) -->
+		<form action="${ctx}/caiwu/cwggzsousuo/" method="post">
+			<input type="text"
+				value="输入：登录名（账号）" 
+				onfocus="if(this.value=='输入：登录名（账号）'){this.value='';}"  
+				onblur="if(this.value=='')
+				{this.value='输入：登录名（账号）';}"
+				name="xingming"> 
+			<input type="submit"value="提交">
+		</form>
+
+
+	<div class="container col-lg-12 col-sm-12">
+		<div class="table-responsive" style="overflow: auto; height: 80%">
+
+				<table class="table  table-striped table-bordered text-center ">
+					<tr class="text-center">
+
+						<td>登录名</td>
+						<td>真实姓名</td>
+						<td>手机</td>
+						<td>银行账号</td>
+						<td>执行</td>
+
+					</tr>
+					<#list ggzjje.getList() as x>
+					<tr>
+
+						<td>${(x.loginname)!}</td>
+						<td>${(x.realname)!}</td>
+						<td>${(x.phone)!}</td>
+						<td>${(x.bankno)!}</td>
+						<td><a href="${ctx}/caiwu/tochongzhi?id=${x.id!}">操作</a></td>
+						 </#list>
+					</tr>
+				</table>
+				<#include "/common/_paginate.html" />
+	<@paginate currentPage=ggzjje.pageNumber totalPage=ggzjje.totalPage actionUrl="${ctx}/caiwu/cunrujine" />
+
+		</div>
+	</div>
+	</div>
+</body>

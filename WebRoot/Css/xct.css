@@ -1,0 +1,91 @@
+.ppp{
+    margin-left: 70px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.foot-nav{
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#b8c4cb,endColorStr=red); /*IE 6 7 8*/
+    background: -ms-linear-gradient(top, #fff,  #0000ff);        /* IE 10 */
+    background: -webkit-linear-gradient(top,#e4e4e6,#a8aab6);   /*Safari5.1 Chrome 10+*/
+}
+.foot-nav a{
+    float: right;
+    margin: 5px 26px;
+}
+.xct{
+    width: 1130px;
+    height:580px;
+    border: 1px solid #dddddd;
+    margin: auto;
+    background-color: #d1d5d6;
+    position: relative;
+}
+.foot-nav{
+    width: 1130px;
+    height: 30px;
+    background-color:#e7e7e7 ;
+}
+.foot-zuo{
+    width: 24px;
+    height: 33px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 210px;
+    left: 150px;
+}
+.foot-you{
+    width: 24px;
+    height: 33px;
+    background-repeat: no-repeat;
+    position:absolute ;
+    top: 210px;
+    left: 980px;
+}
+.foot-zhong{
+    /*border: 1px solid red;*/
+    width: 800px;
+    height: 400px;
+    margin-left: 120px;
+}
+.foot-zhong ul{
+    list-style: none;
+}
+.tupian{
+    float: left;
+    margin-left: 40px;
+    /*border: 1px solid red;*/
+    width: 282px;
+    height:450px;
+}
+.tupian1{
+    width: 280px;
+    height: 448px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.tupian2{
+    float: left;
+    margin-left: 110px;
+    width: 282px;
+    height:450px;
+
+}
+.tupian3{
+    width: 280px;
+    height: 448px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.btn_1{
+    width: 60px;
+    height: 55px;
+    background-repeat: no-repeat;
+    /*border: 1px solid red;*/
+    position: absolute;
+    margin: 10px 105px;
+
+}
+/*.clear{*/
+    /*clear: both;*/
+/*}*/
+
+/*.arrowR:hover{ border-left-color:#f60;  }*/

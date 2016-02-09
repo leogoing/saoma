@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<base href="${ctx}/">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="Css/liujie-demo.css"/>
+		<link rel="stylesheet" type="text/css" href="Css/liujie-font-awesome.min.css"/>
+		<!--<script type="text/javascript" src="jquery-1.7.2.min.js"></script>-->
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script src="js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#h4").hide();
+			});
+			var msg = "${msg!}"
+			var Addmsg="${Addmsg!}"
+			var id = "${pingtai.id!}"
+			var real_adtime = "${pingtai.adtime!}";
+			var real_uplowframe = "${pingtai.uplowframe!}"
+			var real_adtype = "${pingtai.adtype!}"
+			var real_name = "${pingtai.name!}"
+			var real_publicaccountname = "${pingtai.publicaccountname!}"
+			var real_appid = "${pingtai.appid!}"
+			var real_appsecret = "${pingtai.appsecret!}"
+			var useserver ="${pingtai.useserver!}"
+
+			function SelectAll() {
+				var uplowframe = document.getElementById("uplowframe");
+				for (var i = 0; i < uplowframe.options.length; i++) {
+					if (uplowframe.options[i].value == real_uplowframe) {
+						uplowframe.options[i].selected = 'selected';
+					}
+				}
+				for (var i = 0; i < adtype.options.length; i++) {
+					if (adtype.options[i].value == real_adtype) {
+						adtype.options[i].selected = 'selected';
+					}
+				}
+			}
+			
+			function update_submit() {
+				
+				var totalsp = document.getElementById("totalsp");
+				var totalspSpan = document.getElementById("totalspSpan");
+				var adtime = document.getElementById("adtime");
+				var adtimeSpan =document.getElementById("adtimeSpan");
+				var ptname =document.getElementById("ptname");
+				var ptnameSpan =document.getElementById("ptnameSpan");
+				
+				
+				var pattern = /^([0-9.]+)$/;
+				var adtimeCheck= /^\d+$/
+				var form = document.getElementById("form");
+				 if(ptname.value==""){
+					ptnameSpan.innerHTML="平台名不能为空"
+				}
+				else if (pattern.test(totalsp.value) == false) {
+					totalspSpan.innerHTML = "价格格式不正确,必须为数字"
+				}
+				else if(adtimeCheck.test(adtime.value)==false){
+					adtimeSpan.innerHTML="保护期格式不正确，必须为整数"
+				}
+				
+				else {
+					form.submit()
+				}
+
+				if(ptname.value!=""){
+					ptnameSpan.innerHTML=""
+				}
+				if(pattern.test(totalsp.value) == true){
+					totalspSpan.innerHTML = ""
+				}
+				if(adtimeCheck.test(adtime.value)==true){
+					adtimeSpan.innerHTML=""
+				}
+				
+			}
+			
+			function UpdateMsg() {
+				if (msg != "") {
+					alert(msg)
+				}
+				
+			}
+			
+			function show(){
+				if(useserver==0){
+					$("#appdiv").hide();
+					$("#serverIPdiv").show();
+				}else{
+					$("#appdiv").show();
+					$("#serverIPdiv").hide();
+					var huifuyu = document.getElementById("huifuyu")
+					huifuyu.href="ggz/ToHuifuUpdate"
+					huifuyu.innerHTML="回复"
+				}
+			}
+			
+			function tishi(){
+				if(Addmsg="提示填写URL"){
+					$("#tishiDiv").show()
+				}else{
+					$("#tishiDiv").hide()
+				}
+			}
+			
+			$(document).ready(function() {
+				SelectAll();
+				UpdateMsg();
+				show();
+				tishi();
+			})
+			
+				function Return() {
+			window.location="${ctx}/ggz/GetTotal"
+		}
+			function f3(){
+				var lk=$("#h3").val();
+				if(lk==1){
+					$("#h4").show();
+				}else if(lk==0){
+					$("#h4").hide();
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<!--头部开始-->
+		<div id="header">
+	  		<div class="header-logo">
+	  		<img src="images/1_01.png">
+	  		<a>扫码后台管理系统</a>
+	  		</div>
+	  		<div class="header-close">
+	  			<a href="/logout">
+		  			<img src="images/5_03_02.png">
+		  			<a href="/logout">退出</a>
+	  			</a>
+	  		</div>
+	  		<div class="clearfix"></div>
+	  	</div>
+	  	<!--头部结束-->
+	  	<!--内容开始-->
+	  	<div class="content">
+	  		<div class="content-top">
+	  			<ul class="left1" style="border-bottom:3px solid #3d5a9a;">
+	  				<li>修改平台</li>
+	  			</ul>
+	  			<ul class="left2">
+	  				<a style="color:black;" id="huifuyu"></a>
+	  			</ul>
+	  			<ul class="left3" >
+	  				<a style="color:black;" href="ggz/ToImgs" >背景图片</a>
+	  			</ul>
+	  			<ul class="left4" >
+					<a style="color:black;" href="ggz/ToXuqiu" >需求</a>
+				</ul>
+	  			<ul class="leftPtname" >
+	  				<a style="color: purple;font-size: 20px";  >${pingtai.name!}</a>
+	  			</ul>
+	  			<ul class="right icon-remove">
+	  				<li></li>
+	  			</ul>
+	  		</div>
+	  		<div id="foot">
+	  			<form action="ggz/UpdatePingtai" method="post" id="form">
+	  			<input id="id" name="id" type="hidden" value="${pingtai.id!}">
+	  				<ul>
+	  					<li>平台原始ID :&nbsp;</li> 
+	  					<li class="color">${pingtai.publicaccountname!}</li>
+	  				</ul><br />
+	  				<div id="appdiv" style="display: none;">
+	  				<ul>
+	  					<li>平台APPID :&nbsp;</li> 
+	  					<li class="color">${pingtai.appid!}</li>
+	  				</ul><br />
+	  				<ul>
+	  					<li>平台APPSECRAT :&nbsp;</li> 
+	  					<li class="color">${pingtai.appsecret!}</li>
+	  				</ul><br />
+	  				</div>
+	  				<div id="serverIPdiv" style="display: none;">
+	  				<span>服务器IP :</span><input type="text"  id="serverIP" name="serverIP" value="${pingtai.serverIP!}"/>
+	  				<i style="width:600px;font-size:14px;color:#666;"> 自己服务器的IP地址 </i>
+	  				<br />
+	  				</div>
+	  				<span>修改平台名称 :</span><input type="text" value="${pingtai.name!}" name="ptname" id="ptname" /> <i style="width:600px;font-size:14px;color:#666;"> 就是在微信上显示的昵称</i>
+	  				<p id="ptnameSpan" style="color:red"></p>
+	  				<br />
+                    <span>修改价格 :</span><input type="text" value="${stringtotalsp!}" id="totalsp" name="totalsp"/><i style="width:600px;font-size:14px;color:#666;"> 每一次关注平台给所有代理商 的总钱数</i>
+                    <p id="totalspSpan" style="color:red"></p>
+                    <br />
+	  				<span>修改有效时间 :</span><input type="text" value="${pingtai.aptime!}" id="adtime" name="adtime"/><i style="width:600px;font-size:14px;color:#666;">  关注平台后多长时间内不能取消关注（保护期内取消关注则不能给代理商提成）</i>
+	  				<p  id="adtimeSpan" style="color:red"></p>
+	  				<br />
+	  				<span>二维码是否上/下架 ：</span><select id="uplowframe" name="uplowframe" class="select" >
+	  					<option value="1">上架</option>
+	  					<option value="2" disabled="disabled">下架</option>
+	  					<option value="3">一天后下架</option>
+	  				</select>
+	  				<i style="width:600px;font-size:14px;color:#666;"> 平台目前的状态，上架后能在个人页面点击“申请平台”后看到二维码，下架后便不能看见</i>
+	  				<br />
+	  				<span>二维码时间类型 :</span><select id="adtype" name="adtype" class="select">
+	  					<option value="1">永久</option>
+	  					<option value="0">临时</option>
+	  				</select>
+	  				
+	  				<i style="width:500px;font-size:14px;color:#666;"> 在个人页面点击“申请平台”时显示的二维码类型，临时二维码为7天</i>
+	  				<br />
+	  				<select id="h3" name="h3" onchange="f3()">
+	  					<option value="0">不转发信息</option>
+	  					<option value="1">转发所有信息</option>
+	  				</select>
+	  				<div id="h4"><span>请填写url地址</span><input type="text" id="h2" name="h2"></div>
+	  				<div id="tishiDiv">
+		  					<p style="color:red; size: 12px;">${fuwuqiURL!}</p>
+					</div>
+	  				<!--<span>上传背景图 :</span><input type="file" value=""/><br />-->
+	  				<input type="button" name="" id="sub" value="提交" onclick="update_submit()" />
+	  				<a href="ggz/GetTotal" style="color:red;">&nbsp; 返回>>>>></a>
+	  			</form>
+	  		</div>
+	</body>
+</html>

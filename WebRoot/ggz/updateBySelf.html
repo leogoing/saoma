@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<base href="${ctx}/">
+<title>Insert title here</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="Css/data.css" />
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+var msg = "${msg!}"
+	var id = "${pingtai.id!}"
+	var real_adtime = "${pingtai.adtime!}";
+	var real_uplowframe = "${pingtai.uplowframe!}"
+	var real_adtype = "${pingtai.adtype!}"
+	var real_name = "${pingtai.name!}"
+	var real_publicaccountname = "${pingtai.publicaccountname!}"
+	var real_totalsp = "${pingtai.totalsp!}"
+	
+	function tishi(){
+		
+	if(msg!=""){
+		alert(msg)
+	}
+	}
+	
+function SelectAll() {
+	var uplowframe = document.getElementById("uplowframe");
+	for (var i = 0; i < uplowframe.options.length; i++) {
+		if (uplowframe.options[i].value == real_uplowframe) {
+			uplowframe.options[i].selected = 'selected';
+		}
+	}
+	for (var i = 0; i < adtype.options.length; i++) {
+		if (adtype.options[i].value == real_adtype) {
+			adtype.options[i].selected = 'selected';
+		}
+	}
+}
+
+var totalspCheck=/^([0-9.]+)$/
+var adtimeCheck= /^\d+$/;
+
+function form_submit(){
+			var form= document.getElementById("form");
+			
+			var publicaccountname = document.getElementById("publicaccountname");
+			var name=document.getElementById("name");
+			var totalsp=document.getElementById("totalsp");
+			var adtime=document.getElementById("adtime");
+			var uplowframe=document.getElementById("uplowframe");
+			var adtype=document.getElementById("adtype");
+			
+
+			var publicaccountnameSpan=document.getElementById("publicaccountnameSpan")
+			var nameSpan=document.getElementById("nameSpan")
+			var totalspSpan=document.getElementById("totalspSpan")
+			var adtimeSpan=document.getElementById("adtimeSpan");
+			
+		if(totalspCheck.test(totalsp.value)==false){
+			totalspSpan.innerHTML="价格格式不正确,必须为数字"
+		}
+		else if(adtimeCheck.test(adtime.value)==false){
+			adtimeSpan.innerHTML="保护期格式不正确，必须为正整数"
+		}
+		else if(name.value==""){
+			nameSpan.innerHTML="平台名不能为空"
+		}
+		else{
+			form.submit()
+				}		
+		
+		 if(totalsp.value!=""){
+			totalspSpan.innerHTML=""
+		}
+		 if(name.value!=""){
+				nameSpan.innerHTML=""
+			}
+		if(totalspCheck.test(totalsp.value)==true){
+			totalspSpan.innerHTML=""
+		}
+		if(adtimeCheck.test(adtime.value)==true){
+			adtimeSpan.innerHTML=""
+		}
+		}
+		
+function Toggz() {
+	window.location = "${ctx}/ggz/GetTotal"
+}
+
+
+$(document).ready(function() {
+	SelectAll()
+	tishi()
+})
+</script>
+
+</head>
+<body>
+	<br>
+	修改平台
+	<a href="ggz/ToImgs">背景图片</a>
+	<br>
+	<br>
+	<form action="${ctx}/ggz/UpdatePingtai" method="post" id="form">
+		<input id="id" name="id" type="hidden" value="${pingtai.id!}">
+			<input type="hidden" name="serverIP" value="${pingtai.serverIP!}">
+			服务器IP&nbsp;&nbsp;<span  style="color: blue;" >${pingtai.serverIP!}</span><br>
+			 平台原始ID &nbsp;&nbsp;<span style="color: blue;" >${pingtai.publicaccountname!}</span><br>
+			二维码价格<input id="totalsp" type="text"  name="totalsp" value="${stringtotalsp!}"> 
+			<span id="totalspSpan" style="color:red"></span><br> 
+			平台名称<input id="name" type="text" value="${pingtai.name!}" name="name" /> 
+			<span id="nameSpan" style="color:red"></span> 
+			<br>
+			二维码保护期<input id="adtime" type="number" id="days" name="adtime" value="${pingtai.adtime!}" />
+			<span id="adtimeSpan" style="color:red"></span> 
+			 <br> 
+			二维码上下架<select id="uplowframe" name="uplowframe">
+			<option value="1">上架</option>
+			<option value="0">下架</option>
+		</select> <br> 
+			二维码时间类型<select id="adtype" name="adtype">
+			<option value="0">临时</option>
+			<option value="1">永久</option>
+		</select> <br>
+		 <input type="button" value="提交" onclick="form_submit()">
+	</form>
+	
+	<br>
+	<a href="ggz/GetTotal">返回主页面</a>
+	<br>
+</body>
+</html>

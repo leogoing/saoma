@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="${ctx}/">
+<title>扫码后台管理系统</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="Css/ggz-zhuti.css" type="text/css" rel="stylesheet">
+<link href="Css/ggz-shezhierweima.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+var msg="${msg!}";
+var Addmsg ="${Addmsg!}";
+window.onload=GetTotal();
+function GetTotal(){
+	if(Addmsg!=""){
+		alert(Addmsg)
+	}
+	if(msg==""){
+		window.location="${ctx}/ggz/GetTotal";
+	}
+}
+</script>
+</head>
+<body>
+<div class="right">
+            <div class="hezi">
+                <div class="shang">
+                   <ul>
+                      <li>平台名称</li>
+                      <li>价格</li>
+                      <li>是否上架</li>
+                      <li>类型</li>
+                      <li>有效时间</li>
+                      <li>操作</li>
+                   </ul>
+                </div>
+                <div class="xia">
+                   <ul>
+                   		
+                   	  <!--单条数据循环开始-->
+                      <li>
+                      <#list list as x>
+                         <ul>
+                             <li>${(x.name)!}</li>
+                             <li>${(x.totalget)!}</li>
+                             <li><#if x.uplowframe =='1'>上架</#if><#if x.uplowframe =='0'>下架</#if></li>
+                             <li><#if x.adtype =='1'>永久</#if><#if x.adtype =='0'>临时</#if></li>
+                             <li>${(x.adtime)!}</li>
+                             <li class="xiahuax"><a href="javascript:;">操作</a><a href="xiangxi.html" target="iframe"">详细</a></li>
+                         </ul>
+                         </#list>
+                      </li>
+                      <!--单条数据循环结束-->
+                      
+                      
+                   </ul>
+               </div>
+            </div>
+            <div class="xiaanniu">
+            <form>
+               <input type="image" src="images/anniu.jpg">
+            </form>
+            </div>
+         </div>
+         </body>
+</html>

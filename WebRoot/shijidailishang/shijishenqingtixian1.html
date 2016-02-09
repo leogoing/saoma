@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/index-right.css"/>
+			<link rel="stylesheet" type="text/css" href="${ctx}/Css/bootstrap.css"/>			
+		<title></title>
+<script type="text/javascript">
+var userName ="${currentUser!}";
+var leverId ="${currentLevelid!}";
+var userId ="${currentUserId!}";
+var type ='${type}';
+
+	$(function(){
+		//获余额
+		getRemainderValue();
+		//获取列表
+		tofindDealDetail();
+	});
+	
+	//提现click事件
+	function doWithDrawCash(){
+		var process=$("#process1").text();//手续费
+		//alert(process);
+		var recieveVal=$("#actual1").text();//提取钱
+		//alert(recieveVal);
+		$.ajax({
+			url : '${ctx}/dlswithDrawCash/getWithDrawCash?type='+type+'&userName='+userName+'&userId='+userId+'&recieveVal='+recieveVal+'&process='+process,
+			success : function(res) {
+				alert(res.msg);
+				getRemainderValue();
+				tofindDealDetail();
+			}
+		});
+	}
+	
+	/* function getRemainderValue(){
+		$.ajax({
+			url : 'getRemainderValue?type='+type+'&userName='+userName+'&userId='+userId,
+			success : function(res) {
+				$("#remainder").html("您现在账户余额"+res.remainder+"元。");
+				var remainder =res.remainder;
+				//获取手续费
+				var a =getValue(remainder);
+				//alert(a);
+				if(1==a){
+					$("#actual").html("实际提现金额:无法提现");
+					$('#submitButton').attr('disabled',"true");//添加disabled属性 
+					//$('#submitButton').removeAttr("disabled"); //移除disabled属性 
+				}else{
+					$('#submitButton').removeAttr("disabled");
+					var process=getprocess(a);
+					//alert(process);
+					$("#process").html("手续费:"+process+"元。");
+					$("#process1").text(process);
+					var recieveVal=remainder-process;
+					//alert(recieveVal);
+					$("#actual").html("实际提现金额:"+recieveVal+"元是否提现？");
+					$("#actual1").text(recieveVal);
+					
+					
+				}
+			}
+		});
+	} */
+	function getRemainderValue(){
+		var a = 1;
+		var remainder = 0;
+		$.ajax({
+			url : '${ctx}/dlswithDrawCash/getRemainderValue?type='+type+'&userName='+userName+'&userId='+userId,
+			dataType:'json',
+			async:false,
+			success : function(res) {
+				$("#remainder").html(res.remainder+"元");
+				remainder =res.remainder;
+				//获取手续费
+				a =getValue(remainder);
+				if(1==a){
+					$("#actual").html("<span style='float: right;'>实际提现金额:无法提现</span>");
+					$('#submitButton').attr('disabled',"true");//添加disabled属性
+					$("#process").text("无法提现");
+					//$('#submitButton').removeAttr("disabled"); //移除disabled属性
+				}else{
+					$('#submitButton').removeAttr("disabled");
+					var process=getprocess(a);
+					//alert(process);
+					$("#process").html("手续费:"+process+"元。");
+					$("#process1").text(process);
+					var recieveVal=remainder-process;
+					//alert(recieveVal);
+					$("#actual").html("<span style='float: right;'>实际提现金额<span style='color: red;'>"+remainder+"元</span>是否提现？</span>");
+					$("#actual1").text(recieveVal);
+				}
+			}
+		});
+		
+	}
+	//获取手续费级别
+	function getValue(remainder){
+		if(parseFloat(remainder)>20 &&parseFloat(remainder)<200){
+			return 10;
+		}else if(parseFloat(remainder)>200 &&parseFloat(remainder)<1000){
+			return 5;
+		}else if(parseFloat(remainder)>1000){
+			return 0;
+		}else{
+			return 1;
+		}
+	}
+	
+	//获取手续费
+	function getprocess(remainder){
+		if(remainder==10){
+			return 10;
+		}else if(remainder==5){
+			return 5;
+		}else if(remainder==0){
+			return 0;
+		}
+	}
+	
+	/**
+		<li>
+							<div style=" width:33%;font-size: 17px;  ">	
+								2015-09-16 08:23:58
+							</div>
+							<div style=" width:33%;">
+								<span style=" color: red; font-size: 17px;  ">
+									20元
+								</span>
+							</div>
+							<div style=" width:33%;">
+								<span style=" font-size: 17px;  ">
+									成功
+								</span>
+							</div>
+			</li>
+	*/
+	function tofindDealDetail(){
+		$.ajax({
+			url : '${ctx}/dlswithDrawCash/tofindDealDetail?type='+type+'&userName='+userName,
+			success : function(res) {
+				var datalist = res;
+				var trTag='';
+				for (var i = 0; i < res.length; i++) {
+					trTag +="<li>\
+								<div style=' width:33%;font-size: 17px;'>\
+									"+datalist[i].reflecttime+"\
+								</div>\
+								<div style='width:33%;'>\
+									<span style='color: red; font-size: 17px;'>\
+										"+datalist[i].reflectmoney+"元\
+									</span>\
+								</div>\
+								<div style='width:33%;'>\
+									<span style='font-size: 17px;'>\
+										"+getreulst(datalist[i].isreflect)+"\
+									</span>\
+								</div>\
+						</li>";
+				}
+				$(".tixiandetail-list").html(trTag);
+			}
+		});
+	}
+	
+	function getreulst(num){
+		if(num==1){
+			return '成功'
+		}else if(num==2){
+			return '审核中';
+		}else{
+			return num;
+		}
+	}
+</script>
+	</head>
+	<body>
+		<div class="yellowtiao">
+			<ul>
+				<li style=" width:50%;">金额</li>
+				<li style=" width:50%; ">手续费</li>
+			</ul>
+		</div>
+		
+		
+		<div id="table">
+			
+		<ul  id="list">
+			<li>
+							<div style=" width:50%; ">	
+								<span  style="color: #172E7B; font-size: 17px;">
+									20元
+								</span>
+								<span  style="color: black; font-size: 17px;">
+									以下
+								</span>
+							</div>
+							<div style=" width:50%;">
+								<span style=" font-size: 17px;  ">
+									无法提现
+								</span>
+							</div>
+			</li>
+			<li>
+							<div style=" width:50%; ">	
+								<span  style="color: #172E7B; font-size: 17px;">
+									20元
+								</span>
+								<span  style="color: black; font-size: 17px;">
+									（含）以上
+								</span>
+							</div>
+							<div style=" width:50%;">
+								<span style="color: #172E7B; font-size: 17px;  ">
+									20元
+								</span>
+							</div>
+			</li>
+			<li>
+							<div style=" width:50%; ">	
+								<span  style="color: #172E7B; font-size: 17px;">
+									200元
+								</span>
+								<span  style="color: black; font-size: 17px;">
+									（含）以上
+								</span>
+							</div>
+							<div style=" width:50%;">
+								<span style="color: #172E7B; font-size: 17px;  ">
+									10元
+								</span>
+							</div>
+			</li>
+			<li>
+							<div style=" width:50%; ">	
+								<span  style="color: #172E7B; font-size: 17px;">
+									1000元
+								</span>
+								<span  style="color: black; font-size: 17px;">
+									（含）以上
+								</span>
+							</div>
+							<div style=" width:50%;">
+								<span style="color: #172E7B; font-size: 17px;  ">
+									0元
+								</span>
+							</div>
+			</li>
+		</ul>
+		</div>
+		<div class="div-sqtx">
+			<ul>
+				<li>
+					<span  class="l">
+						账户余额
+					</span>
+					<span id="remainder" class="r">
+						1234元
+					</span>
+				</li>
+				<li>
+					<span class="l">
+						手续费
+					</span>
+					<span id="process" class="r">
+						0元
+					</span>
+
+				</li>
+			</ul>
+		</div>
+		<div id="actual">
+			<span style="float: right;">实际提现金额<span style="color: red;">12345元</span>是否提现？</span>
+		</div>
+		<div class="sj-tx">
+			<button type="button" style="border: 1px #555555 solid; background-image: url(images/quxiao_03.png); width: 250px; height: 45px; float: right; " class="btn btn-warning">取消</button>			
+			<button id="submitButton" type="button" style="border: 1px #555555 solid; background-image: url(images/aaniu.png); width: 250px; height: 45px;  float: right; margin-right: 30px;" class="btn btn-warning">提交</button>			
+		</div>
+		
+		<div style="width: 100%; height: 20px;"></div>
+		
+		<div class="yellowtiao">
+			<ul>
+				<li style=" width:33%;">时间</li>
+				<li style=" width:33%; ">金额</li>
+				<li style=" width:33%; ">状态</li>
+			</ul>
+		</div>
+		
+		
+		<div id="table" style="background: none;">
+			
+		<ul  id="list" class="tixiandetail-list">
+		</ul>
+		</div>
+		<div style="display:none;" class="sj-tx">
+			<div style="width: 300px; height: auto; float: right;">
+			<button type="button" style="float: left; background: none; border: 1px #60687E solid; color: #172E7B;"  class="btn btn-default">上一页</button>							
+			<span style="margin-left: 20px;">1</span>
+			<span style="margin-left: 20px;">2</span>
+			<span style="margin-left: 20px;">3</span>
+			<span style="margin-left: 20px;">4</span>
+			
+			<button type="button" style="float: right; background: none; border: 1px #60687E solid; color: #172E7B;"  class="btn btn-default">下一页</button>							
+			</div>
+		</div>
+					
+	</body>
+</html>

@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px; padding:0px;}
+body{font-family:"微软雅黑"; color:#FFF;}
+#wrapper{width:1350px;background:url(../images/shaomazhuanbeijin.jpg); background-size:100%;}
+/*头部开始*/
+#header{width:1350px;height:85px;background:rgba(255,255,255,0.5);}
+.hd_nav img{
+    width: 148px;
+    height: 81px;
+}
+#header img{margin-left:102px;}
+/*头部结束*/
+/*内容开始*/
+#center{width:1350; height:700px; background:rgba(255,255,255,0.15);}
+#center .center-left{width:65%;float:left; height:700px; text-align:center;}
+#center .center-left .top{width:100%; height:245px; padding-top:50px; z-index:2;}
+#center .center-left .bottom{width:500px; height:405px; position:relative;}
+#center .center-left .bottom .zsb{width:500px;; height:270px;background: #918995; position:absolute; left:185px; border-radius:10px; z-index:10;}
+#center .center-left .bottom .bao{width:90%; height:400px; top:50%; left:17%;}
+/*#center .center-left .bottom .bao h1{position:relative;width:100%; text-align:center; height:17%;color:white;}*/
+#center .center-left .bottom .bao .hang{width:100%; height:10%; font-size:18px; }
+/*#center .center-left .bottom .bao .yi{ margin-top:5%;color: #FDFCFC;}*/
+#center .center-left .bottom .bao .hang p{float:left; margin-left:6%;color: #FDFCFC;}
+#center .center-left .bottom .bao .hang p.zb{margin-left:19%;color: #FDFCFC;}
+#center .center-left .bottom .bao .hang span{float:right; margin-right:8%;color: #FDFCFC;}
+#center .center-left .zsb .ggl{position: relative;top: -10px;margin-left: 25px}
+#center .center-right{width:32%;float:left; height:700px; text-align:center;}
+#center .center-right .kuang{width:80%; height:48%; background:#1e1e1e; border-radius:6px; margin-top:25%; box-shadow:2px 3px #666;}
+#center .center-right .kuang .sm{width:100%; text-align:center; height:16%; line-height:240%; background:#141414; font-size:21px; border-radius:6px; color:#bfbfbf;}
+#center .center-right .kuang .zj{width:80%; height:88px; margin-top:9%; margin-left:9%;background:#141414; border-radius:6px;}
+.input_text{
+	width:100%;height:43px;border-bottom:1px solid black;
+}
+.input_text1{
+	width:100%;height:40px;border-top:1px solid black;
+}
+#center .center-right .kuang .zj img{float:left; margin-left:2.5%; margin-top:3%;}
+#center .center-right .kuang .zj img.die{width:80%;}
+#center .center-right .kuang .zj input{width:87%; height:41px; border-radius:6px; background:#141414; color:#FFF; border:#000 1px solid; color:#7d7d7d;
+border:none; margin-bottom:0.5%;}
+#center .center-right .kuang .zj .denglu{background:#319d90; margin-top:30%; width:100%; height:55%; font-size:28px; font-weight:500; color:#FFF;}
+#center .center-right .kuang .zj .denglu:hover{background: #34AFA0;cursor: pointer;}
+/*内容结束*/

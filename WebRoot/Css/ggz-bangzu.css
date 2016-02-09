@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* CSS Document */
+#center{width:1200px; height:740px;}
+#center .top{width:1120px; height:80px; line-height:80px; font-size:12px; padding-left:80px;}
+#center .zzj{width:1110px; height:50px; color:#F00; font-size:20x;padding-left:90px; font-weight:600;}
+#center .zj{width:1200px; height:532px;}
+#center .zj img{margin-left:70px;}
+#footer{clear:both;width:1200px;height:10px;}
+#footer .left{width:600px;height:10px;background:#263541;float:left;}
+#footer .right{width:600px;height:10px;background:#b0103e;float:left;}
+

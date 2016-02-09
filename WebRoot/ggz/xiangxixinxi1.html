@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="${ctx}/">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>扫码后台管理系统</title>
+<script src="//cdn.bootcss.com/Chart.js/2.0.0-alpha4/Chart.min.js"></script>
+<script src="js/tubiao.js" type="text/javascript" charset="utf-8"></script>
+<link href="Css/ggz-zhuti.css" type="text/css" rel="stylesheet">
+<link href="Css/ggz-xiangxixinxi.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+</head>
+<body>
+ 
+   <div id="wrapper">
+      <div id="header">
+         <div class="left">   
+            <span><img src="images/6_03.png"></span>
+            <h2>扫码后台管理系统</h2>
+         </div>
+         <div class="right">
+          <a href="login/logout">
+            <span><img src="images/5_03.png"></span>
+            <h2>退出</h2>
+            </a>
+         </div>
+      </div>
+      <div id="center">
+         <div class="left">
+            <div class="head"><img src="images/chongzhi_03.png"></div>
+            <ul class="left_menu">
+            	<!--单条信息循环开始-->
+               <a href="ggz/GetCostAndAttention" >
+               <li class="action">
+                  <div class="zub"><img src="images/1_03.png"></div>
+                  <div class="yb">
+                     <h2>详细信息</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+              	<!--单条信息循环结束-->
+              	
+              	<a href="ggz/GetTotal" >
+               <li>
+                  <div class="zub"><img src="images/2_03.png"></div>
+                  <div class="yb">
+                     <h2>所有平台</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+               
+               <a href="chongzhi.html" >
+               <li>
+                  <div class="zub"><img src="images/chongzhi_1_03.png" width="30" height="30"></div>
+                  <div class="yb">
+                     <h2>充值</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+               
+               <a href="wanshanxinxi.html" >
+               <li>
+                  <div class="zub"><img src="images/4_03.png"></div>
+                  <div class="yb">
+                     <h2>完善信息</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+               
+            </ul>
+         </div>
+          
+  
+         <div class="right">
+            <div class="fl">
+                <ul>
+                   <li>
+                      <h1>${cost.yesterday!}</h1><h2>元</h2>
+                      <p>昨日花费</p>
+                   </li>
+                   <li>
+                      <h1>${cost.week!}</h1><h2>元</h2>
+                      <p>本周花费</p>
+                   </li>
+                   <li>
+                      <h1>${cost.month!}</h1><h2>元</h2>
+                      <p>本月花费</p>
+                   </li>
+                    <li>
+                      <h1>${cost.all!}</h1><h2>元</h2>
+                      <p>总花费</p>
+                   </li>
+                   <li style="border:none">
+                      <h1>${balance!}</h1><h2>元</h2>
+                      <p>余&nbsp;&nbsp;&nbsp;额</p>
+                   </li>
+                </ul>
+            </div>
+            <div class="dierge">
+                <div class="top">
+                   <ul>
+                      <li>今日增长</li>
+                      <li>昨日增长</li>
+                      <li>本周增长</li>
+                      <li>本月增长</li>
+                   </ul>
+                </div>
+                <div class="bottom">
+                   <ul>
+                       <li><h1>${count.todayCount!}</h1><h2>人</h2></li>
+                       <li><h1>${count.yesterdayCount!}</h1><h2>人</h2></li>
+                       <li><h1>${count.weekCount!}</h1><h2>人</h2></li>
+                       <li><h1>${count.monthCount!}</h1><h2>人</h2></li>
+                   </ul>
+                </div>
+            </div>
+            <div class="disange">
+            	<canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+         </div>
+         
+         <!-- 右侧结束 -->
+      </div>
+      <div id="footer">
+         <div class="left"></div>
+         <div class="right"></div>
+      </div>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+      <script type="text/javascript" src="js/ggz-zhongti.js"></script>
+
+</body>
+</html>
+

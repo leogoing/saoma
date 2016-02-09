@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="${ctx}/">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>扫码后台管理系统</title>
+<script src="js/tubiao.js" type="text/javascript" charset="utf-8"></script>
+<link href="Css/ggz-zhuti.css" type="text/css" rel="stylesheet">
+<link href="Css/ggz-xiangxixinxi.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.4.2.min.js" ></script>
+<script type="text/javascript" src="js/highcharts.js" ></script>
+</head>
+<body>
+ 
+   <div id="wrapper">
+      <div id="header">
+         <div class="left">   
+            <span><img src="images/tubiao_1_03.png"></span>
+            <h2>扫码后台管理系统</h2>
+         </div>
+         <div class="right">
+          <a href="/logout">
+            <span><img src="images/5_03.png"></span>
+            <h2 class="a123">退出</h2>
+            </a>
+         </div>
+      </div>
+      <div id="center">
+         <div class="left">
+            <!--  <div class="head"><img src="images/chongzhi_03.png"></div>-->
+            <ul class="left_menu">
+            	<!--单条信息循环开始-->
+               <a href="ggz/GetCostAndAttention" >
+               <li class="action">
+                  <div class="zub"><img src="images/1_03.png"></div>
+                  <div class="yb">
+                     <h2>详细信息</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+              	<!--单条信息循环结束-->
+              	
+              	<a href="ggz/GetTotal" >
+               <li>
+                  <div class="zub"><img src="images/2_03.png"></div>
+                  <div class="yb">
+                     <h2>所有平台</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+               
+               <a href="ggz/ggz-chongzhi.html" >
+               <li>
+                  <div class="zub"><img src="images/chongzhi_1_03.png" width="30" height="30"></div>
+                  <div class="yb">
+                     <h2>充值</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+               
+               <a >
+               <li>
+                  <div class="zub"><img src="images/4_03.png"></div>
+                  <div class="yb">
+                     <h2>完善信息</h2>
+                     <span>&lt;</span>
+                  </div>
+               </li>
+               </a>
+            </ul>
+         </div>
+          
+  
+         <div class="right">
+            <div class="fl">
+                <ul>
+                   <li>
+                      <h2>${cost.yesterday!}<span>元</span></h2>
+                      <p>昨日花费</p>
+                   </li>
+                   <li>
+                      <h2>${cost.today!}<span>元</span></h2>
+                      <p>今日花费</p>
+                   </li>
+                   <li>
+                      <h2>${cost.week!}<span>元</span></h2>
+                      <p>本周花费</p>
+                   </li>
+                   <li>
+                      <h2>${cost.month!}<span>元</span></h2>
+                      <p>本月花费</p>
+                   </li>
+                    <li style="border:none">
+                      <h2>${cost.all!}<span>元</span></h2>
+                      <p>总花费</p>
+                   </li>
+                </ul>
+            </div>
+            <div class="dierge" style="margin-top:-15px">
+                <div class="top">
+                   <ul>
+                      <li>今日增长</li>
+                      <li>昨日增长</li>
+                      <li>本周增长</li>
+                      <li>本月增长</li>
+                   </ul>
+                </div>
+                <div class="bottom">
+                   <ul>
+                       <li><h1>${count.todayCount!}</h1><h2>人</h2></li>
+                       <li><h1>${count.yesterdayCount!}</h1><h2>人</h2></li>
+                       <li><h1>${count.weekCount!}</h1><h2>人</h2></li>
+                       <li><h1>${count.monthCount!}</h1><h2>人</h2></li>
+                   </ul>
+                </div>
+            </div>
+            <br>
+            <div align="center">
+            	<a href="ggz/GetTotal">返回平台页面</a>
+            </div>
+            
+			<!-- 柱状图显示 -->
+			<div style="width:850px;margin:8px auto 0 auto;">
+				<div id="chart_combo" class="chart_combo"></div>
+			</div>
+			<script type="text/javascript">
+				var chart;
+				$(function() {
+				    chart = new Highcharts.Chart({
+				        chart: {
+				            renderTo: 'chart_combo' //关联页面元素div#id
+				        },
+				
+				        title: {  //图表标题
+				            text: '关注消费量统计图'
+				        },
+				
+				        xAxis: { //x轴
+				            categories: ['今日', '昨日','本周', '本月'],  //X轴类别
+							labels:{y:18}  //x轴标签位置：距X轴下方18像素
+				        },
+						yAxis: {  //y轴
+				            title: {text: '关注、消费量（人/元）'}, //y轴标题
+							lineWidth: 2 //基线宽度
+				        },
+						exporting: {
+							enabled: false  //设置导出按钮不可用
+						},
+						credits: { 
+							text: 'tg.kaihuine.com',
+							href: 'http://tg.kaihuine.com'
+						},
+				        series: [{ //数据列
+				            type: 'column',
+				            name: '花费',
+				            data: [0,${cost.yesterday!}, ${cost.week!}, ${cost.month!}]
+				        },
+				        {
+				            type: 'column',
+				            name: '关注增长量',
+				            data: [${count.todayCount!}, ${count.yesterdayCount!}, ${count.weekCount!},${count.monthCount!}]
+				        },
+				        {
+				            type: 'spline',
+				            name: '关注增长线',
+				            data: [${count.todayCount!}, ${count.yesterdayCount!}, ${count.weekCount!},${count.monthCount!}]
+				        },
+				       ]
+				    });
+				});
+			</script>
+         </div>
+         
+      <!-- 右侧结束 -->
+      </div>
+      <div id="footer">
+         <div class="left"></div>
+         <div class="right"></div>
+      </div>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+      <script type="text/javascript" src="js/ggz-zhongti.js"></script>
+
+</body>
+</html>
+

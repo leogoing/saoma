@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.yincang{
+display: none;
+}
+</style>
+<script type="text/javascript"src="/hahada/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+	function f1(){
+		$("#h1").show();
+		$("#h2").hide();
+		$("#h3").hide();
+		$("#h4").hide();
+	}
+	function f2(){
+		$("#h2").show();
+		$("#h1").hide();
+		$("#h3").hide();
+		$("#h4").hide();
+	}
+	function f3(){
+		$("#h3").show();
+		$("#h1").hide();
+		$("#h2").hide();
+		$("#h4").hide();
+	}
+	function f4(){
+		$("#h1").hide();
+		$("#h2").hide();
+		$("#h3").hide();
+		$("#h4").show();
+	}
+	function g1(){
+		alert($("#type1").val());
+		alert($('#id1').val());
+	}
+	
+</script>
+<script type="text/javascript">
+	var ID=null;
+	$(function(){
+		ID=Math.random().toString(36).substr(2);
+		$('#l1').html('ID:'+ID);
+		$('#id1').attr('value',ID);
+		$('#id2').attr('value',ID);
+		$('#id3').attr('value',ID);
+	});
+</script>
+</head>
+<body>
+	<input type="button"value="新闻素材"onclick="f1()">
+	<input type="button"value="录音素材"onclick="f2()">
+	<input type="button"value="图片素材"onclick="f3()">
+	<input type="button"value="录像素材"onclick="f4()">
+	<h1 id="l1"></h1>
+	<div>
+		
+	
+	</div>
+	<div id="h1" class="yincang">
+		<form  action="/hahada/sucai1"method="post" enctype="multipart/form-data">
+			<input id="type1"name="type"type="text"value="type1"class="yincang">
+			<input id="id1" name="namename" value=""class="yincang">
+			<p>新闻标题</p><input id="newshead1" name="newshead1"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:0%;">
+			<p>新闻叙述</p><input id="newsnarration1" name="newsnarration1"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:10%;">
+			<input id="imgurl1"name="imgurl1" type="file" style="position:absolute;width:170px;height:30px;left:16%;top:20%;" name="imgurl1">
+			<br><p>新闻地址</p><input id="newsurl1"name="newsurl1" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:30%;">
+			
+			<p>新闻标题</p><input id="newshead2" name="newshead2"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:40%;">
+			<p>新闻叙述</p><input id="newsnarration2"name="newsnarration2" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:50%;">
+			<input id="imgurl2" name="imgurl2"type="file" style="position:absolute;width:170px;height:30px;left:16%;top:60%;" name="imgurl2">
+			<br><p>新闻地址</p><input id="newsurl2" name="newsurl2"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:70%;">
+			
+			<p>新闻标题</p><input id="newshead3"name="newshead3" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:80%;">
+			<p>新闻叙述</p><input id="newsnarration3" name="newsnarration3"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:90%;">
+			<input id="imgurl3" name="imgurl3"type="file" style="position:absolute;width:170px;height:30px;left:16%;top:100%;" name="imgurl3">
+			<br><p>新闻地址</p><input id="newsurl3"name="newsurl3" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:110%;">
+			
+			<p>新闻标题</p><input id="newshead4" name="newshead4"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:120%;">
+			<p>新闻叙述</p><input id="newsnarration4" name="newsnarration4"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:130%;">
+			<input id="imgurl4" name="imgurl4"type="file" style="position:absolute;width:170px;height:30px;left:16%;top:140%;" name="imgurl4">
+			<br><p>新闻地址</p><input id="newsurl4"  name="newsurl4"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:150%;">
+			
+			<p>新闻标题</p><input id="newshead5" name="newshead5" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:160%;">
+			<p>新闻叙述</p><input id="newsnarration5"  name="newsnarration5"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:170%;">
+			<input id="imgurl5"  name="imgurl5"type="file" style="position:absolute;width:170px;height:30px;left:16%;top:180%;" name="imgurl5">
+			<br><p>新闻地址</p><input id="newsurl5" name="newsurl5" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:190%;">
+			
+			<p>新闻标题</p><input id="newshead6"  name="newshead6"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:200%;">
+			<p>新闻叙述</p><input id="newsnarration6"  name="newsnarration6"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:210%;">
+			<input id="imgurl6"  name="imgurl6"type="file" style="position:absolute;width:170px;height:30px;left:16%;top:220%;" name="imgurl6">
+			<br><p>新闻地址</p><input id="newsurl6"  name="newsurl6"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:230%;">
+			
+			<p>新闻标题</p><input id="newshead7"  name="newshead7"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:240%;">
+			<p>新闻叙述</p><input id="newsnarration7" name="newsnarration7" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:250%;">
+			<input id="imgurl7"  name="imgurl7"type="file" style="position:absolute;width:170px;height:30px;left:16%;top:260%;" name="imgurl7">
+			<br><p>新闻地址</p><input id="newsurl7"  name="newsurl7"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:270%;">
+			
+			<p>新闻标题</p><input id="newshead8"  name="newshead8"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:280%;">
+			<p>新闻叙述</p><input id="newsnarration8" name="newsnarration8"type="text" style="position:absolute;width:170px;height:30px;left:16%;top:290%;">
+			<input id="imgurl8" name="imgurl8"type="file" style="position:absolute;width:170px;height:30px;left:16%;top:300%;" name="imgurl8">
+			<br><p>新闻地址</p><input id="newsurl8"name="newsurl8" type="text" style="position:absolute;width:170px;height:30px;left:16%;top:310%;">
+			<input type="submit"value="确定"onclick="g1()">
+		</form>
+	
+	</div>
+	<div id="h2" class="yincang">
+		<form id="Form1" action="/hahada/sucai1" method="post" enctype="multipart/form-data" >
+			<input id="type2"name="type"type="text"value="type2"class="yincang">
+			<input id="id2" name="namename" value=""class="yincang">
+			<input id="type2"name="type2"type="text"value="type2"class="yincang">
+			<input type="file" id="filename2"name="filename2">
+			<input type="submit"value="确定">
+		</form>
+	</div>
+	<div id="h3"class="yincang">
+		<form id="Form1" action="/hahada/sucai1" method="post" enctype="multipart/form-data" >
+			<input id="type3"name="type"type="text"value="type3"class="yincang">
+			<input id="id3" name="namename" value=""class="yincang">
+			<input id="filename3" name="filename3"type="file">
+			<input type="submit"value="确定">
+		</form>
+	</div>
+	<div id="h4"class="yincang">
+		<form id="Form1" action="/hahada/sucai1" method="post" enctype="multipart/form-data" >
+			<input id="type4"name="type"type="text"value="type4"class="yincang">
+			<input id="id4" name="namename" value=""class="yincang">
+			<input id="filename4" name="filename4"type="file">
+			<input type="submit"value="确定">
+		</form>
+	</div>
+</body>
+</html>
